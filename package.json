@@ -1,0 +1,19 @@
+{
+  "name": "fear-core-tasks",
+  "version": "1.0.0",
+  "description": "FEAR Core repo to automate certain core tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DigitalInnovation/fear-core-tasks.git"
+  },
+  "author": "Marton Hipszki <marton.hipszki@mnscorp.net>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DigitalInnovation/fear-core-tasks/issues"
+  },
+  "homepage": "https://github.com/DigitalInnovation/fear-core-tasks"
+}
