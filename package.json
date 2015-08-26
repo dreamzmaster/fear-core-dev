@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DigitalInnovation/fear-core-tasks/issues"
   },
-  "homepage": "https://github.com/DigitalInnovation/fear-core-tasks"
+  "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
+  "devDependencies": {
+    "eslint": "^1.2.1"
+  }
 }
