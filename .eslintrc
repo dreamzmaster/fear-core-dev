@@ -1,0 +1,3 @@
+{
+    "extends": "fear-core/node-config"
+}
