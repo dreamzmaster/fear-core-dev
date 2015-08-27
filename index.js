@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    lintJavascript: require('./task/lint-javascript')
+    lintJavascript: require('./tasks/lint-javascript')
 };
