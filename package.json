@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
   "dependencies": {
-    "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git"
-  },
-  "devDependencies": {
-    "eslint": "^1.2.1",
+    "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.2.1"
   }
 }
