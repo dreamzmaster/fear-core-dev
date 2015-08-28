@@ -3,13 +3,13 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 
-module.exports = function registerTask () {
+module.exports = function taskFactory (src) {
 
-    gulp.task('lint-javascript', function () {
-        return gulp.src(['*.js'])
+    return function task () {
+        return gulp.src(src)
             .pipe(eslint())
             .pipe(eslint.format())
             .pipe(eslint.failOnError());
-    });
+    };
 
 };
