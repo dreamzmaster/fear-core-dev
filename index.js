@@ -2,5 +2,5 @@
 
 module.exports = {
     lintJavascript: require('./tasks/lint-javascript'),
-    runUnitTests: require('./tasks/run-unit-tests')
+    startKarmaServer: require('./tasks/start-karma-server')
 };
