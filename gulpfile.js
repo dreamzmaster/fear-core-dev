@@ -10,7 +10,8 @@ gulp.task('lint', lint(files) );
 
 gulp.task('run-unit-tests-once', runUnitTests({
     configFile: __dirname + '/karma.conf.js',
-    files: [ 'test/**/*.spec.js' ]
+    files: [ 'test/**/*.spec.js' ],
+    singleRun: true
 }));
 
 gulp.task('watch', function() {
