@@ -47,3 +47,23 @@ for a browser specific project:
     "extends": "fear-core/browser-config"
 }
 ```
+
+## Running unit tests
+
+We're running unit tests via [Karma](http://karma-runner.github.io/) test runner. There's a preconfigured `karma.conf.js` using `mocha` as the testing framework and `chai` as the assertion library.
+
+Both `mocha` and `chai` is pulled in as a plugin to Karma, so the only thing you have to do is to start writing your unit tests:
+
+```
+'use strict';
+
+describe('a component under test', function () {
+
+    it('should be unit tested', function() {
+        expect(true).to.be.true;
+    });
+
+});
+```
+
+The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the default targeted browser.
