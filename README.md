@@ -66,4 +66,48 @@ describe('a component under test', function () {
 });
 ```
 
-The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the default targeted browser.
+The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the default targeted browser to run the test suite on your local dev machine and get feedback quickly.
+
+You can run the test suite in other browsers as well, also in parallel:
+
+```
+// karma.config.js
+'use strict';
+
+module.exports = function (config) {
+    config.set({
+
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['PhantomJS', 'Chrome', 'Safari']
+
+    });
+};
+```
+
+but you have to install the appropriate launcher e.g.
+
+```
+$ npm install --save-dev karma-safari-launcher
+```
+
+In your `gulpfile` register a new task by passing an object refering to your `karma.conf.js` file, also override any Karma config options in there:
+
+```
+gulp.task('run-unit-tests-once', fearCoreTasks.startKarmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    files: [ 'test/**/*.spec.js' ]
+}));
+```
+
+The above example starts a Karma server which is waiting for another task to trigger the running of the test suite.
+
+In order to run the test suite, use the following example in your `gulpfile.js`:
+
+```
+gulp.task('start-karma', fearCoreTasks.startKarmaRunner({
+    configFile: __dirname + '/karma.conf.js'
+}));
+```
+
+Running `gulp watch` will look for file changes and run the unit test suite each time you save a file.

@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var lint = require('./index').lintJavascript;
 var startKarmaServer = require('./index').startKarmaServer;
+var startKarmaRunner = require('./index').startKarmaRunner;
 
 var files = ['tasks/*.js', '*.js'];
 
@@ -14,6 +15,15 @@ gulp.task('run-unit-tests-once', startKarmaServer({
     singleRun: true
 }));
 
+gulp.task('start-karma-server', startKarmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    files: [ 'test/**/*.spec.js' ]
+}));
+
+gulp.task('run-unit-tests', ['lint'], startKarmaRunner({
+    configFile: __dirname + '/karma.conf.js'
+}));
+
 gulp.task('watch', function() {
-    gulp.watch(files, ['lint']);
+    gulp.watch(files, ['run-unit-tests']);
 });
