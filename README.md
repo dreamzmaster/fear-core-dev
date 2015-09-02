@@ -66,6 +66,8 @@ describe('a component under test', function () {
 });
 ```
 
+### Targeted browsers
+
 The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the default targeted browser to run the test suite on your local dev machine and get feedback quickly.
 
 You can run the test suite in other browsers as well, also in parallel:
@@ -91,23 +93,48 @@ but you have to install the appropriate launcher e.g.
 $ npm install --save-dev karma-safari-launcher
 ```
 
-In your `gulpfile` register a new task by passing an object refering to your `karma.conf.js` file, also override any Karma config options in there:
+### Running unit test once
+
+To run your unit test suite via Karma, register a new task in your `gulpfile` and pass an object referring to a `karma.conf.js` file, also override any Karma config options in there:
 
 ```
 gulp.task('run-unit-tests-once', fearCoreTasks.startKarmaServer({
-    configFile: __dirname + '/karma.conf.js',
+    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js',
+    files: [ 'test/**/*.spec.js' ],
+    singleRun: true
+}));
+```
+
+### Continuously running unit tests
+
+When you're practicing TDD, it's important to continuously run your unit test suite on every file change. To achieve that, we start a Karma server with the following gulp task:
+
+```
+gulp.task('start-karma-server', fearCoreTasks.startKarmaServer({
+    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js',
     files: [ 'test/**/*.spec.js' ]
 }));
 ```
 
 The above example starts a Karma server which is waiting for another task to trigger the running of the test suite.
 
-In order to run the test suite, use the following example in your `gulpfile.js`:
+In order to trigger Karma to run the test suite, use the following example in your `gulpfile.js`:
 
 ```
+gulp.task('run-unit-tests', fearCoreTasks.startKarmaRunner({
+    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js'
+}));
+```
+
+Running also `gulp watch` in a separate terminal window, will look for file changes and run the unit test suite each time you save a file.
+
+### Using your own Karma config
+
+To use your own Karma config amend the path to which the `configFile` property points to:
+
+```
+// e.g. karma.conf.js in your project's root
 gulp.task('start-karma', fearCoreTasks.startKarmaRunner({
     configFile: __dirname + '/karma.conf.js'
 }));
 ```
-
-Running `gulp watch` will look for file changes and run the unit test suite each time you save a file.
