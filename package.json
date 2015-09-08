@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
   "dependencies": {
+    "app-root-path": "^1.0.0",
     "chai": "^3.2.0",
     "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git",
     "gulp": "^3.9.0",

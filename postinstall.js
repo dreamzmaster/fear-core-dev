@@ -2,3 +2,7 @@
 
 console.log('require.main.filename', require.main.filename);
 console.log('process.cwd()', process.cwd());
+
+var appRoot = require('app-root-path');
+
+console.log(appRoot);
