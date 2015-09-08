@@ -10,6 +10,7 @@ var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
 copyDefaultToAppRoot('karma.conf.js');
 copyDefaultToAppRoot('.editorConfig');
+copyDefaultToAppRoot('.eslintrc');
 
 function copyDefaultToAppRoot (file) {
     var src = moduleRoot+'/defaults/'+file;
