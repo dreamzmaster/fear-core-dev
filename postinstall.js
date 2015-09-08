@@ -1,8 +1,14 @@
 'use strict';
 
-console.log('require.main.filename', require.main.filename);
-console.log('process.cwd()', process.cwd());
-
 var appRoot = require('app-root-path');
+var moduleRoot = process.cwd();
 
-console.log(appRoot);
+var fs = require('fs-extra');
+
+var karmaConfSrc = moduleRoot+'/.karma.conf.js';
+var karmaConfDst = appRoot+'/karma.conf.js';
+
+fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false }, function (err) {
+    if (err) return console.error(err);
+    console.log('copied file', karmaConfSrc, 'to', karmaConfDst);
+});
