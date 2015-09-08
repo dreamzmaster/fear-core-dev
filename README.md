@@ -4,7 +4,7 @@ This repo contains all core `gulp` tasks which can be configured and used in any
 
 The Core tasks in this repo are provided in a factory function format for developer convenience, so you can use the functionality but can give any name to the task you create and configure it as much as the Core Task API makes it possible (see examples below).
 
-## Available Core tasks
+## Installation
 
 To use any of the provided Core gulp tasks, please install the module first:
 
@@ -14,13 +14,38 @@ $ npm install --save-dev git+ssh://git@github.com:DigitalInnovation/fear-core-ta
 
 **PLEASE NOTE** the above command requires `npm` version `2.7.1` or above, see this [issue](https://github.com/npm/npm/issues/7121).
 
+### Post install script
+
+When `npm` installs the this core module, it will run the included `postinstall` script which copies default config files to the application / project's root folder, unless they exist.
+
+```
+$ npm install
+FEAR Core tasks: skipped copying default karma.conf.js
+File already exists in project root
+```
+
+This can help scaffolding a new project and also keeping our standards.
+
+The copied default files are:
+
+- `karma.conf.js`
+- `.editorconfig`
+- `.eslintrc`
+- `.gitignore`
+
+Take a look the `node_modules/fear-core-tasks/defaults` folder for more details.
+
+### Usage in gulptask.js
+
 In `gulpfile.js` pull in `fear-core-tasks`
 
 ```
 var fearCoreTasks = require('fear-core-tasks');
 ```
 
-## Javascript linting
+## Available Core tasks
+
+### Javascript linting
 
 This is done by using [ESLint](http://eslint.org) and a default [FEAR Core ESLint config](https://github.com/DigitalInnovation/fear-core-eslint-config).
 
@@ -48,7 +73,7 @@ for a browser specific project:
 }
 ```
 
-## Running unit tests
+### Running unit tests
 
 We're running unit tests via [Karma](http://karma-runner.github.io/) test runner. There's a preconfigured `karma.conf.js` using `mocha` as the testing framework and `chai` as the assertion library.
 
@@ -66,7 +91,7 @@ describe('a component under test', function () {
 });
 ```
 
-### Targeted browsers
+#### Targeted browsers
 
 The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the default targeted browser to run the test suite on your local dev machine and get feedback quickly.
 
@@ -93,25 +118,25 @@ but you have to install the appropriate launcher e.g.
 $ npm install --save-dev karma-safari-launcher
 ```
 
-### Running unit test once
+#### Running unit test once
 
 To run your unit test suite via Karma, register a new task in your `gulpfile` and pass an object referring to a `karma.conf.js` file, also override any Karma config options in there:
 
 ```
 gulp.task('run-unit-tests-once', fearCoreTasks.startKarmaServer({
-    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js',
+    configFile: __dirname + '/karma.conf.js',
     files: [ 'test/**/*.spec.js' ],
     singleRun: true
 }));
 ```
 
-### Continuously running unit tests
+#### Continuously running unit tests
 
 When you're practicing TDD, it's important to continuously run your unit test suite on every file change. To achieve that, we start a Karma server with the following gulp task:
 
 ```
 gulp.task('start-karma-server', fearCoreTasks.startKarmaServer({
-    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js',
+    configFile: __dirname + '/karma.conf.js',
     files: [ 'test/**/*.spec.js' ]
 }));
 ```
@@ -122,19 +147,21 @@ In order to trigger Karma to run the test suite, use the following example in yo
 
 ```
 gulp.task('run-unit-tests', fearCoreTasks.startKarmaRunner({
-    configFile: __dirname + '/node_modules/fear-core-tasks/karma.conf.js'
+    configFile: __dirname + '/karma.conf.js'
 }));
 ```
 
 Running also `gulp watch` in a separate terminal window, will look for file changes and run the unit test suite each time you save a file.
 
-### Using your own Karma config
+#### Using your own Karma config
 
 To use your own Karma config amend the path to which the `configFile` property points to:
 
 ```
 // e.g. karma.conf.js in your project's root
 gulp.task('start-karma', fearCoreTasks.startKarmaRunner({
-    configFile: __dirname + '/karma.conf.js'
+    configFile: __dirname + '/karma-custom.conf.js'
 }));
 ```
+
+or amend the existing (default) `karma.conf.js` under your project's root folder.
