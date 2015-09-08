@@ -8,11 +8,11 @@ var chalk = require('chalk');
 
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
-copyToAppRoot('karma.conf.js');
-copyToAppRoot('.editorConfig');
+copyDefaultToAppRoot('karma.conf.js');
+copyDefaultToAppRoot('.editorConfig');
 
-function copyToAppRoot (file) {
-    var src = moduleRoot+'/'+file;
+function copyDefaultToAppRoot (file) {
+    var src = moduleRoot+'/defaults/'+file;
     var dst = appRoot+'/'+file;
 
     try {
