@@ -6,22 +6,27 @@ var moduleRoot = process.cwd();
 var fs = require('fs-extra');
 var chalk = require('chalk');
 
-var karmaConfSrc = moduleRoot+'/karma.conf.js';
-var karmaConfDst = appRoot+'/karma.conf.js';
+var karmaConf = 'karma.conf.js';
+var karmaConfSrc = moduleRoot+'/'+karmaConf;
+var karmaConfDst = appRoot+'/'+karmaConf;
+
+var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
 try {
 
     fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false });
 
+    console.log(fearCoreTasks+' copied default '+chalk.green(karmaConf)+' to project root\n');
+
 } catch (e) {
 
     if (e.message === 'EEXIST') {
 
-        console.log(chalk.cyan('FEAR Core tasks:')+' skipped copying default '+chalk.green('karma.conf.js')+', already exists in project root\n');
+        console.log(fearCoreTasks+' skipped copying default '+chalk.green(karmaConf)+'\nFile already exists in project root\n');
 
     } else {
 
-        console.log(chalk.cyan('FEAR Core tasks:')+chalk.red(' cannot copy karma.conf.js'), e.message, '\n');
+        console.log(fearCoreTasks+chalk.red(' cannot copy '+karmaConf)+'\nError: '+e.message+'\n');
     }
 
 }
