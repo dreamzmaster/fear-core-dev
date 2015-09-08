@@ -21,6 +21,7 @@
     "app-root-path": "^1.0.0",
     "chai": "^3.2.0",
     "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git",
+    "fs-extra": "^0.24.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "karma": "^0.13.9",
@@ -28,7 +29,6 @@
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.1.1",
     "karma-phantomjs-launcher": "^0.2.1",
-    "node-fs-extra": "^0.8.1",
     "phantomjs": "^1.9.18"
   },
   "devDependencies": {
