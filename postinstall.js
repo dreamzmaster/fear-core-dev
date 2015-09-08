@@ -10,7 +10,7 @@ var karmaConfDst = appRoot+'/karma.conf.js';
 
 try {
 
-    fs.copySync(karmaConfSrc, karmaConfDst);
+    fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false });
 
 } catch (e) {
 
