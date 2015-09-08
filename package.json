@@ -20,6 +20,7 @@
   "dependencies": {
     "app-root-path": "^1.0.0",
     "chai": "^3.2.0",
+    "chalk": "^1.1.1",
     "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git",
     "fs-extra": "^0.24.0",
     "gulp": "^3.9.0",

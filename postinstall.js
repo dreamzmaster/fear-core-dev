@@ -4,6 +4,7 @@ var appRoot = require('app-root-path');
 var moduleRoot = process.cwd();
 
 var fs = require('fs-extra');
+var chalk = require('chalk');
 
 var karmaConfSrc = moduleRoot+'/karma.conf.js';
 var karmaConfDst = appRoot+'/karma.conf.js';
@@ -16,11 +17,11 @@ try {
 
     if (e.message === 'EEXIST') {
 
-        console.log('karma.conf.js already exists in project root\n');
+        console.log(chalk.cyan('FEAR Core tasks:')+' skipped copying default '+chalk.green('karma.conf.js')+', already exists in project root\n');
 
     } else {
 
-        console.log('cannot copy karma.conf.js\n', e.message);
+        console.log(chalk.cyan('FEAR Core tasks:')+chalk.red(' cannot copy karma.conf.js'), e.message, '\n');
     }
 
 }
