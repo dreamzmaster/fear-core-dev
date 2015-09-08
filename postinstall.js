@@ -5,7 +5,7 @@ var moduleRoot = process.cwd();
 
 var fs = require('fs-extra');
 
-var karmaConfSrc = moduleRoot+'/.karma.conf.js';
+var karmaConfSrc = moduleRoot+'/karma.conf.js';
 var karmaConfDst = appRoot+'/karma.conf.js';
 
 fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false }, function (err) {
