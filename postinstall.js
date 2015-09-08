@@ -8,48 +8,32 @@ var chalk = require('chalk');
 
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
-var karmaConf = 'karma.conf.js';
-var karmaConfSrc = moduleRoot+'/'+karmaConf;
-var karmaConfDst = appRoot+'/'+karmaConf;
+copyToAppRoot('karma.conf.js');
+copyToAppRoot('.editorConfig');
 
-try {
+function copyToAppRoot (file) {
+    var src = moduleRoot+'/'+file;
+    var dst = appRoot+'/'+file;
 
-    fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false });
+    try {
 
-    logCopyOk(karmaConf);
+        fs.copySync(src, dst, { clobber: false });
 
-} catch (err) {
+        logCopyOk(file);
 
-    if (err.message === 'EEXIST') {
-        logFileSkipped(karmaConf);
-    } else {
-        logCopyError(karmaConf, err);
+    } catch (err) {
+
+        if (err.message === 'EEXIST') {
+            logFileSkipped(file);
+        } else {
+            logCopyError(file, err);
+        }
+
     }
-
-}
-
-var editorConfig = '.editorConfig';
-var editorConfigSrc = moduleRoot+'/'+editorConfig;
-var editorConfigDst = appRoot+'/'+editorConfig;
-
-try {
-
-    fs.copySync(editorConfigSrc, editorConfigDst, { clobber: false });
-
-    logCopyOk(editorConfig);
-
-} catch (err) {
-
-    if (err.message === 'EEXIST') {
-        logFileSkipped(editorConfig);
-    } else {
-        logCopyError(editorConfig, err);
-    }
-
 }
 
 function logCopyOk (file) {
-    return console.log(fearCoreTasks+' copied default '+chalk.green(file)+' to project root\n');
+    console.log(fearCoreTasks+' copied default '+chalk.green(file)+' to project root\n');
 }
 
 function logFileSkipped (file) {
