@@ -16,17 +16,14 @@ try {
 
     fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false });
 
-    console.log(fearCoreTasks+' copied default '+chalk.green(karmaConf)+' to project root\n');
+    logCopyOk(karmaConf);
 
-} catch (e) {
+} catch (err) {
 
-    if (e.message === 'EEXIST') {
-
-        console.log(fearCoreTasks+' skipped copying default '+chalk.green(karmaConf)+'\nFile already exists in project root\n');
-
+    if (err.message === 'EEXIST') {
+        logFileSkipped(karmaConf);
     } else {
-
-        console.log(fearCoreTasks+chalk.red(' cannot copy '+karmaConf)+'\nError: '+e.message+'\n');
+        logCopyError(karmaConf, err);
     }
 
 }
@@ -39,17 +36,26 @@ try {
 
     fs.copySync(editorConfigSrc, editorConfigDst, { clobber: false });
 
-    console.log(fearCoreTasks+' copied default '+chalk.green(editorConfig)+' to project root\n');
+    logCopyOk(editorConfig);
 
-} catch (e) {
+} catch (err) {
 
-    if (e.message === 'EEXIST') {
-
-        console.log(fearCoreTasks+' skipped copying default '+chalk.green(editorConfig)+'\nFile already exists in project root\n');
-
+    if (err.message === 'EEXIST') {
+        logFileSkipped(editorConfig);
     } else {
-
-        console.log(fearCoreTasks+chalk.red(' cannot copy '+editorConfig)+'\nError: '+e.message+'\n');
+        logCopyError(editorConfig, err);
     }
 
+}
+
+function logCopyOk (file) {
+    return console.log(fearCoreTasks+' copied default '+chalk.green(file)+' to project root\n');
+}
+
+function logFileSkipped (file) {
+    console.log(fearCoreTasks+' skipped copying default '+chalk.green(file)+'\nFile already exists in project root\n');
+}
+
+function logCopyError (file, err) {
+    console.log(fearCoreTasks+chalk.red(' cannot copy '+file)+'\nError: '+err.message+'\n');
 }
