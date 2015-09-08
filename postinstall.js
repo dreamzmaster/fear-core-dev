@@ -8,39 +8,41 @@ var chalk = require('chalk');
 
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
-copyDefaultToAppRoot('karma.conf.js');
-copyDefaultToAppRoot('.editorConfig');
-copyDefaultToAppRoot('.eslintrc');
+copyDefaultToAppRoot('karma.conf.js', 'karma.conf.js');
+copyDefaultToAppRoot('editorConfig', '.editorConfig');
+copyDefaultToAppRoot('eslintrc', '.eslintrc');
 
-function copyDefaultToAppRoot (file) {
-    var src = moduleRoot+'/defaults/'+file;
-    var dst = appRoot+'/'+file;
+function copyDefaultToAppRoot (srcFilename, dstFilename) {
+
+    var src = moduleRoot+'/defaults/'+srcFilename;
+    var dst = appRoot+'/'+dstFilename;
 
     try {
 
+        // clobber: false means fs-extra will throw an error if the dst exists
         fs.copySync(src, dst, { clobber: false });
 
-        logCopyOk(file);
+        logCopyOk(dstFilename);
 
     } catch (err) {
 
         if (err.message === 'EEXIST') {
-            logFileSkipped(file);
+            logFileSkipped(dstFilename);
         } else {
-            logCopyError(file, err);
+            logCopyError(dstFilename, err);
         }
 
     }
 }
 
-function logCopyOk (file) {
-    console.log(fearCoreTasks+' copied default '+chalk.green(file)+' to project root\n');
+function logCopyOk (filename) {
+    console.log(fearCoreTasks+' copied default '+chalk.green(filename)+' to project root\n');
 }
 
-function logFileSkipped (file) {
-    console.log(fearCoreTasks+' skipped copying default '+chalk.green(file)+'\nFile already exists in project root\n');
+function logFileSkipped (filename) {
+    console.log(fearCoreTasks+' skipped copying default '+chalk.green(filename)+'\nFile already exists in project root\n');
 }
 
-function logCopyError (file, err) {
-    console.log(fearCoreTasks+chalk.red(' cannot copy '+file)+'\nError: '+err.message+'\n');
+function logCopyError (filename, err) {
+    console.log(fearCoreTasks+chalk.red(' cannot copy '+filename)+'\nError: '+err.message+'\n');
 }
