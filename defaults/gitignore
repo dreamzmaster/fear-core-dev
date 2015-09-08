@@ -1,0 +1,5 @@
+/**
+ * FEAR Core default .gitignore
+ */
+
+node_modules

@@ -11,6 +11,7 @@ var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 copyDefaultToAppRoot('karma.conf.js', 'karma.conf.js');
 copyDefaultToAppRoot('editorConfig', '.editorConfig');
 copyDefaultToAppRoot('eslintrc', '.eslintrc');
+copyDefaultToAppRoot('gitignore', '.gitignore');
 
 function copyDefaultToAppRoot (srcFilename, dstFilename) {
 
