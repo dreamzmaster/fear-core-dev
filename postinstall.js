@@ -12,18 +12,18 @@ try {
 
     fs.copySync(karmaConfSrc, karmaConfDst, { clobber: false }, function (err) {
         if (err) return console.error(err);
-        console.log('copied file', karmaConfSrc, 'to', karmaConfDst);
+        console.log('copied file', karmaConfSrc, 'to', karmaConfDst, '\n');
     });
 
 } catch (e) {
 
     if (e.message === 'EEXIST') {
 
-        console.log('karma.conf.js already exists in project root');
+        console.log('karma.conf.js already exists in project root\n');
 
     } else {
 
-        console.log('cannot copy karma.conf.js', e.message);
+        console.log('cannot copy karma.conf.js\n', e.message);
     }
 
 }
