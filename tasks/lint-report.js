@@ -20,33 +20,37 @@ function getErrorsForRule(name, options, files) {
     return errors;
 }
 
-module.exports = function lintReport(files) {
+module.exports = function taskFactory (files) {
 
-    // populate rules from project's .eslintrc
-    var cli = new CLIEngine({ useEslintrc:true });
-    var config = cli.getConfigForFile();
-    var rules = config.rules;
+    return function lintReport() {
 
-    var failedRules = [];
+        // populate rules from project's .eslintrc
+        var cli = new CLIEngine({ useEslintrc:true });
+        var config = cli.getConfigForFile();
+        var rules = config.rules;
 
-    // run linting with each rule
-    for (var name in rules) {
-        if (rules.hasOwnProperty(name)) {
-            var options = rules[name];
-            var errors = getErrorsForRule(name, options, files);
-            if (errors.length > 0) {
-                failedRules.push({
-                    name: name,
-                    errors: errors
-                });
+        var failedRules = [];
+
+        // run linting with each rule
+        for (var name in rules) {
+            if (rules.hasOwnProperty(name)) {
+                var options = rules[name];
+                var errors = getErrorsForRule(name, options, files);
+                if (errors.length > 0) {
+                    failedRules.push({
+                        name: name,
+                        errors: errors
+                    });
+                }
             }
         }
-    }
 
-    // create and show a report
-    if (failedRules.length) {
-        failedRules.forEach(function (failedRule) {
-            console.log(chalk.cyan('linting rule ')+chalk.red(failedRule.name)+' failed', failedRule.errors.length, 'time(s)');
-        });
-    }
+        // create and show a report
+        if (failedRules.length) {
+            failedRules.forEach(function (failedRule) {
+                console.log(chalk.cyan('linting rule ')+chalk.red(failedRule.name)+' failed', failedRule.errors.length, 'time(s)');
+            });
+        }
+    };
+
 };
