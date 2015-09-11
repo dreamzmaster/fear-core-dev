@@ -10,7 +10,7 @@ var files = ['tasks/*.js', '*.js'];
 
 gulp.task('lint', lint(files) );
 
-gulp.task('lint-report', lintReport(['gulpfile.js']) );
+gulp.task('lint-report', lintReport(['./']) );
 
 gulp.task('run-unit-tests-once', startKarmaServer({
     configFile: __dirname + '/karma.conf.js',
