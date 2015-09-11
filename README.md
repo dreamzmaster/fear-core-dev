@@ -73,6 +73,18 @@ for a browser specific project:
 }
 ```
 
+### Javascript linting report
+
+In your `gulpfile` register a new task similar to the `lint` task, but use the core `lintReport` method:
+
+```
+gulp.task('lint-report', fearCoreTasks.lintReport(['*.js']) );
+```
+
+The `lint-report` task uses the exact same rules which the `lint` task does, giving you a summary on all rules which have errors or warnings, aggregating the number of issues.
+
+This can be helpful as an overview of linting problems so that you can prioritise which rule's errors should be fixed first.
+
 ### Running unit tests
 
 We're running unit tests via [Karma](http://karma-runner.github.io/) test runner. There's a preconfigured `karma.conf.js` using `mocha` as the testing framework and `chai` as the assertion library.
