@@ -1,56 +1,66 @@
 'use strict';
 
-var CLIEngine = require('eslint').CLIEngine;
+var gulp = require('gulp');
+var log = require('gulp-util').log;
+var eslint = require('gulp-eslint');
 var chalk = require('chalk');
 
-function getErrorsForRule(name, options, files) {
+function populateRuleSummaryFrom (results) {
 
-    var config = {
-        envs: ['browser'],
-        useEslintrc: false,
-        rules: {}
-    };
+    var errors = results.filter(function (result) {
+        return result.errorCount > 0;
+    });
 
-    config.rules[name] = options;
+    var summary = {};
 
-    var cli = new CLIEngine(config);
-    var report = cli.executeOnFiles(files);
-    var errors = CLIEngine.getErrorResults(report.results);
+    errors.forEach(function (error) {
+        error.messages.forEach(function (message) {
+            var rule = message.ruleId;
+            if (!summary[rule]) {
+                summary[rule] = {
+                    warnings: 0,
+                    errors: 0
+                };
+            }
+            if (message.severity===1) {
+                summary[rule].warnings++;
+            }
+            if (message.severity===2) {
+                summary[rule].errors++;
+            }
+        });
+    });
 
-    return errors;
+    return summary;
 }
 
-module.exports = function taskFactory (files) {
+function summaryReport (results) {
 
-    return function lintReport() {
+    var summary = populateRuleSummaryFrom(results);
 
-        // populate rules from project's .eslintrc
-        var cli = new CLIEngine({ useEslintrc:true });
-        var config = cli.getConfigForFile();
-        var rules = config.rules;
+    var errors = 0;
+    var warnings = 0;
 
-        var failedRules = [];
+    for (var rule in summary) {
+        if (summary.hasOwnProperty(rule)) {
+            var issues = summary[rule];
 
-        // run linting with each rule
-        for (var name in rules) {
-            if (rules.hasOwnProperty(name)) {
-                var options = rules[name];
-                var errors = getErrorsForRule(name, options, files);
-                if (errors.length > 0) {
-                    failedRules.push({
-                        name: name,
-                        errors: errors
-                    });
-                }
-            }
+            errors += issues.errors;
+            warnings += issues.warnings;
+
+            log('linting errors '+chalk.red(issues.errors)+' warnings '+chalk.yellow(issues.warnings)+' rule '+chalk.cyan(rule));
         }
+    }
 
-        // create and show a report
-        if (failedRules.length) {
-            failedRules.forEach(function (failedRule) {
-                console.log(chalk.cyan('linting rule ')+chalk.red(failedRule.name)+' failed', failedRule.errors.length, 'time(s)');
-            });
-        }
+    return (errors+warnings) > 0 ? chalk.yellow('total linting errors ')+errors+chalk.yellow(' warnings ')+warnings : '';
+}
+
+module.exports = function taskFactory (src) {
+
+    return function task () {
+        return gulp.src(src)
+            .pipe(eslint())
+            .pipe(eslint.format(summaryReport));
     };
 
 };
