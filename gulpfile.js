@@ -2,12 +2,15 @@
 
 var gulp = require('gulp');
 var lint = require('./index').lintJavascript;
+var lintReport = require('./index').lintReport;
 var startKarmaServer = require('./index').startKarmaServer;
 var startKarmaRunner = require('./index').startKarmaRunner;
 
 var files = ['tasks/*.js', '*.js'];
 
 gulp.task('lint', lint(files) );
+
+gulp.task('lint-report', lintReport(files) );
 
 gulp.task('run-unit-tests-once', startKarmaServer({
     configFile: __dirname + '/karma.conf.js',
