@@ -75,6 +75,18 @@ for a browser specific project:
 
 ### Javascript linting report
 
+This core task gives you an overview of linting errors/warnings by rule having issues.
+
+```
+[12:29:51] Starting 'lint-report'...
+[12:29:51] linting errors 1 warnings 0 rule no-unused-vars
+[12:29:51] linting errors 3 warnings 0 rule no-console
+[12:29:51] total linting errors 4 warnings 0
+[12:29:51] Finished 'lint-report' after 205 ms
+```
+
+This can help you to prioritise which linting issues should be fixed first or to decide which rules to turn off.
+
 In your `gulpfile` register a new task similar to the `lint` task, but use the core `lintReport` method:
 
 ```
@@ -82,8 +94,6 @@ gulp.task('lint-report', fearCoreTasks.lintReport(['*.js']) );
 ```
 
 The `lint-report` task uses the exact same rules which the `lint` task does, giving you a summary on all rules which have errors or warnings, aggregating the number of issues.
-
-This can be helpful as an overview of linting problems so that you can prioritise which rule's errors should be fixed first.
 
 ### Running unit tests
 
