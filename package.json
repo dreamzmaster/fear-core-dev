@@ -4,7 +4,8 @@
   "description": "FEAR Core repo to automate certain core tasks",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "postinstall": "node postinstall"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,16 @@
   },
   "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
   "dependencies": {
+    "app-root-path": "^1.0.0",
     "chai": "^3.2.0",
+    "chalk": "^1.1.1",
     "eslint-config-fear-core": "git+ssh://git@github.com:DigitalInnovation/fear-core-eslint-config.git",
+    "fs-extra": "^0.24.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
+    "karma-junit-reporter": "^0.3.4",
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.1.1",
     "karma-phantomjs-launcher": "^0.2.1",
