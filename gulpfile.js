@@ -8,8 +8,8 @@ var startKarmaRunner = require('./index').startKarmaRunner;
 
 var files = ['tasks/*.js', '*.js'];
 
-gulp.task('lint', lint(files) );
-
+gulp.task('lint', lint(files, true) );
+gulp.task('lint-all', lint(files, false) );
 gulp.task('lint-report', lintReport(files) );
 
 gulp.task('run-unit-tests-once', startKarmaServer({
