@@ -73,6 +73,12 @@ for a browser specific project:
 }
 ```
 
+Running linting against a single rule is best to be done via using ESLint CLI:
+
+```
+$ eslint --no-eslintrc --rule 'strict: 2' app/scripts/
+```
+
 ### Javascript linting report
 
 This core task gives you an overview of linting errors/warnings by rule having issues.
