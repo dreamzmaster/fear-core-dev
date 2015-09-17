@@ -28,9 +28,9 @@ This can help scaffolding a new project and also keeping our standards.
 
 The copied default files are:
 
-- `karma.conf.js`
 - `.editorconfig`
 - `.eslintrc`
+- `.eslintignore`
 - `.gitignore`
 
 Take a look the `node_modules/fear-core-tasks/defaults` folder for more details.
@@ -77,6 +77,12 @@ Running linting against a single rule is best to be done via using ESLint CLI:
 
 ```
 $ eslint --no-eslintrc --rule 'strict: 2' app/scripts/
+```
+
+Note: you need `eslint` to be installed globally for that
+
+```
+$ npm install -g eslint
 ```
 
 ### Javascript linting report
