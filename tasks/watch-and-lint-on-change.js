@@ -12,10 +12,12 @@ function lint (file) {
 }
 
 function fileReport (results) {
-    if (results[0].errorCount > 0) {
+    var isError = results[0].errorCount > 0;
+    var file = results[0].filePath;
+    if (isError) {
         gutil.log('linting ' + gutil.colors.red('error'));
     } else {
-        gutil.log('linting ' + gutil.colors.green('OK'), results[0].filePath);
+        gutil.log('linting ' + gutil.colors.green('OK'), file);
     }
 }
 
