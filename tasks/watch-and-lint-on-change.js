@@ -13,9 +13,9 @@ function lint (file) {
 
 function fileReport (results) {
     if (results[0].errorCount > 0) {
-        gutil.log('linting error');
+        gutil.log('linting ' + gutil.colors.red('error'));
     } else {
-        gutil.log('linting OK', results[0].filePath);
+        gutil.log('linting ' + gutil.colors.green('OK'), results[0].filePath);
     }
 }
 
