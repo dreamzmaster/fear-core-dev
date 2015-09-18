@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var lint = require('./index').lintJavascript;
 var lintReport = require('./index').lintReport;
+var watchAndLintOnChange = require('./index').watchAndLintOnChange;
 var startKarmaServer = require('./index').startKarmaServer;
 var startKarmaRunner = require('./index').startKarmaRunner;
 
@@ -30,3 +31,5 @@ gulp.task('run-unit-tests', ['lint'], startKarmaRunner({
 gulp.task('watch', function() {
     gulp.watch(files, ['run-unit-tests']);
 });
+
+gulp.task('watch-and-lint', watchAndLintOnChange(['*.js']));

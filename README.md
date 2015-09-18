@@ -107,6 +107,32 @@ gulp.task('lint-report', fearCoreTasks.lintReport(['*.js']) );
 
 The `lint-report` task uses the exact same rules which the `lint` task does, giving you a summary on all rules which have errors or warnings, aggregating the number of issues.
 
+### Watching and linting files
+
+A core task is provided to watch a set of files and run linting on each saved file. This helps you to focus on a single file's linting issues.
+
+In your `gulpfile` register a new task using the core `watchAndLintOnChange` method:
+
+```
+gulp.task('watch-and-lint', fearCoreTasks.watchAndLintOnChange(['*.js']));
+```
+
+When there's a linting error in the file recently saved, you'll see it in the console:
+
+```
+[10:04:41] linting error
+/path/to/file/.js
+  35:60  error  Missing semicolon  semi
+
+✖ 1 problem (1 error, 0 warnings)
+```
+
+After resolving the linting issue, when you save the file you'll see the success message:
+
+```
+[10:05:41] linting OK /path/to/file/.js
+```
+
 ### Running unit tests
 
 We're running unit tests via [Karma](http://karma-runner.github.io/) test runner. There's a preconfigured `karma.conf.js` using `mocha` as the testing framework and `chai` as the assertion library.

@@ -4,5 +4,6 @@ module.exports = {
     lintJavascript: require('./tasks/lint-javascript'),
     lintReport: require('./tasks/lint-report'),
     startKarmaServer: require('./tasks/start-karma-server'),
-    startKarmaRunner: require('./tasks/start-karma-runner')
+    startKarmaRunner: require('./tasks/start-karma-runner'),
+    watchAndLintOnChange: require('./tasks/watch-and-lint-on-change')
 };
