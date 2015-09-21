@@ -25,23 +25,26 @@ function filter (result, ruleId) {
 describe.only('linting result object filter', function () {
 
     /*
-    result: {
+
+    valid result object from ESLint 1.3.x:
+
+    {
         filePath: '/path/to/a/file.js',
-        messages: [],
+        messages: [
+          {
+            ruleId: 'no-console',
+            severity: 2,
+            message: 'Unexpected console statement.',
+            line: 19,
+            column: 16,
+            nodeType: 'MemberExpression',
+            source: '               console.log(\'message\', message);'
+          }
+        ],
         errorCount: 0,
         warningCount: 0
     }
-
-    message {
-        ruleId: 'no-console',
-        severity: 2,
-        message: 'Unexpected console statement.',
-        line: 19,
-        column: 16,
-        nodeType: 'MemberExpression',
-        source: '               console.log(\'message\', message);'
-      }
-     */
+    */
 
     it('should return a valid result object', function() {
         var result = {
