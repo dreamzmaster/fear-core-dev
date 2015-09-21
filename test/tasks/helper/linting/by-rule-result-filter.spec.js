@@ -4,13 +4,16 @@ function filter (result, ruleId) {
     var filtered = {
         filePath: result.filePath,
         messages: [],
-        errorCount: 0
+        errorCount: 0,
+        warningCount: 0
     };
 
     result.messages.forEach(function (message) {
         if (message.ruleId === ruleId) {
             filtered.messages.push(message);
-            if (message.severity === 2){
+            if (message.severity === 1) {
+                filtered.warningCount++;
+            } else if (message.severity === 2) {
                 filtered.errorCount++;
             }
         }
@@ -59,7 +62,8 @@ describe.only('linting result object filter', function () {
                 var result = {
                     filePath: 'path/to/a/file',
                     messages: [],
-                    errorCount: 0
+                    errorCount: 0,
+                    warningCount: 0
                 };
                 var filtered = filter(result);
                 expect(filtered).to.deep.equal(result);
@@ -94,6 +98,17 @@ describe.only('linting result object filter', function () {
                 };
                 var filtered = filter(result, 'expected-rule-id');
                 expect(filtered.errorCount).to.equal(1);
+            });
+
+            it('should count the warnings in the filtered messages', function() {
+                var result = {
+                    messages: [
+                        { ruleId: 'expected-rule-id', severity: 2 },
+                        { ruleId: 'expected-rule-id', severity: 1 }
+                    ]
+                };
+                var filtered = filter(result, 'expected-rule-id');
+                expect(filtered.warningCount).to.equal(1);
             });
 
         });
