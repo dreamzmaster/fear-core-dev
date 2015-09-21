@@ -39,10 +39,13 @@ describe.only('linting result object filter', function () {
                         { ruleId: 'not-expected-rule-id' }
                     ]
                 };
+                var messageClone = JSON.parse(JSON.stringify(result.messages[0]));
+
                 var filtered = filter(result, 'expected-rule-id');
 
                 expect(filtered.messages.length).to.equal(1);
                 expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
+                expect(filtered.messages[0]).to.deep.equal(messageClone);
             });
 
         });
