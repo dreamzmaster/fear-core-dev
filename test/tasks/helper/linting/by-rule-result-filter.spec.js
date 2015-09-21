@@ -2,6 +2,7 @@
 
 function filter (result, ruleId) {
     var filtered = {
+        filePath: result.filePath,
         messages: []
     };
 
@@ -16,12 +17,33 @@ function filter (result, ruleId) {
 
 describe.only('linting result object filter', function () {
 
+    /*
+    result: {
+        filePath: '/path/to/a/file.js',
+        messages: [],
+        errorCount: 0,
+        warningCount: 0
+    }
+     */
+
+    it('should return a valid result object', function() {
+        var result = {
+            filePath: 'path/to/a/file',
+            messages: []
+        };
+        var resultClone = JSON.parse(JSON.stringify(result));
+
+        var filtered = filter(result);
+        expect(filtered).to.have.property('filePath', resultClone.filePath);
+    });
+
     describe('when provided with a result object', function () {
 
         describe('having no messages', function () {
 
             it('should return the original result object', function() {
                 var result = {
+                    filePath: 'path/to/a/file',
                     messages: []
                 };
                 var filtered = filter(result);
