@@ -40,8 +40,9 @@ describe.only('linting result object filter', function () {
                     ]
                 };
                 var filtered = filter(result, 'expected-rule-id');
+
                 expect(filtered.messages.length).to.equal(1);
-                expect(filtered.messages[0]).to.equal(result.messages[0]);
+                expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
             });
 
         });
