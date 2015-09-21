@@ -52,6 +52,9 @@ describe.only('linting result object filter', function () {
 
         var filtered = filter(result);
         expect(filtered).to.have.property('filePath', resultClone.filePath);
+        expect(filtered).to.have.property('messages');
+        expect(filtered).to.have.property('errorCount');
+        expect(filtered).to.have.property('warningCount');
     });
 
     describe('when provided with a result object', function () {
