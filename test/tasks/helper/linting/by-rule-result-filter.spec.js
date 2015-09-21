@@ -25,7 +25,7 @@ describe.only('linting result object filter', function () {
                     messages: []
                 };
                 var filtered = filter(result);
-                expect(filtered).to.eql(result);
+                expect(filtered).to.deep.equal(result);
             });
 
         });
