@@ -1,6 +1,6 @@
 'use strict';
 
-var filter = require('../../../../tasks/helper/linting/by-rule-result-filter');
+var filter = require('../../../../tasks/helper/linting/message-filter');
 
 var expect = require('chai').expect;
 
