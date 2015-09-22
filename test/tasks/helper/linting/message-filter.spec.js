@@ -42,22 +42,20 @@ describe('linting message filter', function () {
         expect(filtered).to.have.property('warningCount');
     });
 
+    it('should not alter message objects', function() {
+        var result = {
+            messages: [
+                { ruleId: 'expected-rule-id' }
+            ]
+        };
+        var messageClone = JSON.parse(JSON.stringify(result.messages[0]));
+
+        var filtered = filter(result, 'expected-rule-id');
+
+        expect(filtered.messages[0]).to.deep.equal(messageClone);
+    });
+
     describe('when provided with a result object', function () {
-
-        describe('with no messages', function () {
-
-            it('should return the original result object', function() {
-                var result = {
-                    filePath: '/path/to/a/file.js',
-                    messages: [],
-                    errorCount: 0,
-                    warningCount: 0
-                };
-                var filtered = filter(result);
-                expect(filtered).to.deep.equal(result);
-            });
-
-        });
 
         describe('with at least one message', function () {
 
@@ -72,19 +70,6 @@ describe('linting message filter', function () {
 
                 expect(filtered.messages.length).to.equal(1);
                 expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
-            });
-
-            it('should not alter message objects', function() {
-                var result = {
-                    messages: [
-                        { ruleId: 'expected-rule-id' }
-                    ]
-                };
-                var messageClone = JSON.parse(JSON.stringify(result.messages[0]));
-
-                var filtered = filter(result, 'expected-rule-id');
-
-                expect(filtered.messages[0]).to.deep.equal(messageClone);
             });
 
             it('should count the errors in the filtered messages', function() {
@@ -131,6 +116,21 @@ describe('linting message filter', function () {
                 };
                 filtered = filter(result, 'expected-rule-id');
                 expect(filtered.warningCount).to.equal(0);
+            });
+
+        });
+
+        describe('with no messages', function () {
+
+            it('should return the original result object', function() {
+                var result = {
+                    filePath: '/path/to/a/file.js',
+                    messages: [],
+                    errorCount: 0,
+                    warningCount: 0
+                };
+                var filtered = filter(result);
+                expect(filtered).to.deep.equal(result);
             });
 
         });
