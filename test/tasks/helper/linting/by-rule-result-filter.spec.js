@@ -88,25 +88,49 @@ describe.only('linting result object filter', function () {
             });
 
             it('should count the errors in the filtered messages', function() {
-                var result = {
+                var result;
+                var filtered;
+
+                result = {
                     messages: [
                         { ruleId: 'expected-rule-id', severity: 2 },
                         { ruleId: 'expected-rule-id', severity: 1 }
                     ]
                 };
-                var filtered = filter(result, 'expected-rule-id');
+                filtered = filter(result, 'expected-rule-id');
                 expect(filtered.errorCount).to.equal(1);
+
+                result = {
+                    messages: [
+                        { ruleId: 'expected-rule-id', severity: 0 },
+                        { ruleId: 'expected-rule-id', severity: 1 }
+                    ]
+                };
+                filtered = filter(result, 'expected-rule-id');
+                expect(filtered.errorCount).to.equal(0);
             });
 
             it('should count the warnings in the filtered messages', function() {
-                var result = {
+                var result;
+                var filtered;
+
+                result = {
                     messages: [
                         { ruleId: 'expected-rule-id', severity: 2 },
                         { ruleId: 'expected-rule-id', severity: 1 }
                     ]
                 };
-                var filtered = filter(result, 'expected-rule-id');
+                filtered = filter(result, 'expected-rule-id');
                 expect(filtered.warningCount).to.equal(1);
+
+                result = {
+                    messages: [
+                        { ruleId: 'expected-rule-id', severity: 2 },
+                        { ruleId: 'expected-rule-id', severity: 0 }
+                    ]
+                };
+                filtered = filter(result, 'expected-rule-id');
+                expect(filtered.warningCount).to.equal(0);
             });
 
         });
