@@ -44,7 +44,7 @@ describe.only('linting result object filter', function () {
 
     describe('when provided with a result object', function () {
 
-        describe('having no messages', function () {
+        describe('with no messages', function () {
 
             it('should return the original result object', function() {
                 var result = {
@@ -59,7 +59,7 @@ describe.only('linting result object filter', function () {
 
         });
 
-        describe('having messages', function () {
+        describe('with at least one message', function () {
 
             it('should only return messages with the expected ruleId', function() {
                 var result = {
