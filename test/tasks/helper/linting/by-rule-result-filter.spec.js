@@ -1,26 +1,8 @@
 'use strict';
 
-function filter (result, ruleId) {
-    var filtered = {
-        filePath: result.filePath,
-        messages: [],
-        errorCount: 0,
-        warningCount: 0
-    };
+var filter = require('../../../../tasks/helper/linting/by-rule-result-filter');
 
-    result.messages.forEach(function (message) {
-        if (message.ruleId === ruleId) {
-            filtered.messages.push(message);
-            if (message.severity === 1) {
-                filtered.warningCount++;
-            } else if (message.severity === 2) {
-                filtered.errorCount++;
-            }
-        }
-    });
-
-    return filtered;
-}
+var expect = require('chai').expect;
 
 describe.only('linting result object filter', function () {
 
