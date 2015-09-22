@@ -72,49 +72,34 @@ describe('linting message filter', function () {
                 expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
             });
 
-            it('should count the errors in the filtered messages', function() {
+            it('should count the errors and warnings', function() {
                 var result;
                 var filtered;
 
                 result = {
                     messages: [
-                        { ruleId: 'expected-rule-id', severity: 2 },
-                        { ruleId: 'expected-rule-id', severity: 1 }
-                    ]
-                };
-                filtered = filter(result, 'expected-rule-id');
-                expect(filtered.errorCount).to.equal(1);
+                        { ruleId: 'rule-error', severity: 2 },
+                        { ruleId: 'rule-error', severity: 2 },
+                        { ruleId: 'rule-error', severity: 2 },
 
-                result = {
-                    messages: [
-                        { ruleId: 'expected-rule-id', severity: 0 },
-                        { ruleId: 'expected-rule-id', severity: 1 }
+                        { ruleId: 'rule-warning', severity: 1 },
+                        { ruleId: 'rule-warning', severity: 1 }
                     ]
                 };
-                filtered = filter(result, 'expected-rule-id');
+
+                filtered = filter(result, 'rule-error');
+
+                expect(filtered.errorCount).to.equal(3);
+                expect(filtered.warningCount).to.equal(0);
+
+                filtered = filter(result, 'rule-warning');
+
                 expect(filtered.errorCount).to.equal(0);
-            });
+                expect(filtered.warningCount).to.equal(2);
 
-            it('should count the warnings in the filtered messages', function() {
-                var result;
-                var filtered;
+                filtered = filter(result, 'rule-turned-off');
 
-                result = {
-                    messages: [
-                        { ruleId: 'expected-rule-id', severity: 2 },
-                        { ruleId: 'expected-rule-id', severity: 1 }
-                    ]
-                };
-                filtered = filter(result, 'expected-rule-id');
-                expect(filtered.warningCount).to.equal(1);
-
-                result = {
-                    messages: [
-                        { ruleId: 'expected-rule-id', severity: 2 },
-                        { ruleId: 'expected-rule-id', severity: 0 }
-                    ]
-                };
-                filtered = filter(result, 'expected-rule-id');
+                expect(filtered.errorCount).to.equal(0);
                 expect(filtered.warningCount).to.equal(0);
             });
 
