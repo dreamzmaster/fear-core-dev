@@ -3,10 +3,6 @@
         "mocha": true
     },
 
-    "globals": {
-        "expect": false
-    },
-
     "rules": {
         "no-console": 0
     }
