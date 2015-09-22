@@ -30,7 +30,7 @@ describe.only('linting result object filter', function () {
 
     it('should return a valid result object', function() {
         var result = {
-            filePath: 'path/to/a/file',
+            filePath: '/path/to/a/file.js',
             messages: []
         };
         var resultClone = JSON.parse(JSON.stringify(result));
@@ -48,7 +48,7 @@ describe.only('linting result object filter', function () {
 
             it('should return the original result object', function() {
                 var result = {
-                    filePath: 'path/to/a/file',
+                    filePath: '/path/to/a/file.js',
                     messages: [],
                     errorCount: 0,
                     warningCount: 0
