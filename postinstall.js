@@ -9,7 +9,7 @@ var chalk = require('chalk');
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
 // copyDefaultToAppRoot('karma.conf.js', 'karma.conf.js');
-copyDefaultToAppRoot('editorConfig', '.editorConfig');
+copyDefaultToAppRoot('editorconfig', '.editorconfig');
 copyDefaultToAppRoot('eslintrc', '.eslintrc');
 copyDefaultToAppRoot('eslintignore', '.eslintignore');
 copyDefaultToAppRoot('gitignore', '.gitignore');
