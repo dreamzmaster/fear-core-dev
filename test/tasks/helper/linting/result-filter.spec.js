@@ -1,6 +1,7 @@
 'use strict';
 
 var filter = require('../../../../tasks/helper/linting/result-filter');
+var messageFilter = require('../../../../tasks/helper/linting/message-filter');
 
 var expect = require('chai').expect;
 
@@ -23,6 +24,34 @@ describe('linting result filter', function () {
             var filtered = filter(results, check);
 
             expect(filtered).to.have.length(2);
+        });
+
+        describe('and used with the linting message filter', function () {
+
+            it('should return only results containing messages for a specific rule', function() {
+                var results = [
+                    {
+                        messages: [
+                            { ruleId: 'expected-rule'}
+                        ]
+                    },
+                    {
+                        messages: [
+                            { ruleId: 'not-expected-rule'}
+                        ]
+                    }
+                ];
+
+                function check (result) {
+                    var output = messageFilter(result, 'expected-rule');
+                    return output.messages.length > 0;
+                }
+
+                var filtered = filter(results, check);
+
+                expect(filtered).to.have.length(1);
+            });
+
         });
 
     });
