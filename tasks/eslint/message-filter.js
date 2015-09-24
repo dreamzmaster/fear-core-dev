@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function filter (result, ruleId) {
+module.exports = function filter (result, ruleId, keyword) {
     var filtered = {
         filePath: result.filePath,
         messages: [],
@@ -19,7 +19,12 @@ module.exports = function filter (result, ruleId) {
 
     result.messages.forEach(function (message) {
         if (ruleId) {
-            if (ruleId && message.ruleId === ruleId) {
+            if (message.ruleId === ruleId) {
+                keep(message);
+            }
+        } else if (keyword) {
+            var regex = new RegExp(keyword);
+            if (regex.test(message.message)) {
                 keep(message);
             }
         } else {
