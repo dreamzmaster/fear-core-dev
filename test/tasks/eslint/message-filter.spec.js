@@ -58,20 +58,24 @@ describe('eslint message filter', function () {
 
     describe('when the result object has messages', function () {
 
-        it('should count the errors and warnings', function() {
-            var result = {
-                messages: [
-                    { severity: 2 },
-                    { severity: 2 },
+        describe('and no filter option is given', function () {
 
-                    { severity: 1 }
-                ]
-            };
+            it('should count the errors and warnings', function() {
+                var result = {
+                    messages: [
+                        { severity: 2 },
+                        { severity: 2 },
 
-            var filtered = filter(result);
+                        { severity: 1 }
+                    ]
+                };
 
-            expect(filtered.errorCount).to.equal(2);
-            expect(filtered.warningCount).to.equal(1);
+                var filtered = filter(result);
+
+                expect(filtered.errorCount).to.equal(2);
+                expect(filtered.warningCount).to.equal(1);
+            });
+
         });
 
         describe('and a specific rule is given', function () {
