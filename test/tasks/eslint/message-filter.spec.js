@@ -1,6 +1,6 @@
 'use strict';
 
-var filter = require('../../../../tasks/helper/linting/message-filter');
+var filter = require('../../../tasks/eslint/message-filter');
 
 var expect = require('chai').expect;
 
@@ -28,7 +28,7 @@ describe('linting message filter', function () {
     }
     */
 
-    it('should return a valid result object', function() {
+    it('should always return a valid result object', function() {
         var result = {
             filePath: '/path/to/a/file.js',
             messages: []
@@ -36,6 +36,7 @@ describe('linting message filter', function () {
         var resultClone = JSON.parse(JSON.stringify(result));
 
         var filtered = filter(result);
+
         expect(filtered).to.have.property('filePath', resultClone.filePath);
         expect(filtered).to.have.property('messages');
         expect(filtered).to.have.property('errorCount');
@@ -59,17 +60,21 @@ describe('linting message filter', function () {
 
         describe('with at least one message', function () {
 
-            it('should only return messages with the expected ruleId', function() {
-                var result = {
-                    messages: [
-                        { ruleId: 'expected-rule-id' },
-                        { ruleId: 'not-expected-rule-id' }
-                    ]
-                };
-                var filtered = filter(result, 'expected-rule-id');
+            describe('and a rule id', function () {
 
-                expect(filtered.messages.length).to.equal(1);
-                expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
+                it('should only return messages with the expected ruleId', function() {
+                    var result = {
+                        messages: [
+                            { ruleId: 'expected-rule-id' },
+                            { ruleId: 'not-expected-rule-id' }
+                        ]
+                    };
+                    var filtered = filter(result, 'expected-rule-id');
+
+                    expect(filtered.messages.length).to.equal(1);
+                    expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
+                });
+
             });
 
             it('should count the errors and warnings', function() {
@@ -114,7 +119,9 @@ describe('linting message filter', function () {
                     errorCount: 0,
                     warningCount: 0
                 };
+
                 var filtered = filter(result);
+
                 expect(filtered).to.deep.equal(result);
             });
 
