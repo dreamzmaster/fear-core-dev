@@ -9,13 +9,17 @@ module.exports = function filter (result, ruleId) {
     };
 
     result.messages.forEach(function (message) {
-        if (message.ruleId === ruleId) {
-            filtered.messages.push(message);
-            if (message.severity === 1) {
-                filtered.warningCount++;
-            } else if (message.severity === 2) {
-                filtered.errorCount++;
+        if (ruleId) {
+            if (ruleId && message.ruleId === ruleId) {
+                filtered.messages.push(message);
+                if (message.severity === 1) {
+                    filtered.warningCount++;
+                } else if (message.severity === 2) {
+                    filtered.errorCount++;
+                }
             }
+        } else {
+            filtered.messages.push(message);
         }
     });
 
