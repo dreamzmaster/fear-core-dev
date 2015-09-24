@@ -56,64 +56,60 @@ describe('eslint message filter', function () {
         expect(filtered.messages[0]).to.deep.equal(messageClone);
     });
 
-    describe('when provided with a result object', function () {
+    describe('when the result object has messages', function () {
 
-        describe('with at least one message', function () {
+        it('should count the errors and warnings', function() {
+            var result = {
+                messages: [
+                    { severity: 2 },
+                    { severity: 2 },
 
-            it('should count the errors and warnings', function() {
+                    { severity: 1 }
+                ]
+            };
+
+            var filtered = filter(result);
+
+            expect(filtered.errorCount).to.equal(2);
+            expect(filtered.warningCount).to.equal(1);
+        });
+
+        describe('and a specific rule is given', function () {
+
+            it('should only keep messages with the expected rule', function() {
                 var result = {
                     messages: [
-                        { severity: 2 },
-                        { severity: 2 },
+                        { ruleId: 'expected-rule' },
+                        { ruleId: 'not-expected-rule' }
+                    ]
+                };
+                var filtered = filter(result, 'expected-rule');
 
-                        { severity: 1 }
+                expect(filtered.messages.length).to.equal(1);
+                expect(filtered.messages[0].ruleId).to.equal('expected-rule');
+            });
+
+            it('should count the errors and warnings', function() {
+                var filtered;
+
+                var result = {
+                    messages: [
+                        { ruleId: 'rule-causing-error', severity: 2 },
+                        { ruleId: 'rule-causing-error', severity: 2 },
+
+                        { ruleId: 'rule-causing-warning', severity: 1 }
                     ]
                 };
 
-                var filtered = filter(result);
+                filtered = filter(result);
 
                 expect(filtered.errorCount).to.equal(2);
                 expect(filtered.warningCount).to.equal(1);
-            });
 
-            describe('and a given rule id', function () {
+                filtered = filter(result, 'rule-turned-off');
 
-                it('should only keep messages with the expected rule id', function() {
-                    var result = {
-                        messages: [
-                            { ruleId: 'expected-rule-id' },
-                            { ruleId: 'not-expected-rule-id' }
-                        ]
-                    };
-                    var filtered = filter(result, 'expected-rule-id');
-
-                    expect(filtered.messages.length).to.equal(1);
-                    expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
-                });
-
-                it('should count the errors and warnings', function() {
-                    var filtered;
-
-                    var result = {
-                        messages: [
-                            { ruleId: 'rule-causing-error', severity: 2 },
-                            { ruleId: 'rule-causing-error', severity: 2 },
-
-                            { ruleId: 'rule-causing-warning', severity: 1 }
-                        ]
-                    };
-
-                    filtered = filter(result);
-
-                    expect(filtered.errorCount).to.equal(2);
-                    expect(filtered.warningCount).to.equal(1);
-
-                    filtered = filter(result, 'rule-turned-off');
-
-                    expect(filtered.errorCount).to.equal(0);
-                    expect(filtered.warningCount).to.equal(0);
-                });
-
+                expect(filtered.errorCount).to.equal(0);
+                expect(filtered.warningCount).to.equal(0);
             });
 
         });
