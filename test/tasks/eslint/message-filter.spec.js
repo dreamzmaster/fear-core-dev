@@ -60,9 +60,25 @@ describe('eslint message filter', function () {
 
         describe('with at least one message', function () {
 
-            describe('and a rule id', function () {
+            it('should count the errors and warnings', function() {
+                var result = {
+                    messages: [
+                        { severity: 2 },
+                        { severity: 2 },
 
-                it('should only return messages with the expected ruleId', function() {
+                        { severity: 1 }
+                    ]
+                };
+
+                var filtered = filter(result);
+
+                expect(filtered.errorCount).to.equal(2);
+                expect(filtered.warningCount).to.equal(1);
+            });
+
+            describe('and a given rule id', function () {
+
+                it('should only keep messages with the expected rule id', function() {
                     var result = {
                         messages: [
                             { ruleId: 'expected-rule-id' },
@@ -75,37 +91,29 @@ describe('eslint message filter', function () {
                     expect(filtered.messages[0].ruleId).to.equal('expected-rule-id');
                 });
 
-            });
+                it('should count the errors and warnings', function() {
+                    var filtered;
 
-            it('should count the errors and warnings', function() {
-                var result;
-                var filtered;
+                    var result = {
+                        messages: [
+                            { ruleId: 'rule-causing-error', severity: 2 },
+                            { ruleId: 'rule-causing-error', severity: 2 },
 
-                result = {
-                    messages: [
-                        { ruleId: 'rule-error', severity: 2 },
-                        { ruleId: 'rule-error', severity: 2 },
-                        { ruleId: 'rule-error', severity: 2 },
+                            { ruleId: 'rule-causing-warning', severity: 1 }
+                        ]
+                    };
 
-                        { ruleId: 'rule-warning', severity: 1 },
-                        { ruleId: 'rule-warning', severity: 1 }
-                    ]
-                };
+                    filtered = filter(result);
 
-                filtered = filter(result, 'rule-error');
+                    expect(filtered.errorCount).to.equal(2);
+                    expect(filtered.warningCount).to.equal(1);
 
-                expect(filtered.errorCount).to.equal(3);
-                expect(filtered.warningCount).to.equal(0);
+                    filtered = filter(result, 'rule-turned-off');
 
-                filtered = filter(result, 'rule-warning');
+                    expect(filtered.errorCount).to.equal(0);
+                    expect(filtered.warningCount).to.equal(0);
+                });
 
-                expect(filtered.errorCount).to.equal(0);
-                expect(filtered.warningCount).to.equal(2);
-
-                filtered = filter(result, 'rule-turned-off');
-
-                expect(filtered.errorCount).to.equal(0);
-                expect(filtered.warningCount).to.equal(0);
             });
 
         });
