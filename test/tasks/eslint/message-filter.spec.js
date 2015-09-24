@@ -4,7 +4,7 @@ var filter = require('../../../tasks/eslint/message-filter');
 
 var expect = require('chai').expect;
 
-describe('linting message filter', function () {
+describe('eslint message filter', function () {
 
     /*
 
