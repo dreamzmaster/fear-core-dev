@@ -13,8 +13,8 @@ function filterResults () {
     var stream = new TransformStream({ objectMode: true });
 
     stream._transform = function (file, enc, cb) {
-        if (file.eslint && argv.rule) {
-            file.eslint = messageFilter(file.eslint, argv.rule);
+        if (file.eslint && (argv.rule || argv.keyword)) {
+            file.eslint = messageFilter(file.eslint, argv.rule, argv.keyword);
         }
         cb(null, file);
     };
