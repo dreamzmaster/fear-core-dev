@@ -101,13 +101,21 @@ describe('eslint message filter', function () {
                         { ruleId: 'rule-causing-error', severity: 2 },
                         { ruleId: 'rule-causing-error', severity: 2 },
 
-                        { ruleId: 'rule-causing-warning', severity: 1 }
+                        { ruleId: 'rule-causing-warning', severity: 1 },
+
+                        { ruleId: 'another-rule-causing-error', severity: 2 },
+                        { ruleId: 'another-rule-causing-warning', severity: 1 }
                     ]
                 };
 
-                filtered = filter(result);
+                filtered = filter(result, 'rule-causing-error');
 
                 expect(filtered.errorCount).to.equal(2);
+                expect(filtered.warningCount).to.equal(0);
+
+                filtered = filter(result, 'rule-causing-warning');
+
+                expect(filtered.errorCount).to.equal(0);
                 expect(filtered.warningCount).to.equal(1);
 
                 filtered = filter(result, 'rule-turned-off');
