@@ -26,7 +26,11 @@ module.exports = function filter (result, ruleId, keyword) {
     }
 
     result.messages.forEach(function (message) {
-        if (ruleId) {
+        if (ruleId && keyword) {
+            if (hasRuleId(message) && containsKeyword(message)) {
+                keep(message);
+            }
+        } else if (ruleId) {
             if (hasRuleId(message)) {
                 keep(message);
             }
