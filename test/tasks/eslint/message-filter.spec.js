@@ -46,12 +46,12 @@ describe('linting message filter', function () {
     it('should not alter message objects', function() {
         var result = {
             messages: [
-                { ruleId: 'expected-rule-id' }
+                { a: 'message' }
             ]
         };
         var messageClone = JSON.parse(JSON.stringify(result.messages[0]));
 
-        var filtered = filter(result, 'expected-rule-id');
+        var filtered = filter(result);
 
         expect(filtered.messages[0]).to.deep.equal(messageClone);
     });
