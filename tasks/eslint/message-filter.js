@@ -8,18 +8,22 @@ module.exports = function filter (result, ruleId) {
         warningCount: 0
     };
 
+    function keep (message) {
+        filtered.messages.push(message);
+        if (message.severity === 1) {
+            filtered.warningCount++;
+        } else if (message.severity === 2) {
+            filtered.errorCount++;
+        }
+    }
+
     result.messages.forEach(function (message) {
         if (ruleId) {
             if (ruleId && message.ruleId === ruleId) {
-                filtered.messages.push(message);
-                if (message.severity === 1) {
-                    filtered.warningCount++;
-                } else if (message.severity === 2) {
-                    filtered.errorCount++;
-                }
+                keep(message);
             }
         } else {
-            filtered.messages.push(message);
+            keep(message);
         }
     });
 
