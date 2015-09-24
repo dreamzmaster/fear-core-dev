@@ -17,14 +17,21 @@ module.exports = function filter (result, ruleId, keyword) {
         }
     }
 
+    function hasRuleId (message) {
+        return message.ruleId === ruleId;
+    }
+
+    function containsKeyword (message) {
+        return new RegExp(keyword).test(message.message);
+    }
+
     result.messages.forEach(function (message) {
         if (ruleId) {
-            if (message.ruleId === ruleId) {
+            if (hasRuleId(message)) {
                 keep(message);
             }
         } else if (keyword) {
-            var regex = new RegExp(keyword);
-            if (regex.test(message.message)) {
+            if (containsKeyword(message)) {
                 keep(message);
             }
         } else {
