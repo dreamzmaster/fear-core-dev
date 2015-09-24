@@ -5,7 +5,7 @@ var eslint = require('gulp-eslint');
 var getArgs = require('minimist');
 var TransformStream = require('stream').Transform;
 
-var messageFilter = require('./helper/linting/message-filter');
+var messageFilter = require('./message-filter');
 
 var argv = getArgs(process.argv.slice(2));
 
