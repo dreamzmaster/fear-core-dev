@@ -110,23 +110,6 @@ describe('linting message filter', function () {
 
         });
 
-        describe('with no messages', function () {
-
-            it('should return the original result object', function() {
-                var result = {
-                    filePath: '/path/to/a/file.js',
-                    messages: [],
-                    errorCount: 0,
-                    warningCount: 0
-                };
-
-                var filtered = filter(result);
-
-                expect(filtered).to.deep.equal(result);
-            });
-
-        });
-
     });
 
 });
