@@ -5,6 +5,8 @@ var log = require('gulp-util').log;
 var eslint = require('gulp-eslint');
 var chalk = require('chalk');
 
+var filterResults = require('./result-filter');
+
 function populateRuleSummaryFrom (results) {
 
     var errors = results.filter(function (result) {
@@ -60,6 +62,7 @@ module.exports = function taskFactory (src) {
     return function task () {
         return gulp.src(src)
             .pipe(eslint())
+            .pipe(filterResults())
             .pipe(eslint.format(summaryReport));
     };
 

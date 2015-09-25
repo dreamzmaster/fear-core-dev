@@ -4,7 +4,11 @@
   "description": "FEAR Core repo to automate certain core tasks",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test",
+    "eslint": "eslint test/ tasks/",
+    "test": "mocha test/**/*.js tasks/**/*.js",
+    "pretest": "npm run eslint",
+    "watch:test": "onchange test/**/*.js tasks/**/*.js -- npm run test -s",
+    "dev": "npm run watch:test -s",
     "postinstall": "node postinstall"
   },
   "repository": {
@@ -37,6 +41,7 @@
     "phantomjs": "^1.9.18"
   },
   "devDependencies": {
-    "eslint": "^1.2.1"
+    "eslint": "^1.2.1",
+    "onchange": "^2.0.0"
   }
 }
