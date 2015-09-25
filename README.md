@@ -73,16 +73,14 @@ for a browser specific project:
 }
 ```
 
-Running linting against a single rule is best to be done via using ESLint CLI:
+### Filtering Javascript linting results
+
+The gulp task e.g. the `lint-javascript` above, can take two arguments `--rule` and `--keyword` from the command line, which will eventually filter the results and show only the related errors. The two can be used separately or combined:
 
 ```
-$ eslint --no-eslintrc --rule 'strict: 2' app/scripts/
-```
-
-Note: you need `eslint` to be installed globally for that
-
-```
-$ npm install -g eslint
+$ gulp lint-javascript --rule strict
+$ gulp lint-javascript --keyword "blaaa"
+$ gulp lint-javascript --rule no-unused-vars --keyword "firstVariable|secondVariable"
 ```
 
 ### Javascript linting report
