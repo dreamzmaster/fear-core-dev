@@ -105,6 +105,27 @@ gulp.task('lint-report', fearCoreTasks.lintReport(['*.js']) );
 
 The `lint-report` task uses the exact same rules which the `lint` task does, giving you a summary on all rules which have errors or warnings, aggregating the number of issues.
 
+### Watch: running tasks on file change
+
+The `watch` core task can be used to watch certain files and run the necessary tasks on file change e.g. lint or test.
+
+In your `gulpfile` register a new task using the core `watch` method:
+
+```
+gulp.task('watch', fearCoreTasks.watch(['*.js'], 'lint-and-test'));
+```
+
+The `watch` task accepts a glob of files and a task to run on file changes, e.g. on each Javascript file change it will run the `lint-and-test` task.
+
+There's also an option to add more watches at once, listening to changes of different files and run the appropriate tasks:
+
+```
+gulp.task('watch', function () {
+    fearCoreTasks.watch(['*.js'], 'lint-and-test');
+    fearCoreTasks.watch(['*.scss'], 'compile-sass');
+});
+```
+
 ### Watching and linting files
 
 A core task is provided to watch a set of files and run linting on each saved file. This helps you to focus on a single file's linting issues.
