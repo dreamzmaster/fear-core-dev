@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var lint = require('./index').lintJavascript;
 var lintReport = require('./index').lintReport;
+var watch = require('./index').watch;
 var watchAndLintOnChange = require('./index').watchAndLintOnChange;
 
 var prod = ['tasks/**/*.js', '*.js'];
@@ -22,7 +23,7 @@ gulp.task('test', ['lint'], function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(all, ['test']);
+    watch(all, 'test');
 });
 
 gulp.task('watch-and-lint', watchAndLintOnChange(all));
