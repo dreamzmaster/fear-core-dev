@@ -112,17 +112,17 @@ The `watch` core task can be used to watch certain files and run the necessary t
 In your `gulpfile` register a new task using the core `watch` method:
 
 ```
-gulp.task('watch', fearCoreTasks.watch(['*.js'], 'lint-and-test'));
+gulp.task('watch', fearCoreTasks.watch(['*.js'], ['lint', 'test']));
 ```
 
-The `watch` task accepts a glob of files and a task to run on file changes, e.g. on each Javascript file change it will run the `lint-and-test` task.
+The `watch` task accepts a glob of files and an array of tasks to run on file changes, e.g. on each Javascript file change it will run the `lint` and then the `test` task in *sequence* using the `run-sequence` gulp plugin.
 
 There's also an option to add more watches at once, listening to changes of different files and run the appropriate tasks:
 
 ```
 gulp.task('watch', function () {
-    fearCoreTasks.watch(['*.js'], 'lint-and-test');
-    fearCoreTasks.watch(['*.scss'], 'compile-sass');
+    fearCoreTasks.watch(['*.js'], ['lint', 'test']);
+    fearCoreTasks.watch(['*.scss'], ['compile-sass']);
 });
 ```
 
