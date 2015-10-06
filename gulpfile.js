@@ -23,7 +23,7 @@ gulp.task('test', ['lint'], function () {
 });
 
 gulp.task('watch', function() {
-    watch(all, 'test');
+    watch(all, ['test']);
 });
 
 gulp.task('watch-and-lint', watchAndLintOnChange(all));
