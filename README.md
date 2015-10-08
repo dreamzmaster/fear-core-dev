@@ -138,7 +138,7 @@ gulp.task('watch', fearCoreTasks.watch(['*.js'], ['test', 'build'], runThisFirst
 
 In the above example, we run linting (only) on the changed files, then the defined tasks will run. If there's a linting error, the rest of the tasks will not run.
 
-### Watching and linting files
+### Watching and linting Javascript files
 
 A core task is provided to watch a set of files and run linting on each saved file. This helps you to focus on a single file's linting issues.
 
@@ -163,6 +163,22 @@ After resolving the linting issue, when you save the file you'll see the success
 ```
 [10:05:41] linting OK /path/to/file/.js
 ```
+
+### Watching and linting SCSS files
+
+Any `.scss` file can be watched and linted on change via [gulp-scss-lint](https://github.com/juanfran/gulp-scss-lint).
+
+In your `gulpfile` register a new task by passing the `scss-lint` options and the glob array to the core `lintSassOnChange` method:
+
+```
+gulp.task('lint-scss', function () {
+    var options = { config: '.my-rules.yml' };
+    var lintSassOnChange = fearCoreTasks.lintSassOnChange(options);
+    fearCoreTasks.watch(['sass/**/*.scss'], ['compile'], lintSassOnChange );
+});
+```
+
+The above task will watch all `.scss` files under the `sass/` folder and run linting on the changed file(s), finally compile SASS to CSS via the `compile` task.
 
 ### Running unit tests
 
