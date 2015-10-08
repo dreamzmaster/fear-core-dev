@@ -126,6 +126,18 @@ gulp.task('watch', function () {
 });
 ```
 
+Also, there's an optional 3rd parameter to run a specific `gulp` processing first on changed files:
+
+```
+function runThisFirstOnChanged (files) {
+    return gulp.src(files).pipe(lint());
+}
+
+gulp.task('watch', fearCoreTasks.watch(['*.js'], ['test', 'build'], runThisFirstOnChanged));
+```
+
+In the above example, we run linting (only) on the changed files, then the defined tasks will run. If there's a linting error, the rest of the tasks will not run.
+
 ### Watching and linting files
 
 A core task is provided to watch a set of files and run linting on each saved file. This helps you to focus on a single file's linting issues.
