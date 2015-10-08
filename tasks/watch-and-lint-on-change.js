@@ -5,6 +5,6 @@ var lintOnChange = require('./eslint/on-change');
 
 module.exports = function taskFactory (src) {
     return function task () {
-        watch(src, lintOnChange, []);
+        watch(src, [], lintOnChange);
     };
 };
