@@ -43,6 +43,47 @@ In `gulpfile.js` pull in `fear-core-tasks`
 var fearCoreTasks = require('fear-core-tasks');
 ```
 
+## How to create a new core task
+
+All core tasks are based on various Gulp plugins and Gulp itself. The basic idea is to create factory functions which can generate Gulp tasks.
+
+These Gulp task "instances" can be also configured via the factory function's arguments e.g. `src` in the following example.
+
+```
+'use strict';
+
+var gulp = require('gulp');
+var eslint = require('gulp-eslint');
+
+module.exports = function taskFactory (src) {
+    return function task () {
+        return gulp.src(src)
+            .pipe(eslint())
+            .pipe(eslint.format())
+            .pipe(eslint.failOnError());
+    };
+};
+```
+
+which can be then exposed via the package's `index.js`
+
+```
+'use strict';
+
+module.exports = {
+    lintJavascript: require('./path/to/task/module'),
+};
+```
+
+and used in your `gulpfile.js` multiple times for different sources:
+
+```
+var core = require('fear-core-tasks');
+
+gulp.task('lint-app', core.lintJavascript('app/**/*.js'));
+gulp.task('lint-specs', core.lintJavascript('test/specs/**/*.js'));
+```
+
 ## Available Core tasks
 
 ### Javascript linting
