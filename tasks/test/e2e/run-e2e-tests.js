@@ -1,7 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var runSequence = require('run-sequence');
 var protractor = require('gulp-protractor').protractor;
 
 module.exports = function taskFactory (specs, breakpoint, channel, port) {
