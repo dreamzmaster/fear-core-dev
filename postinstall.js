@@ -8,6 +8,12 @@ var moduleRoot = process.cwd();
 var fs = require('fs-extra');
 var chalk = require('chalk');
 
+var execSync = require('child_process').execSync;
+
+execSync('node ./node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update', {
+    stdio: 'inherit'
+});
+
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
 // copyDefaultToAppRoot('karma.conf.js', 'karma.conf.js');
