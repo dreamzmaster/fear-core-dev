@@ -5,7 +5,7 @@ var browserUtils = require('../tasks/helpers/browser');
 
 exports.config = {
     useMocks         : true,
-    seleniumServerJar: '../../gulp-protractor/node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar',
+    seleniumServerJar: '../node_modules/gulp-protractor/node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar',
     framework        : 'mocha',
     mochaOpts        : {
         timeout : 10000000,
