@@ -3,9 +3,7 @@
 var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
 
-module.exports = function taskFactory (specs, breakpoint, channel, port) {
-
-    //config.testsRunning = true;
+module.exports = function taskFactory (specs, breakpoint, channel, port, callback) {
 
     return function runProtractorTests () {
 
@@ -13,9 +11,8 @@ module.exports = function taskFactory (specs, breakpoint, channel, port) {
             throw error;
         }
 
-        function stopTestDependencies() {
-            //config.testsRunning = false;
-            //done();
+        function protractorEnd() {
+            callback();
             process.exit(0);
         }
 
@@ -30,6 +27,6 @@ module.exports = function taskFactory (specs, breakpoint, channel, port) {
                 ]
             }))
             .on('error', protractorError)
-            .on('end', stopTestDependencies);
+            .on('end', protractorEnd);
     }
 };
