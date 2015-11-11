@@ -2,8 +2,9 @@
 
 var config = require(process.cwd() + '/config/config');
 var browserUtils = require('../tasks/helpers/browser');
+var extend = require('extend');
 
-exports.config = {
+exports.config = extend(true, {
     useMocks         : true,
     seleniumServerJar: '../node_modules/gulp-protractor/node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar',
     framework        : 'mocha',
@@ -11,13 +12,6 @@ exports.config = {
         timeout : 10000000,
         reporter: 'spec'
     },
-    multiCapabilities: [
-        {
-            browserName : 'chrome',
-            shardTestFiles: false,
-            maxInstances  : 20
-        }
-    ],
     onPrepare: function () {
 
         setupAssertionFrameWork();
@@ -31,7 +25,7 @@ exports.config = {
             browserUtils.setBrowserSize(browserWidth, browserHeight);
         }
     }
-};
+}, config.get('protractor'));
 
 function setupAssertionFrameWork() {
 
