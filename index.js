@@ -9,5 +9,6 @@ module.exports = {
     startKarmaRunner: require('./tasks/start-karma-runner'),
     watch: require('./tasks/watch'),
     watchAndLintOnChange: require('./tasks/watch-and-lint-on-change'),
-    testRunE2E : require('./tasks/test/e2e/run-e2e-tests')
+    testRunE2E : require('./tasks/test/run-e2e-tests'),
+    karmaRunOnce : require('./tasks/test/karma-run-once')
 };

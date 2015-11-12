@@ -24,10 +24,7 @@
   },
   "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
   "dependencies": {
-    "angular": "1.2.28",
     "app-root-path": "1.0.0",
-    "chai": "3.2.0",
-    "chai-as-promised": "4.3.0",
     "chalk": "1.1.1",
     "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "extend": "2.0.1",
@@ -53,9 +50,7 @@
     "karma-phantomjs-launcher": "0.2.1",
     "minimist": "1.2.0",
     "phantomjs": "1.9.18",
-    "run-sequence": "1.1.4",
-    "sinon": "1.14.1",
-    "sinon-chai": "2.8.0"
+    "run-sequence": "1.1.4"
   },
   "devDependencies": {
     "eslint": "1.2.1",
