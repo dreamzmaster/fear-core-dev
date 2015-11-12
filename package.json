@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
   "dependencies": {
+    "angular": "1.2.28",
     "app-root-path": "1.0.0",
     "chai": "3.2.0",
+    "chai-as-promised": "4.3.0",
     "chalk": "1.1.1",
     "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "extend": "2.0.1",
@@ -39,14 +41,21 @@
     "gulp-util": "3.0.6",
     "gulp-watch": "4.3.5",
     "karma": "0.13.9",
+    "karma-angular": "0.0.6",
     "karma-chai": "0.1.0",
+    "karma-coverage": "0.2.7",
+    "karma-jspm": "2.0.1",
     "karma-junit-reporter": "0.3.4",
     "karma-mocha": "0.2.0",
     "karma-mocha-reporter": "1.1.1",
+    "karma-mustache-preprocessor": "DigitalInnovation/karma-mustache-preprocessor",
+    "karma-ng-html2js-preprocessor-with-templates": "0.1.2",
     "karma-phantomjs-launcher": "0.2.1",
     "minimist": "1.2.0",
     "phantomjs": "1.9.18",
-    "run-sequence": "1.1.4"
+    "run-sequence": "1.1.4",
+    "sinon": "1.14.1",
+    "sinon-chai": "2.8.0"
   },
   "devDependencies": {
     "eslint": "1.2.1",
