@@ -14,6 +14,7 @@ module.exports = {
     annotateJavascript : require('./tasks/build/annotate-javascript'),
     minifyJavascript : require('./tasks/build/minify-javascript'),
     packageJavascript : require('./tasks/build/package-javascript'),
+    timestampJavascript : require('./tasks/build/timestamp-javascript'),
     minifyCss : require('./tasks/build/minify-css'),
     inlineCss : require('./tasks/build/inline-css'),
     minifyHtml : require('./tasks/build/minify-html'),
