@@ -1,6 +1,8 @@
 'use strict';
 
 var gutil = require('gulp-util');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 
 module.exports = function taskFactory (packageDestinationFolder, done) {
 
@@ -30,9 +32,14 @@ module.exports = function taskFactory (packageDestinationFolder, done) {
         });
     }
 
-    Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
+    return Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
         .then(function () {
-            done();
+            gulp.src(process.cwd() + '/node_modules/fear-core-tasks/defaults/jspm.conf.prod.js')
+                .pipe(rename('jspm.conf.js'))
+                .pipe(uglify({
+                    mangle: true
+                }))
+                .pipe(gulp.dest(process.cwd() + '/.tmp/scripts'));
         })
         .catch(function (error) {
             gutil.log(gutil.colors.red('build-jspm: Error creating packages'));
