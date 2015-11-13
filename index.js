@@ -13,5 +13,7 @@ module.exports = {
     karmaRunOnce : require('./tasks/test/karma-run-once'),
     annotateJavascript : require('./tasks/build/annotate-javascript'),
     minifyJavascript : require('./tasks/build/minify-javascript'),
-    packageJavascript : require('./tasks/build/package-javascript')
+    packageJavascript : require('./tasks/build/package-javascript'),
+    minifyCss : require('./tasks/build/minify-css'),
+    inlineCss : require('./tasks/build/inline-css')
 };
