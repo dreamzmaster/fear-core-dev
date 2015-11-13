@@ -15,5 +15,7 @@ module.exports = {
     minifyJavascript : require('./tasks/build/minify-javascript'),
     packageJavascript : require('./tasks/build/package-javascript'),
     minifyCss : require('./tasks/build/minify-css'),
-    inlineCss : require('./tasks/build/inline-css')
+    inlineCss : require('./tasks/build/inline-css'),
+    minifyHtml : require('./tasks/build/minify-html'),
+    removeHtml : require('./tasks/build/remove-html')
 };
