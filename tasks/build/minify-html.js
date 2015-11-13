@@ -31,5 +31,5 @@ module.exports = function taskFactory (htmlFolder) {
             mangle: true
         }))
         .pipe(header(headerCommentHTML))
-        .pipe(gulp.dest(paths.temp.views));
+        .pipe(gulp.dest(htmlFolder));
 };
