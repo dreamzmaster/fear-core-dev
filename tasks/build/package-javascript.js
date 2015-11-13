@@ -1,13 +1,24 @@
 'use strict';
 
-var gutil = require('gulp-util');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
+var gulp;
+var gutil;
+var rename;
+var uglify;
+var packagesHelper;
+var jspm;
 
 module.exports = function taskFactory (packageDestinationFolder, done) {
 
-    var jspm = require('jspm'),
+    function loadDependencies() {
+        gulp = require('gulp');
+        gutil = require('gulp-util');
+        rename = require('gulp-rename');
+        uglify = require('gulp-uglify');
+        jspm = require('jspm');
         packagesHelper = require(process.cwd() + '/node_modules/fear-core-tasks/tasks/helpers/js-packages');
+    }
+
+    loadDependencies();
 
     gutil.log(gutil.colors.green(
         'Bundles being created for product',
