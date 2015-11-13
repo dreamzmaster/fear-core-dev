@@ -28,5 +28,5 @@ module.exports = function taskFactory (specs, breakpoint, channel, port, callbac
             }))
             .on('error', protractorError)
             .on('end', protractorEnd);
-    }
+    };
 };

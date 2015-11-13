@@ -1,6 +1,10 @@
+/*global protractor, browser, window, document, angular*/
+
+'use strict';
+
 var gutil = require('gulp-util');
 
-var Browser = function () {};
+function Browser () {}
 
 Browser.prototype = {
 
@@ -21,7 +25,7 @@ Browser.prototype = {
                             a = 'client';
                             e = document.documentElement || document.body;
                         }
-                        return {width: e[a + 'Width'], height: e[a + 'Height']}
+                        return {width: e[a + 'Width'], height: e[a + 'Height']};
                     }
                 ).then(function (dims) {
                         self.browserOffsetWidth  = 480 - dims.width;

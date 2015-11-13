@@ -10,5 +10,8 @@ module.exports = {
     watch: require('./tasks/watch'),
     watchAndLintOnChange: require('./tasks/watch-and-lint-on-change'),
     testRunE2E : require('./tasks/test/run-e2e-tests'),
-    karmaRunOnce : require('./tasks/test/karma-run-once')
+    karmaRunOnce : require('./tasks/test/karma-run-once'),
+    annotateJavascript : require('./tasks/build/annotate-javascript'),
+    minifyJavascript : require('./tasks/build/minify-javascript'),
+    packageJavascript : require('./tasks/build/package-javascript')
 };
