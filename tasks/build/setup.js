@@ -1,7 +1,10 @@
 'use strict';
 
-var del = require('del');
-
 module.exports = function taskFactory (foldersToDelete) {
-    return del(foldersToDelete);
+
+    var del = require('del');
+
+    return function task () {
+        return del(foldersToDelete);
+    };
 };

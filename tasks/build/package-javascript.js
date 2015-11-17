@@ -7,53 +7,56 @@ var uglify;
 var packagesHelper;
 var jspm;
 
-module.exports = function taskFactory (packageDestinationFolder, done) {
+module.exports = function taskFactory (packageDestinationFolder) {
 
-    function loadDependencies() {
-        gulp = require('gulp');
-        gutil = require('gulp-util');
-        rename = require('gulp-rename');
-        uglify = require('gulp-uglify');
-        jspm = require('jspm');
-        packagesHelper = require(process.cwd() + '/node_modules/fear-core-tasks/tasks/helpers/js-packages');
-    }
+    return function task (done) {
 
-    loadDependencies();
+        function loadDependencies() {
+            gulp = require('gulp');
+            gutil = require('gulp-util');
+            rename = require('gulp-rename');
+            uglify = require('gulp-uglify');
+            jspm = require('jspm');
+            packagesHelper = require(process.cwd() + '/node_modules/fear-core-tasks/tasks/helpers/js-packages');
+        }
 
-    gutil.log(gutil.colors.green(
-        'Bundles being created for product',
-        global.product,
-        'on channels',
-        global.channel
-    ));
+        loadDependencies();
 
-    function createBundle(bundleExpr) {
+        gutil.log(gutil.colors.green(
+            'Bundles being created for product',
+            global.product,
+            'on channels',
+            global.channel
+        ));
 
-        var bundleFileDestination = packageDestinationFolder + '/' + bundleExpr.split(' ')[0] + '.js';
+        function createBundle(bundleExpr) {
 
-        return jspm.bundle(bundleExpr, bundleFileDestination, {
-            sourceMaps  : true,
-            minify      : false,
-            mangle      : false
-        }).then(function () {
-            return gutil.log(gutil.colors.green('Bundle created : ') + bundleFileDestination);
-        }).catch(function (error) {
-            gutil.log(gutil.colors.red('Bundle error: ') + bundleFileDestination);
-            throw new Error(error);
-        });
-    }
+            var bundleFileDestination = packageDestinationFolder + '/' + bundleExpr.split(' ')[0] + '.js';
 
-    return Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
-        .then(function () {
-            gulp.src(process.cwd() + '/node_modules/fear-core-tasks/defaults/jspm.conf.prod.js')
-                .pipe(rename('jspm.conf.js'))
-                .pipe(uglify({
-                    mangle: true
-                }))
-                .pipe(gulp.dest(process.cwd() + '/.tmp/scripts'));
-        })
-        .catch(function (error) {
-            gutil.log(gutil.colors.red('build-jspm: Error creating packages'));
-            done(new Error(error));
-        });
+            return jspm.bundle(bundleExpr, bundleFileDestination, {
+                sourceMaps: true,
+                minify: false,
+                mangle: false
+            }).then(function () {
+                return gutil.log(gutil.colors.green('Bundle created : ') + bundleFileDestination);
+            }).catch(function (error) {
+                gutil.log(gutil.colors.red('Bundle error: ') + bundleFileDestination);
+                throw new Error(error);
+            });
+        }
+
+        return Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
+            .then(function () {
+                gulp.src(process.cwd() + '/node_modules/fear-core-tasks/defaults/jspm.conf.prod.js')
+                    .pipe(rename('jspm.conf.js'))
+                    .pipe(uglify({
+                        mangle: true
+                    }))
+                    .pipe(gulp.dest(process.cwd() + '/.tmp/scripts'));
+            })
+            .catch(function (error) {
+                gutil.log(gutil.colors.red('build-jspm: Error creating packages'));
+                done(new Error(error));
+            });
+    };
 };

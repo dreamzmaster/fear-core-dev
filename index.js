@@ -18,6 +18,7 @@ module.exports = {
     minifyCss : require('./tasks/build/minify-css'),
     inlineCss : require('./tasks/build/inline-css'),
     minifyHtml : require('./tasks/build/minify-html'),
+    removeHtml : require('./tasks/build/remove-html'),
     buildSetup : require('./tasks/build/setup'),
-    preCopy : require('./tasks/build/pre-copy')
+    copy : require('./tasks/build/copy')
 };

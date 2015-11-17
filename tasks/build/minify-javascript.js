@@ -1,14 +1,16 @@
 'use strict';
 
-var gulp = require('gulp');
-
 module.exports = function taskFactory (scriptsPath) {
 
-    var uglify = require('gulp-uglify');
+    return function task () {
 
-    return gulp.src([scriptsPath + '/packages/**/*.js'])
-        .pipe(uglify({
-            mangle: true
-        }))
-        .pipe(gulp.dest(scriptsPath + '/packages'));
+        var gulp = require('gulp');
+        var uglify = require('gulp-uglify');
+
+        return gulp.src([scriptsPath + '/packages/**/*.js'])
+            .pipe(uglify({
+                mangle: true
+            }))
+            .pipe(gulp.dest(scriptsPath + '/packages'));
+    };
 };
