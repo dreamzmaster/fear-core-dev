@@ -22,5 +22,6 @@ module.exports = {
     buildSetup : require('./tasks/build/setup'),
     copy : require('./tasks/build/copy'),
     createAppConfig : require('./tasks/build/create-app-config'),
-    generateSprites : require('./tasks/build/generate-sprites')
+    generateSprites : require('./tasks/build/generate-sprites'),
+    compileSass : require('./tasks/sass/compile-sass')
 };
