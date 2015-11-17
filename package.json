@@ -33,6 +33,7 @@
     "fs-extra": "0.24.0",
     "gulp": "3.9.0",
     "gulp-batch": "1.0.5",
+    "gulp-copy": "0.0.2",
     "gulp-eslint": "1.0.0",
     "gulp-header": "1.2.2",
     "gulp-inline-source": "1.2.0",
