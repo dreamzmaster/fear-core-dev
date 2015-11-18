@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function taskFactory (config, template, destination) {
+module.exports = function taskFactory () {
 
     return function task () {
 
