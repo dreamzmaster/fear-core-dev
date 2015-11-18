@@ -5,6 +5,7 @@ module.exports = function taskFactory (sourceFiles, destination) {
     return function task () {
 
         var sassdoc = require('sassdoc');
+        var gulp = require('gulp');
 
         var options = {
             'dest': destination,
@@ -12,8 +13,7 @@ module.exports = function taskFactory (sourceFiles, destination) {
             'theme': require('sassdoc-theme-mns')
         };
 
-        return gulp
-            .src(sourceFiles)
+        return gulp.src(sourceFiles)
             .pipe(sassdoc(options));
     };
 };
