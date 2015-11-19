@@ -20,6 +20,7 @@ module.exports = {
     minifyHtml : require('./tasks/build/minify-html'),
     removeHtml : require('./tasks/build/remove-html'),
     buildSetup : require('./tasks/build/setup'),
+    browserSync : require('./tasks/build/browserSync'),
     copy : require('./tasks/build/copy'),
     createAppConfig : require('./tasks/build/create-app-config'),
     generateSprites : require('./tasks/build/generate-sprites'),
