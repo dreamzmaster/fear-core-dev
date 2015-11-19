@@ -23,6 +23,7 @@ module.exports = {
     copy : require('./tasks/build/copy'),
     createAppConfig : require('./tasks/build/create-app-config'),
     generateSprites : require('./tasks/build/generate-sprites'),
+    siteSpeed : require('./tasks/build/sitespeedio'),
     compileSass : require('./tasks/sass/compile-sass'),
     generateSassDocs : require('./tasks/sass/generate-docs'),
     installDependencies : require('./tasks/build/install-dependencies')
