@@ -29,6 +29,7 @@
     "browser-sync": "2.8.2",
     "chai": "3.4.1",
     "chalk": "1.1.1",
+    "connect-mustache-middleware": "git+https://github.com/DigitalInnovation/connect-mustache-middleware",
     "del": "1.2.0",
     "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "extend": "2.0.1",
