@@ -21,6 +21,8 @@ module.exports = {
     removeHtml: require('./tasks/build/remove-html'),
     buildSetup: require('./tasks/build/setup'),
     browserSync: require('./tasks/test/browser-sync'),
+    webdriverio : require('./tasks/test/webdriverio'),
+    webdrivercss : require('./tasks/test/webdrivercss'),
     copy: require('./tasks/build/copy'),
     createAppConfig: require('./tasks/build/create-app-config'),
     generateSprites: require('./tasks/build/generate-sprites'),
