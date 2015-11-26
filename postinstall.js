@@ -16,8 +16,6 @@ execSync('node ./node_modules/gulp-protractor/node_modules/protractor/bin/webdri
 
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
-// copyDefaultToAppRoot('karma.conf.js', 'karma.conf.js');
-// copyDefaultToAppRoot('jspm.conf.test.js', 'test/jspm.conf.test.js');
 copyDefaultToAppRoot('editorconfig', '.editorconfig');
 copyDefaultToAppRoot('eslintrc', '.eslintrc');
 copyDefaultToAppRoot('eslintignore', '.eslintignore');
