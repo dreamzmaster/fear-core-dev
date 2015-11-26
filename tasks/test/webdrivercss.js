@@ -2,23 +2,32 @@
 
 var path = require('path');
 
-module.exports = function(config) {
+module.exports = function (config) {
     var wdio = require('./webdriverio'),
-        jsfy = require('jsfy'),
-        wcss = path.join(__dirname, '../../', 'node_modules', 'webdrivercss');
+        wcss = path.join(__dirname, '../../', 'node_modules', 'webdrivercss'),
+        helperPath = path.join(__dirname, '../', 'helpers', 'webdriverio');
 
     return function task() {
-        var fileContents = '';
-
-        config.__before = config.before;
         config.__webdrivercssPath = wcss;
+        config.__helpers = helperPath;
+        config.screenshotPath = './test-visual-results-fear/command-fail';
 
-        config.before = function() {
-            this.__before && this.__before(require(this.__webdrivercssPath));
+        config.plugins = {
+            webdrivercss: {
+                screenshotRoot: 'test-visual-results-fear',
+                failedComparisonsRoot: 'test-visual-results-fear/diff',
+                misMatchTolerance: 0.05,
+                screenWidth: config.breakpoints
+            }
         };
 
-        fileContents +=  'exports.config = ' + jsfy(config) + ';\n';
+        config.before = function() {
+            var webdrivercss = require(this.__webdrivercssPath),
+                helpers = require(this.__helpers);
+            webdrivercss.init(global.browser, global.browser.options.plugins.webdrivercss);
+            helpers.initialize(global.browser);
+        };
 
-        return wdio({ file : fileContents })();
+        return wdio(config)();
     };
 };

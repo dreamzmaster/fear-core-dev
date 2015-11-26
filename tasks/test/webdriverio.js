@@ -5,7 +5,8 @@ module.exports = function(config) {
         path = require('path'),
         gulp = require('gulp'),
         webdriver = require('gulp-webdriver'),
-        gutil = require('gulp-util');
+        gutil = require('gulp-util'),
+        seleniumPath = path.join(__dirname, './selenium');
 
     function finish() {
         process.exit(0);
@@ -13,6 +14,38 @@ module.exports = function(config) {
 
     function error() {
         process.exit(1);
+    }
+
+    function generateConfigFile(config) {
+        var jsfy = require('jsfy');
+
+        config.___selenium = seleniumPath;
+        config.___before = config.before;
+        config.___onPrepare = config.onPrepare;
+        config.___onComplete = config.onComplete;
+
+        config.before = function() {
+            var self = this;
+            var globals = Object.keys(self.globals);
+            globals.forEach(function(key) {
+                global[key] = self.globals[key];
+            });
+            this.___before && this.___before();
+        };
+
+        config.onPrepare = function() {
+            var selenium = require(this.___selenium);
+            this.___onPrepare && this.___onPrepare();
+            return selenium.start();
+        };
+
+        config.onComplete = function() {
+            var selenium = require(this.___selenium);
+            selenium.stop();
+            this.___onComplete && this.___onComplete();
+        };
+
+        return 'exports.config = ' + jsfy(config) + ';\n';
     }
 
     function mkdir(path) {
@@ -53,19 +86,16 @@ module.exports = function(config) {
         var directoryPath = path.join(process.cwd(), './.tmp/'),
             configFilePath = directoryPath + 'test-visual-config.js';
 
-        return (config.filePath ?
-            launchWebdriver(configFilePath) :
-            mkdir(directoryPath)
+        return mkdir(directoryPath)
             .then(function(){
-                return writeFile(configFilePath, config.file);
+                return writeFile(configFilePath, generateConfigFile(config));
             })
             .then(function() {
                 return launchWebdriver(configFilePath);
             })
-        )
-        .catch(function(ex) {
-            gutil.log(gutil.colors.red(ex));
-            error();
-        });
+            .catch(function(ex) {
+                gutil.log(gutil.colors.red(ex));
+                error();
+            });
     };
 };
