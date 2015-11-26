@@ -6,10 +6,10 @@ module.exports = function taskFactory(files, autoPrefixOptions, destination) {
 
         var gulp = require('gulp');
         var sass = require('gulp-sass');
-        var gulpIf = require('gulp-if');
         var sourcemaps = require('gulp-sourcemaps');
+        var postcss = require('gulp-postcss');
+        var autoprefixer = require('autoprefixer');
         var bourbon = require('node-bourbon');
-        var autoprefixer = require('gulp-autoprefixer');
 
         var sassOptions = {
             includePaths: bourbon.includePaths,
@@ -19,9 +19,10 @@ module.exports = function taskFactory(files, autoPrefixOptions, destination) {
         };
 
         return gulp.src(files)
+
             .pipe(sourcemaps.init())
             .pipe(sass(sassOptions))
-            .pipe(gulpIf(['*.css', '!*.map'], autoprefixer(autoPrefixOptions)))
+            .pipe(postcss([autoprefixer(autoPrefixOptions)]))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(destination));
     };
