@@ -27,7 +27,9 @@
     "app-root-path": "1.0.0",
     "gulp-autoprefixer": "2.3.1",
     "browser-sync": "2.8.2",
+    "bluebird": "2.10.2",
     "chai": "3.4.1",
+    "chai-as-promised": "5.1.0",
     "chalk": "1.1.1",
     "connect-mustache-middleware": "git+https://github.com/DigitalInnovation/connect-mustache-middleware",
     "del": "1.2.0",
@@ -50,6 +52,7 @@
     "gulp-ng-annotate": "1.1.0",
     "gulp-protractor": "1.0.0",
     "gulp-remove-code": "1.0.2",
+    "gulp-webdriver": "1.0.1",
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.3",
     "gulp-sass": "2.0.4",
@@ -58,6 +61,7 @@
     "gulp-util": "3.0.6",
     "gulp-watch": "4.3.5",
     "jspm": "0.16.10",
+    "jsfy": "1.5.0",
     "karma": "0.13.9",
     "karma-angular": "0.0.6",
     "karma-chai": "0.1.0",
@@ -80,7 +84,10 @@
     "sassdoc-theme-mns": "git+https://github.com/DigitalInnovation/sassdoc-theme-mns",
     "sprity": "1.0.7",
     "sprity-sass": "1.0.4",
-    "systemjs": "0.18.11"
+    "systemjs": "0.18.11",
+    "selenium-standalone": "4.7.1",
+    "webdriverio": "3.2.5",
+    "webdrivercss": "2.0.0beta-rc1"
   },
   "devDependencies": {
     "eslint": "1.2.1",
