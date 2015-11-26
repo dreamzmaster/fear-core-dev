@@ -4,6 +4,8 @@ var selenium = require('selenium-standalone');
 var bluebirdPromise = require('bluebird');
 bluebirdPromise.promisifyAll(selenium);
 
+var gutil = require('gulp-util');
+
 module.exports = {
     start: function() {
         return selenium.installAsync({
@@ -21,23 +23,23 @@ module.exports = {
                 }
             },
             logger: function(message) {
-                console.log(message);
+                gutil.log(message);
             },
             progressCb: function(totalLength, progressLength) {
                 process.stdout.write('Downloading drivers ' + Math.round(progressLength / totalLength * 100) + '% \r');
             }
         }).then(function() {
-            console.log('Starting selenium');
+            gutil.log('Starting selenium');
 
             return selenium.startAsync().then(function(child) {
                 selenium.child = child;
-                console.log('Selenium started');
+                gutil.log('Selenium started');
             });
         });
     },
 
     stop: function() {
         selenium.child.kill();
-        console.log('\nSelenium process ended. Test suite complete');
+        gutil.log('\nSelenium process ended. Test suite complete');
     }
 };
