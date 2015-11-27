@@ -1,25 +1,30 @@
 'use strict';
 
-var path = require('path');
+var path = require('path'),
+    wdio = require('./webdriverio'),
+    extend = require('extend');
 
 module.exports = function (config) {
-    var wdio = require('./webdriverio'),
-        wcss = path.join(__dirname, '../../', 'node_modules', 'webdrivercss'),
-        helperPath = path.join(__dirname, '../', 'helpers', 'webdriverio');
+    var wdcssPath = path.join(__dirname, '../../', 'node_modules', 'webdrivercss'),
+        helperPath = path.join(__dirname, '../', 'helpers', 'webdriverio'),
+        screenshotPath = './test-visual-results-fear/command-fail',
+        wdcss = {
+            screenshotRoot: 'test-visual-results-fear',
+            failedComparisonsRoot: 'test-visual-results-fear/diff',
+            misMatchTolerance: 0.05
+        };
 
     return function task() {
-        config.__webdrivercssPath = wcss;
+        config.__webdrivercssPath = wdcssPath;
         config.__helpers = helperPath;
-        config.screenshotPath = './test-visual-results-fear/command-fail';
 
-        config.plugins = {
-            webdrivercss: {
-                screenshotRoot: 'test-visual-results-fear',
-                failedComparisonsRoot: 'test-visual-results-fear/diff',
-                misMatchTolerance: 0.05,
-                screenWidth: config.breakpoints
-            }
-        };
+        config.plugins = config.plugins || {};
+        config.screenshotPath = config.screenshotPath || screenshotPath;
+
+        config.plugins.webdrivercss = extend(
+            config.plugins.webdrivercss || {},
+            wdcss
+        );
 
         config.before = function() {
             var webdrivercss = require(this.__webdrivercssPath),

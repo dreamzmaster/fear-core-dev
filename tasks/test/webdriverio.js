@@ -21,8 +21,6 @@ module.exports = function(config) {
 
         config.___selenium = seleniumPath;
         config.___before = config.before;
-        config.___onPrepare = config.onPrepare;
-        config.___onComplete = config.onComplete;
 
         config.before = function() {
             var self = this;
@@ -33,17 +31,22 @@ module.exports = function(config) {
             this.___before && this.___before();
         };
 
-        config.onPrepare = function() {
-            var selenium = require(this.___selenium);
-            this.___onPrepare && this.___onPrepare();
-            return selenium.start();
-        };
+        if(config.seleniumStandalone) {
+            config.___onPrepare = config.onPrepare;
+            config.___onComplete = config.onComplete;
 
-        config.onComplete = function() {
-            var selenium = require(this.___selenium);
-            selenium.stop();
-            this.___onComplete && this.___onComplete();
-        };
+            config.onPrepare = function() {
+                var selenium = require(this.___selenium);
+                this.___onPrepare && this.___onPrepare();
+                return selenium.start();
+            };
+
+            config.onComplete = function() {
+                var selenium = require(this.___selenium);
+                selenium.stop();
+                this.___onComplete && this.___onComplete();
+            };
+        }
 
         return 'exports.config = ' + jsfy(config) + ';\n';
     }
