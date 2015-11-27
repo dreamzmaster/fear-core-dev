@@ -1,6 +1,6 @@
 'use strict';
 
-module.parent.exports.tasks = {
+module.exports = {
     lintJavascript: require('./tasks/eslint/details'),
     lintOnChange: require('./tasks/eslint/on-change'),
     lintReport: require('./tasks/eslint/report'),
