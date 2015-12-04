@@ -8,7 +8,7 @@ var lintReport = require('./index').lintReport;
 var watch = require('./index').watch;
 var watchAndLintOnChange = require('./index').watchAndLintOnChange;
 
-var prod = ['tasks/**/*.js', '*.js'];
+var prod = ['tasks/**/*.js', '*.js', 'utils/**/*.js'];
 var specs = ['test/**/*.spec.js'];
 var all = prod.concat(specs);
 

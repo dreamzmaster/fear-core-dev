@@ -32,5 +32,6 @@ module.exports = {
     installDependencies: require('./tasks/build/install-dependencies'),
     copyMocks: require('./tasks/mock/copy-mocks'),
     copyInlineMocks: require('./tasks/mock/copy-inline-mocks'),
-    deleteFiles: require('./tasks/delete')
+    deleteFiles: require('./tasks/delete'),
+    config: require('./utils/config/index')
 };
