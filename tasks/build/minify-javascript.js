@@ -1,16 +1,19 @@
 'use strict';
 
-module.exports = function taskFactory (scriptsPath) {
+module.exports = function taskFactory(toMinify, destinations) {
 
-    return function task () {
+    return function task() {
 
         var gulp = require('gulp');
         var uglify = require('gulp-uglify');
+        var destinationsHelper = require('../helpers/build-destinations');
 
-        return gulp.src([scriptsPath + '/packages/**/*.js'])
+        return gulp.src(toMinify)
             .pipe(uglify({
                 mangle: true
             }))
-            .pipe(gulp.dest(scriptsPath + '/packages'));
+            .pipe(gulp.dest(function (file) {
+                return destinationsHelper.getDestinations(destinations, file.path);
+            }));
     };
 };
