@@ -1,18 +1,21 @@
 'use strict';
 
-module.exports = function taskFactory (sourceFolder) {
+module.exports = function taskFactory (toInline, destinations) {
 
     return function task () {
 
         var gulp = require('gulp');
-        var inlinesource = require('gulp-inline-source');
+        var inlineSource = require('gulp-inline-source');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         var inlineSrcOpts = {
             'swallowErrors': false
         };
 
-        return gulp.src(sourceFolder + '/*.html')
-            .pipe(inlinesource(inlineSrcOpts))
-            .pipe(gulp.dest(sourceFolder));
+        return gulp.src(toInline)
+            .pipe(inlineSource(inlineSrcOpts))
+            .pipe(gulp.dest(function (file) {
+                return destinationsHelper.getDestinations(destinations, file.path);
+            }));
     };
 };

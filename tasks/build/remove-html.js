@@ -1,18 +1,21 @@
 'use strict';
 
-module.exports = function taskFactory (htmlFolder) {
+module.exports = function taskFactory(toRemove, destinations) {
 
-    return function task () {
+    return function task() {
 
         var gulp = require('gulp');
         var removeCode = require('gulp-remove-code');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         var removeCodeOpts = {
             production: true
         };
 
-        return gulp.src(htmlFolder + '/**/*.html')
+        return gulp.src(toRemove)
             .pipe(removeCode(removeCodeOpts))
-            .pipe(gulp.dest(htmlFolder));
+            .pipe(gulp.dest(function (file) {
+                return destinationsHelper.getDestinations(destinations, file.path);
+            }));
     };
 };

@@ -1,20 +1,15 @@
 'use strict';
 
-module.exports = function taskFactory (htmlFolder) {
+module.exports = function taskFactory(toMinify, destinations) {
 
-    return function task () {
+    return function task() {
 
         var gulp = require('gulp');
         var minifyHTML = require('gulp-minify-html');
         var minifyInline = require('gulp-minify-inline');
         var header = require('gulp-header');
         var headerCommentHTML = '<!-- Generated on:' + new Date() + ' -->';
-
-        var htmlViews = [
-            htmlFolder + '/**/*.html',
-            //exclude index.html files as WCS has to process these line by line
-            '!' + htmlFolder + '/**/index.html'
-        ];
+        var destinationsHelper = require('../helpers/build-destinations');
 
         var minifyHtmlOpts = {
             comments: true,
@@ -26,13 +21,15 @@ module.exports = function taskFactory (htmlFolder) {
             loose: true
         };
 
-        return gulp.src(htmlViews)
+        return gulp.src(toMinify)
             .pipe(minifyHTML(minifyHtmlOpts))
             .pipe(minifyInline({
                 jsSelector: 'script.inline-minify',
                 mangle: true
             }))
             .pipe(header(headerCommentHTML))
-            .pipe(gulp.dest(htmlFolder));
+            .pipe(gulp.dest(function (file) {
+                return destinationsHelper.getDestinations(destinations, file.path);
+            }));
     };
 };

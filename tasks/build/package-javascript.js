@@ -7,9 +7,9 @@ var uglify;
 var packagesHelper;
 var jspm;
 
-module.exports = function taskFactory (packageDestinationFolder) {
+module.exports = function taskFactory(packageDestinationFolder) {
 
-    return function task (done) {
+    return function task(done) {
 
         function loadDependencies() {
             gulp = require('gulp');
@@ -17,7 +17,7 @@ module.exports = function taskFactory (packageDestinationFolder) {
             rename = require('gulp-rename');
             uglify = require('gulp-uglify');
             jspm = require('jspm');
-            packagesHelper = require(process.cwd() + '/node_modules/fear-core-tasks/tasks/helpers/js-packages');
+            packagesHelper = require('../helpers/js-packages');
         }
 
         loadDependencies();
@@ -38,7 +38,7 @@ module.exports = function taskFactory (packageDestinationFolder) {
                 minify: false,
                 mangle: false
             }).then(function () {
-                return gutil.log(gutil.colors.green('Bundle created : ') + bundleFileDestination);
+                return gutil.log(gutil.colors.green('Bundle created: ') + bundleFileDestination);
             }).catch(function (error) {
                 gutil.log(gutil.colors.red('Bundle error: ') + bundleFileDestination);
                 throw new Error(error);

@@ -1,15 +1,16 @@
 'use strict';
 
-module.exports = function taskFactory(files, autoPrefixOptions, destination) {
+module.exports = function taskFactory(files, autoPrefixOptions, destinations) {
 
     return function compile() {
 
         var gulp = require('gulp');
         var sass = require('gulp-sass');
-        var sourcemaps = require('gulp-sourcemaps');
-        var postcss = require('gulp-postcss');
-        var autoprefixer = require('autoprefixer');
+        var sourceMaps = require('gulp-sourcemaps');
+        var postCss = require('gulp-postcss');
+        var autoPrefixer = require('autoprefixer');
         var bourbon = require('node-bourbon');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         var sassOptions = {
             includePaths: bourbon.includePaths,
@@ -19,11 +20,12 @@ module.exports = function taskFactory(files, autoPrefixOptions, destination) {
         };
 
         return gulp.src(files)
-
-            .pipe(sourcemaps.init())
+            .pipe(sourceMaps.init())
             .pipe(sass(sassOptions))
-            .pipe(postcss([autoprefixer(autoPrefixOptions)]))
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(destination));
+            .pipe(postCss([autoPrefixer(autoPrefixOptions)]))
+            .pipe(sourceMaps.write('.'))
+            .pipe(gulp.dest(function (file) {
+                return destinationsHelper.getDestinations(destinations, file.path);
+            }));
     };
 };
