@@ -17,7 +17,7 @@ module.exports = function taskFactory (packageDestinationFolder) {
             rename = require('gulp-rename');
             uglify = require('gulp-uglify');
             jspm = require('jspm');
-            packagesHelper = require(process.cwd() + '/node_modules/fear-core-tasks/tasks/helpers/js-packages');
+            packagesHelper = require('../helpers/js-packages');
         }
 
         loadDependencies();
