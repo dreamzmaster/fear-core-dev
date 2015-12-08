@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function taskFactory (filesToCopy, destination) {
+module.exports = function taskFactory (filesToCopy, destination, prefix) {
 
     return function task () {
 
@@ -9,7 +9,7 @@ module.exports = function taskFactory (filesToCopy, destination) {
         var gutil = require('gulp-util');
 
         var copyOpts = {
-            prefix: 1
+            prefix: prefix
         };
 
         return gulp.src(filesToCopy)
