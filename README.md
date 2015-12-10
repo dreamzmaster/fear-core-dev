@@ -39,7 +39,7 @@ Take a look the `node_modules/fear-core-tasks/defaults` folder for more details.
 
 In `gulpfile.js` pull in `fear-core-tasks`
 
-```
+```js
 var fearCoreTasks = require('fear-core-tasks');
 ```
 
@@ -49,7 +49,7 @@ All core tasks are based on various Gulp plugins and Gulp itself. The basic idea
 
 These Gulp task "instances" can be also configured via the factory function's arguments e.g. `src` in the following example.
 
-```
+```js
 'use strict';
 
 var gulp = require('gulp');
@@ -67,7 +67,7 @@ module.exports = function taskFactory (src) {
 
 which can be then exposed via the package's `index.js`
 
-```
+```js
 'use strict';
 
 module.exports = {
@@ -77,7 +77,7 @@ module.exports = {
 
 and used in your `gulpfile.js` multiple times for different sources:
 
-```
+```js
 var core = require('fear-core-tasks');
 
 gulp.task('lint-app', core.lintJavascript('app/**/*.js'));
@@ -98,7 +98,7 @@ gulp.task('lint-javascript', fearCoreTasks.lintJavascript(['*.js']) );
 
 also, create an `.eslintrc` file in your project's root to extend the Core ESLint config:
 
-```
+```json
 // .eslintrc
 {
     "extends": "fear-core/node-config"
@@ -107,7 +107,7 @@ also, create an `.eslintrc` file in your project's root to extend the Core ESLin
 
 for a browser specific project:
 
-```
+```json
 // .eslintrc
 {
     "extends": "fear-core/browser-config"
@@ -140,7 +140,7 @@ This can help you to prioritise which linting issues should be fixed first or to
 
 In your `gulpfile` register a new task similar to the `lint` task, but use the core `lintReport` method:
 
-```
+```js
 gulp.task('lint-report', fearCoreTasks.lintReport(['*.js']) );
 ```
 
@@ -152,7 +152,7 @@ The `watch` core task can be used to watch certain files and run the necessary t
 
 In your `gulpfile` register a new task using the core `watch` method:
 
-```
+```js
 gulp.task('watch', fearCoreTasks.watch(['*.js'], ['lint', 'test']));
 ```
 
@@ -160,7 +160,7 @@ The `watch` task accepts a glob of files and an array of tasks to run on file ch
 
 There's also an option to add more watches at once, listening to changes of different files and run the appropriate tasks:
 
-```
+```js
 gulp.task('watch', function () {
     fearCoreTasks.watch(['*.js'], ['lint', 'test']);
     fearCoreTasks.watch(['*.scss'], ['compile-sass']);
@@ -169,7 +169,7 @@ gulp.task('watch', function () {
 
 Also, there's an optional 3rd parameter to run a specific `gulp` processing first on changed files:
 
-```
+```js
 function runThisFirstOnChanged (files) {
     return gulp.src(files).pipe(lint());
 }
@@ -185,7 +185,7 @@ A core task is provided to watch a set of files and run linting on each saved fi
 
 In your `gulpfile` register a new task using the core `watchAndLintOnChange` method:
 
-```
+```js
 gulp.task('watch-and-lint', fearCoreTasks.watchAndLintOnChange(['*.js']));
 ```
 
@@ -211,7 +211,7 @@ Any `.scss` file can be watched and linted on change via [gulp-scss-lint](https:
 
 In your `gulpfile` register a new task by passing the `scss-lint` options and the glob array to the core `lintSassOnChange` method:
 
-```
+```js
 gulp.task('lint-scss', function () {
     var options = { config: '.my-rules.yml' };
     var lintSassOnChange = fearCoreTasks.lintSassOnChange(options);
@@ -227,7 +227,7 @@ We're running unit tests via [Karma](http://karma-runner.github.io/) test runner
 
 Both `mocha` and `chai` is pulled in as a plugin to Karma, so the only thing you have to do is to start writing your unit tests:
 
-```
+```js
 'use strict';
 
 describe('a component under test', function () {
@@ -245,7 +245,7 @@ The default Karma config uses [PhantomJS 1.9.x](http://phantomjs.org/) as the de
 
 You can run the test suite in other browsers as well, also in parallel:
 
-```
+```js
 // karma.config.js
 'use strict';
 
@@ -270,7 +270,7 @@ $ npm install --save-dev karma-safari-launcher
 
 To run your unit test suite via Karma, register a new task in your `gulpfile` and pass an object referring to a `karma.conf.js` file, also override any Karma config options in there:
 
-```
+```js
 gulp.task('run-unit-tests-once', fearCoreTasks.startKarmaServer({
     configFile: __dirname + '/karma.conf.js',
     files: [ 'test/**/*.spec.js' ],
@@ -282,7 +282,7 @@ gulp.task('run-unit-tests-once', fearCoreTasks.startKarmaServer({
 
 When you're practicing TDD, it's important to continuously run your unit test suite on every file change. To achieve that, we start a Karma server with the following gulp task:
 
-```
+```js
 gulp.task('start-karma-server', fearCoreTasks.startKarmaServer({
     configFile: __dirname + '/karma.conf.js',
     files: [ 'test/**/*.spec.js' ]
@@ -293,7 +293,7 @@ The above example starts a Karma server which is waiting for another task to tri
 
 In order to trigger Karma to run the test suite, use the following example in your `gulpfile.js`:
 
-```
+```js
 gulp.task('run-unit-tests', fearCoreTasks.startKarmaRunner({
     configFile: __dirname + '/karma.conf.js'
 }));
@@ -305,7 +305,7 @@ Running also `gulp watch` in a separate terminal window, will look for file chan
 
 To use your own Karma config amend the path to which the `configFile` property points to:
 
-```
+```js
 // e.g. karma.conf.js in your project's root
 gulp.task('start-karma', fearCoreTasks.startKarmaRunner({
     configFile: __dirname + '/karma-custom.conf.js'
