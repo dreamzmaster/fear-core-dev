@@ -26,7 +26,7 @@ module.exports = {
     requireCwd: function() {
         var args = [].slice.call(arguments);
         args.unshift(process.cwd());
-        this.require.apply(this, args);
+        return this.require.apply(this, args);
     }
 
 };
