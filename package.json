@@ -76,6 +76,7 @@
     "karma-ng-html2js-preprocessor-with-templates": "0.1.2",
     "karma-phantomjs-launcher": "0.2.1",
     "lazypipe": "0.2.4",
+    "lodash": "3.10.1",
     "minimist": "1.2.0",
     "mocha": "2.3.3",
     "node-bourbon": "4.2.3",
@@ -89,7 +90,8 @@
     "sprity-sass": "1.0.4",
     "systemjs": "0.18.11",
     "webdrivercss": "2.0.0beta-rc1",
-    "webdriverio": "3.2.5"
+    "webdriverio": "3.2.5",
+    "yargs": "3.30.0"
   },
   "devDependencies": {
     "eslint": "1.2.1",
