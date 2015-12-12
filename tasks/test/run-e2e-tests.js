@@ -18,7 +18,7 @@ module.exports = function taskFactory (specs, breakpoint, channel, port, callbac
 
         return gulp.src(['./dummy'])
             .pipe(protractor({
-                configFile: './node_modules/fear-core-tasks/defaults/protractor.conf.js',
+                configFile: './node_modules/fear-core/node_modules/fear-core-tasks/defaults/protractor.conf.js',
                 args : [
                     '--specs', specs,
                     '--params.breakpoint', breakpoint,
