@@ -7,7 +7,7 @@ var uglify;
 var packagesHelper;
 var jspm;
 
-module.exports = function taskFactory(packageDestinationFolder) {
+module.exports = function taskFactory(packageDestinationFolder, packagesConfig) {
 
     return function task(done) {
 
@@ -44,6 +44,8 @@ module.exports = function taskFactory(packageDestinationFolder) {
                 throw new Error(error);
             });
         }
+
+        packagesHelper.initialise(packagesConfig);
 
         return Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
             .then(function () {

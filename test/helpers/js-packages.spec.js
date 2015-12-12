@@ -3,7 +3,7 @@
 var packageHelper = require('../../tasks/helpers/js-packages');
 var expect = require('chai').expect;
 
-describe('gulp javascript packages helper', function () {
+describe('Javascript packages helper', function () {
 
     packageHelper.initialise = function () {
         packageHelper.setPackages(getMockData());

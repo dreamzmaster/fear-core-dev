@@ -1,17 +1,37 @@
 'use strict';
 
+/**
+ * jsPackageHelper
+ * @type {{selectedPackages: Array, initialise: Function, setPackages: Function, filterPackages: Function, filterProduct: Function, selectChannelFromProduct: Function, get: Function, concatenate: Function}}
+ */
 var jsPackageHelper = {
 
+    /**
+     * selectedPackages
+     */
     selectedPackages: [],
 
-    initialise : function () {
-        this.setPackages(global.config.get('packages'));
+    /**
+     * initialise
+     * @param packagesConfig
+     */
+    initialise : function (packagesConfig) {
+        this.setPackages(packagesConfig);
     },
 
+    /**
+     * setPackages
+     * @param packages
+     */
     setPackages: function (packages) {
         this.packages = packages;
     },
 
+    /**
+     * filterPackages
+     * @param product
+     * @param channel
+     */
     filterPackages: function (product, channel) {
         for (var p in this.packages) {
             if (this.packages.hasOwnProperty(p)) {
@@ -24,10 +44,19 @@ var jsPackageHelper = {
         }
     },
 
+    /**
+     * filterProduct
+     * @param product
+     */
     filterProduct: function (product) {
         delete this.packages[product];
     },
 
+    /**
+     * selectChannelFromProduct
+     * @param product
+     * @param channel
+     */
     selectChannelFromProduct: function (product, channel) {
         for (var c in this.packages[product]) {
             if (this.packages[product].hasOwnProperty(c)) {
@@ -38,9 +67,12 @@ var jsPackageHelper = {
         }
     },
 
+    /**
+     * get
+     * @param product
+     * @param channel
+     */
     get: function (product, channel) {
-
-        this.initialise();
 
         this.concatenate(this.packages.common.packages);
 
@@ -51,6 +83,10 @@ var jsPackageHelper = {
         return this.selectedPackages;
     },
 
+    /**
+     * concatenate
+     * @param packages
+     */
     concatenate: function (packages) {
         this.selectedPackages = this.selectedPackages.concat(packages);
     }
