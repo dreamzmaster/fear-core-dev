@@ -94,7 +94,7 @@
     "w3cjs": "0.3.0",
     "webdrivercss": "2.0.0beta-rc1",
     "webdriverio": "3.2.5",
-    "webpage": "0.3.0"
+    "webpage": "0.3.0",
     "yargs": "3.30.0"
   },
   "devDependencies": {
