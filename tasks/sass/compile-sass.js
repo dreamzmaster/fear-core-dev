@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function taskFactory(files, autoPrefixOptions, destination) {
+module.exports = function taskFactory(files, autoPrefixOptions, destination, includePaths) {
 
     return function compile() {
 
@@ -9,17 +9,15 @@ module.exports = function taskFactory(files, autoPrefixOptions, destination) {
         var sourcemaps = require('gulp-sourcemaps');
         var postcss = require('gulp-postcss');
         var autoprefixer = require('autoprefixer');
-        var bourbon = require('node-bourbon');
 
         var sassOptions = {
-            includePaths: bourbon.includePaths,
+            includePaths: includePaths || [],
             outputStyle: 'expanded',
             sourceComments: true,
             errLogToConsole: true
         };
 
         return gulp.src(files)
-
             .pipe(sourcemaps.init())
             .pipe(sass(sassOptions))
             .pipe(postcss([autoprefixer(autoPrefixOptions)]))
