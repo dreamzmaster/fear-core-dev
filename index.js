@@ -33,5 +33,6 @@ module.exports = {
     copyMocks: require('./tasks/mock/copy-mocks'),
     copyInlineMocks: require('./tasks/mock/copy-inline-mocks'),
     deleteFiles: require('./tasks/delete'),
-    config: require('./utils/config/index')
+    config: require('./utils/config/index'),
+    validateHTML: require('./tasks/html/validate')
 };

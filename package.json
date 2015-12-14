@@ -79,7 +79,9 @@
     "lodash": "3.10.1",
     "minimist": "1.2.0",
     "mocha": "2.3.3",
+    "node-dir": "0.1.8",
     "node-bourbon": "4.2.3",
+    "path": "0.12.7",
     "phantomjs": "1.9.18",
     "run-sequence": "1.1.4",
     "sassdoc": "2.1.15",
@@ -89,8 +91,10 @@
     "sprity": "1.0.7",
     "sprity-sass": "1.0.4",
     "systemjs": "0.18.11",
+    "w3cjs": "0.3.0",
     "webdrivercss": "2.0.0beta-rc1",
     "webdriverio": "3.2.5",
+    "webpage": "0.3.0",
     "yargs": "3.30.0"
   },
   "devDependencies": {
