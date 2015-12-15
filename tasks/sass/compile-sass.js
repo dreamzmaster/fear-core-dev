@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function taskFactory(files, autoPrefixOptions, destination, includePaths) {
+module.exports = function taskFactory(files, autoPrefixOptions, destinations, includePaths) {
 
     return function compile() {
 
