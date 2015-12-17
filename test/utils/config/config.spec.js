@@ -2,22 +2,23 @@
 
 var expect = require('chai').expect;
 
-var Config = require('../../../utils/config/config');
+var config = require('../../../utils/config')();
+var Config = config.Config;
 var mocks = require('./config-mocks');
-
-function resetEnvironment() {
-    delete process.env.NODE_ENV;
-}
 
 describe('config object', function() {
     var config, config2, mockLoader, mockCli, argv;
     var env = { integrated: 'integrated', development: 'development', production: 'production' };
     var data= { default: { } };
 
+    function resetEnvironment() {
+        delete mockCli.env.NODE_ENV;
+    }
+
     beforeEach(function() {
-        resetEnvironment();
         mockCli = mocks.cliFactory();
         mockLoader = mocks.loaderFactory(data);
+        resetEnvironment();
         argv = mockCli.argv;
         config = new Config(mockLoader, mockCli);
     });
@@ -31,7 +32,37 @@ describe('config object', function() {
         expect(config.get).to.exist;
         expect(config.path).to.exist;
         expect(config.env).to.exist;
-        expect(config.getAppConfigTpl).to.exist;
+    });
+
+    it('should be possible to change the root directory via options', function () {
+        var data = { 'default' : { 'paths' : 'value' } };
+        var root = 'config/other';
+
+        var config = new Config(mocks.loaderFactory(data, root), mockCli, { root: root });
+        var path = config.get('paths');
+        expect(path).to.equal('value');
+    });
+
+    it('should be possible to change the matching pattern via options', function() {
+        var data = {
+            'default' : {
+                'js' : '<%=base%>/some/pointer',
+                'css': '${base}/some/pointer'
+            }
+        };
+        var matchingAlgorithm = /<%=([\s\S]+?)%>/g;
+        var matchingAlgorithm2 = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+        var mockLoader2 = mocks.loaderFactory(data);
+
+        //Test with algorithm for old lodash
+        var config = new Config(mockLoader2, mockCli, { delimeters: matchingAlgorithm });
+        var js = config.get('js', { base : 'to' });
+        expect(js).to.equal('to/some/pointer');
+
+        //test with algorithm for es6
+        var config2 = new Config(mockLoader2, mockCli, { delimeters: matchingAlgorithm2 });
+        var css = config2.get('css', { base : 'from' });
+        expect(css).to.equal('from/some/pointer');
     });
 
     it('should throw an error when the default config file isn\'t present', function() {
@@ -39,19 +70,33 @@ describe('config object', function() {
             return new Config(mocks.loaderFactory(), mockCli);
         }
 
-        expect(configFactory).to.throw('Default config file is not present!');
+        expect(configFactory).to.throw('Default config file or default folder is not present!');
     });
 
-    it('should default fall back to development environment', function() {
+    it('should throw an error when the properties parameter is not a string', function() {
+        function errorFactory(key) {
+            return function () {
+                config.get(key);
+            };
+        }
+
+        expect(errorFactory(1)).to.throw('Properties parameter should be a string.');
+        expect(errorFactory({})).to.throw('Properties parameter should be a string.');
+        expect(errorFactory([])).to.throw('Properties parameter should be a string.');
+        expect(errorFactory(null)).to.throw('Properties parameter should be a string.');
+        expect(errorFactory(undefined)).to.throw('Properties parameter should be a string.');
+    });
+
+    it('should default fallback to development environment', function() {
         expect(config.env()).to.equal(env.development);
     });
 
     it('should be possible to change the environment via arguments and environment variable', function() {
-        process.env.NODE_ENV = env.development;
+        mockCli.env.NODE_ENV = env.development;
         config2 = new Config(mockLoader, mockCli);
         expect(config2.env()).to.equal(env.development);
 
-        process.env.NODE_ENV = env.integrated;
+        mockCli.env.NODE_ENV = env.integrated;
         config2 = new Config(mockLoader, mockCli);
         expect(config2.env()).to.equal(env.integrated);
 
@@ -66,7 +111,7 @@ describe('config object', function() {
 
     it('should use commandline arguments before environment variables', function() {
         argv.env = env.production;
-        process.env.NODE_ENV = env.integrated;
+        mockCli.env.NODE_ENV = env.integrated;
         config2 = new Config(mockLoader, mockCli);
         expect(config2.env()).to.equal(env.production);
     });
@@ -75,7 +120,7 @@ describe('config object', function() {
         expect(config.path('webserver')).to.equal('config/development/webserver.js');
         expect(config.path('karma')).to.equal('config/development/karma.js');
 
-        process.env.NODE_ENV = env.integrated;
+        mockCli.env.NODE_ENV = env.integrated;
         config2 = new Config(mockLoader, mockCli);
 
         expect(config2.path('webserver')).to.equal('config/integrated/webserver.js');
