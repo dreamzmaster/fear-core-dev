@@ -7,7 +7,7 @@ module.exports = function taskFactory (toTimesatmp, destinations) {
         var gulp = require('gulp');
         var header = require('gulp-header');
         var headerComment = '/*Generated on:' + new Date() + '*/';
-        var destinationsHelper = require('../helpers/build-destinations');
+        var destinationsHelper = require('../../helpers/build-destinations');
 
         return gulp.src(toTimesatmp)
             .pipe(header(headerComment))

@@ -9,7 +9,7 @@ module.exports = function taskFactory(toMinify, destinations) {
         var minifyInline = require('gulp-minify-inline');
         var header = require('gulp-header');
         var headerCommentHTML = '<!-- Generated on:' + new Date() + ' -->';
-        var destinationsHelper = require('../helpers/build-destinations');
+        var destinationsHelper = require('../../helpers/build-destinations');
 
         var minifyHtmlOpts = {
             comments: true,

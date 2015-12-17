@@ -6,7 +6,7 @@ module.exports = function taskFactory(toRemove, destinations) {
 
         var gulp = require('gulp');
         var removeCode = require('gulp-remove-code');
-        var destinationsHelper = require('../helpers/build-destinations');
+        var destinationsHelper = require('../../helpers/build-destinations');
 
         var removeCodeOpts = {
             production: true
