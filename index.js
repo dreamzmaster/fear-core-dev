@@ -32,7 +32,7 @@ module.exports = {
     javascript : {
         annotate: require('./tasks/build/javascript/annotate'),
         minify: require('./tasks/build/javascript/minify'),
-        bundle: require('./tasks/build/javascript/package'),
+        bundle: require('./tasks/build/javascript/bundle'),
         timestamp: require('./tasks/build/javascript/timestamp')
     },
     css : {
@@ -45,7 +45,7 @@ module.exports = {
         validate: require('./tasks/html/validate')
     },
     sass : {
-        compile: require('./tasks/sass/compile-sass'),
+        compile: require('./tasks/sass/compile'),
         generateDocs: require('./tasks/sass/generate-docs')
     }
 };
