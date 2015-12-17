@@ -2,7 +2,8 @@
 
 var expect = require('chai').expect;
 
-var Config = require('../../../utils/config/config');
+var config = require('../../../utils/config')();
+var Config = config.Config;
 var mocks = require('./config-mocks');
 
 var data = {
@@ -38,23 +39,23 @@ var data = {
     }
 };
 
-function setEnvionment(env) {
-    if(env) {
-        process.env.NODE_ENV = env;
-    } else {
-        delete process.env.NODE_ENV;
-    }
-}
-
 describe('config object', function(){
     describe('get', function(){
-        var config, mockLoader, mockCli;
+        var config;
         var env = { integrated: 'integrated', development: 'development', production: 'production' };
+        var mockLoader = mocks.loaderFactory(data);
+        var mockCli = mocks.cliFactory();
 
         function configFactory() {
-            mockCli = mocks.cliFactory();
-            mockLoader = mocks.loaderFactory(data);
             return new Config(mockLoader, mockCli);
+        }
+
+        function setEnvionment(env) {
+            if(env) {
+                mockCli.env.NODE_ENV = env;
+            } else {
+                delete mockCli.env.NODE_ENV;
+            }
         }
 
         beforeEach(function() {
@@ -64,6 +65,12 @@ describe('config object', function(){
 
         it('should be defined', function() {
             expect(config.get).to.not.be.undefined;
+        });
+
+        it('should throw an error when no arguments are provided', function() {
+            expect(function() {
+                config.get();
+            }).to.throw('No arguments provided');
         });
 
         it('should return the configuration object for the given key', function() {
@@ -92,17 +99,12 @@ describe('config object', function(){
             expect(result).to.deep.equal(data.integrated.wdio);
         });
 
-        it('should should override the keys in the development file', function() {
+        it('should override the keys in the development file', function() {
             var karma = config.get('karma');
             expect(karma).to.deep.equal({
                 'root' : 'app',
                 'runOnce': true
             });
-        });
-
-        it('should return the full config object when no items are provided', function() {
-            var store = config.get();
-            expect(store).to.equal(config._configStore);
         });
 
         it('should be possible to provide a path of keys', function() {
@@ -117,16 +119,6 @@ describe('config object', function(){
             expect(css).to.equal('.tmp/common/css');
         });
 
-        it('should correclty template a requested key given a template string', function() {
-            var font = config.get('paths.team2.font', 'temp.base');
-            var sass = config.get('paths.team2.sass', 'app.base');
-            var views = config.get('paths.team2.views', 'app.base');
-
-            expect(font).to.equal('.tmp/common/assets/fonts');
-            expect(sass).to.equal('app/common/sass');
-            expect(views).to.equal('app/common/views');
-        });
-
         it('should correctly template all the keys in a config object given a certain context', function(){
             var team2 = config.get('paths.team2', { folder: '.tmp'});
             expect(team2).to.deep.equal({
@@ -139,16 +131,21 @@ describe('config object', function(){
             });
         });
 
-        it('should correclty template all keys in a config object given a template string', function() {
-            var team2 = config.get('paths.team2', 'app.base');
-            expect(team2).to.deep.equal({
-                images: 'app/common/assets/images',
-                font: 'app/common/assets/fonts',
-                css: 'app/common/css',
-                sass: 'app/common/sass',
-                scripts: 'app/common/scripts',
-                views: 'app/common/views'
-            });
+        it('should be possible to override the target directory with a parameter', function () {
+            var data = {
+                'default': { 'mocks': { 'js': 'js/default' } },
+                'tsop': { 'mocks': { 'js': 'js/tsop' } },
+                'browse': { 'mocks': { 'js': 'js/browse' } }
+            };
+
+            var mockLoader2 = mocks.loaderFactory(data);
+            var config = new Config(mockLoader2, mockCli);
+
+            var tsop = config.get('mocks.js', 'tsop');
+            var browse = config.get('mocks.js', 'browse');
+
+            expect(tsop).to.equal('js/tsop');
+            expect(browse).to.equal('js/browse');
         });
 
     });

@@ -1,16 +1,23 @@
 'use strict';
 var argv = require('yargs').argv;
+var util = require('gulp-util');
 
 module.exports = {
-    log: function() {
-        var args = [].slice.call(arguments);
-        /*eslint-disable no-console */
-        console.log.apply(console, args);
-        /*eslint-enable no-console */
+
+    debugLog: function(section) {
+        return function logger(msg) {
+            if(this.env.NODE_DEBUG && this.env.NODE_DEBUG.indexOf(section) > -1) {
+                util.log(util.colors.gren(msg));
+            }
+        };
     },
 
     get argv() {
         return argv;
+    },
+
+    get env() {
+        return process.env;
     }
 
 };

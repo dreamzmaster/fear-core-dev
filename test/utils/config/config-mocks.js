@@ -1,26 +1,41 @@
 'use strict';
 
-var loader = require('../../../utils/config/loader');
+var cli = require('../../../utils/config/cli');
 
 function mockCliFactory() {
     return {
-        argv : {}
+        argv : {},
+        env: { NODE_ENV: undefined },
+        debugLog: cli.debugLog
     };
 }
 
-function mockLoaderFactory(config) {
-    var mock = { 'config' : config || {} };
+function mockLoaderFactory(data, root) {
+    root = root || 'config';
+    var mock = {};
+    var current = mock;
+
+    root.split('/').forEach(function(path, index, pieces) {
+        var count = index + 1;
+        if(count >=  pieces.length) {
+            current[path] = data;
+        }else {
+            current[path] = {};
+        }
+
+        current = current[path];
+    });
+
     return {
-        resolvePath: loader.resolvePath,
-        requireCwd: function () {
-            var args = [].slice.call(arguments);
+        load: function (filePath) {
             var value = mock;
-            args.every(function(key) {
+            filePath.split('/').every(function(key) {
                 value = value[key];
                 return value ? true : false;
             });
             return value;
-        }
+        },
+        loadDir: function() { }
     };
 }
 
