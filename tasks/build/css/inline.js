@@ -6,7 +6,7 @@ module.exports = function taskFactory (toInline, destinations) {
 
         var gulp = require('gulp');
         var inlineSource = require('gulp-inline-source');
-        var destinationsHelper = require('../helpers/build-destinations');
+        var destinationsHelper = require('../../helpers/build-destinations');
 
         var inlineSrcOpts = {
             'swallowErrors': false
