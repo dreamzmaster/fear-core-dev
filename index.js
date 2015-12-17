@@ -19,11 +19,9 @@ module.exports = {
     inlineCss: require('./tasks/build/inline-css'),
     minifyHtml: require('./tasks/build/minify-html'),
     removeHtml: require('./tasks/build/remove-html'),
-    buildSetup: require('./tasks/build/setup'),
     browserSync: require('./tasks/test/browser-sync'),
     webdriverio : require('./tasks/test/webdriverio'),
     webdrivercss : require('./tasks/test/webdrivercss'),
-    copy: require('./tasks/build/copy'),
     createAppConfig: require('./tasks/build/create-app-config'),
     generateSprites: require('./tasks/build/generate-sprites'),
     siteSpeed: require('./tasks/test/sitespeedio'),
@@ -32,7 +30,10 @@ module.exports = {
     installDependencies: require('./tasks/build/install-dependencies'),
     copyMocks: require('./tasks/mock/copy-mocks'),
     copyInlineMocks: require('./tasks/mock/copy-inline-mocks'),
-    deleteFiles: require('./tasks/delete'),
     config: require('./utils/config/index'),
-    validateHTML: require('./tasks/html/validate')
+    validateHTML: require('./tasks/html/validate'),
+    fs : {
+        remove: require('./tasks/fs/delete'),
+        copy: require('./tasks/fs/copy')
+    }
 };
