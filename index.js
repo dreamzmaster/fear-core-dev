@@ -52,10 +52,7 @@ module.exports = {
      * file system tasks
      * @see module:tasks/javascript
      */
-    fs : {
-        remove: require('./tasks/fs/delete'),
-        copy: require('./tasks/fs/copy')
-    },
+    fs : require('./tasks/fs'),
 
     /**
      * javascript tasks
@@ -67,29 +64,19 @@ module.exports = {
      * CSS tasks
      * @see module:tasks/css
      */
-    css : {
-        minify: require('./tasks/css/minify'),
-        inline: require('./tasks/css/inline')
-    },
+    css : require('./tasks/css'),
 
     /**
      * HTML tasks
      * @see module:tasks/html
      */
-    html : {
-        minify: require('./tasks/html/minify'),
-        remove: require('./tasks/html/remove'),
-        validate: require('./tasks/html/validate')
-    },
+    html : require('./tasks/html'),
 
     /**
      * SASS tasks
      * @see module:tasks/sass
      */
-    sass : {
-        compile: require('./tasks/sass/compile'),
-        generateDocs: require('./tasks/sass/generate-docs')
-    },
+    sass : require('./tasks/sass'),
 
     testRunE2E: require('./tasks/test/run-e2e-tests'),
     karmaRunOnce: require('./tasks/test/karma-run-once'),
