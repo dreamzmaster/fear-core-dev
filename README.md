@@ -1,7 +1,7 @@
 # FEAR Core Tasks
 
-[website](http://digitalinnovation.github.io/fear-core-tasks)
-[documentation](http://digitalinnovation.github.io/fear-core-tasks/docs/)
+* [Website](http://digitalinnovation.github.io/fear-core-tasks)
+* [Technical documentation](http://digitalinnovation.github.io/fear-core-tasks/docs/)
 
 This repo contains all core `gulp` tasks which can be configured and used in any FEAR projects alltogether or individually.
 
