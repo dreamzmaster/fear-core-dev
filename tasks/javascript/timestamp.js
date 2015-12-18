@@ -1,6 +1,19 @@
 'use strict';
 
-module.exports = function taskFactory (toTimesatmp, destinations) {
+/**
+ * @module tasks/javascript/timestamp
+ */
+
+/**
+ * taskFactory
+ * @param toTimestamp {Array}
+ * source globs
+ * @param destinations {Array}
+ * destination globs
+ * @returns {Function}
+ * gulp stream
+ */
+module.exports = function taskFactory (toTimestamp, destinations) {
 
     return function task () {
 
@@ -9,7 +22,7 @@ module.exports = function taskFactory (toTimesatmp, destinations) {
         var headerComment = '/*Generated on:' + new Date() + '*/';
         var destinationsHelper = require('../../helpers/build-destinations');
 
-        return gulp.src(toTimesatmp)
+        return gulp.src(toTimestamp)
             .pipe(header(headerComment))
             .pipe(gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);

@@ -1,5 +1,18 @@
 'use strict';
 
+/**
+ * @module tasks/javascript/minify
+ */
+
+/**
+ * taskFactory
+ * @param toMinify {Array}
+ * source globs
+ * @param destinations {Array}
+ * destination globs
+ * @returns {Function}
+ * gulp stream
+ */
 module.exports = function taskFactory(toMinify, destinations) {
 
     return function task() {
