@@ -9,7 +9,7 @@
     "pretest": "npm run eslint",
     "watch:test": "onchange test/**/*.js tasks/**/*.js -- npm run test -s",
     "dev": "npm run watch:test -s",
-    "docs": "./node_modules/.bin/jsdoc ./tasks index.js --recurse --destination docs"
+    "docs": "./node_modules/.bin/jsdoc ./tasks index.js --recurse --destination docs --readme README.md"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "chalk": "1.1.1",
     "connect-mustache-middleware": "git+https://github.com/DigitalInnovation/connect-mustache-middleware",
     "del": "1.2.0",
-    "docco": "^0.7.0",
     "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "extend": "2.0.1",
     "fs-extra": "0.24.0",
@@ -63,7 +62,6 @@
     "gulp-util": "3.0.6",
     "gulp-watch": "4.3.5",
     "gulp-webdriver": "1.0.1",
-    "jsdoc": "^3.4.0",
     "jsfy": "1.5.0",
     "jspm": "0.16.10",
     "karma": "0.13.9",
@@ -98,6 +96,7 @@
   },
   "devDependencies": {
     "eslint": "1.2.1",
+    "jsdoc": "3.4.0",
     "onchange": "2.0.0"
   },
   "gitHead": "077bc9a3c081b359a778dd9a32be77382913b642",
