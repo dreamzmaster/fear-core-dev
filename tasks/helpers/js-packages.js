@@ -1,8 +1,7 @@
 'use strict';
 
 /**
- * jsPackageHelper
- * @type {{selectedPackages: Array, initialise: Function, setPackages: Function, filterPackages: Function, filterProduct: Function, selectChannelFromProduct: Function, get: Function, concatenate: Function}}
+ * @class jsPackageHelper
  */
 var jsPackageHelper = {
 
