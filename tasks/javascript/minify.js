@@ -19,7 +19,7 @@ module.exports = function taskFactory(toMinify, destinations) {
 
         var gulp = require('gulp');
         var uglify = require('gulp-uglify');
-        var destinationsHelper = require('../../helpers/build-destinations');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         return gulp.src(toMinify)
             .pipe(uglify({

@@ -27,7 +27,7 @@ module.exports = function taskFactory(packageDestinationFolder, packagesConfig) 
             rename = require('gulp-rename');
             uglify = require('gulp-uglify');
             jspm = require('jspm');
-            packagesHelper = require('../../helpers/js-packages');
+            packagesHelper = require('../helpers/js-packages');
         }
 
         loadDependencies();

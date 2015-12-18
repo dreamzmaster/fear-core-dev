@@ -19,7 +19,7 @@ module.exports = function taskFactory(toAnnotate, destinations) {
 
         var gulp = require('gulp');
         var ngAnnotate = require('gulp-ng-annotate');
-        var destinationsHelper = require('../../helpers/build-destinations');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         return gulp.src(toAnnotate)
             .pipe(ngAnnotate({

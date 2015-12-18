@@ -6,7 +6,7 @@ module.exports = function taskFactory(toMinify, destinations) {
 
         var gulp = require('gulp');
         var minifyCss = require('gulp-minify-css');
-        var destinationsHelper = require('../../helpers/build-destinations');
+        var destinationsHelper = require('../helpers/build-destinations');
 
         return gulp.src(toMinify)
             .pipe(minifyCss())
