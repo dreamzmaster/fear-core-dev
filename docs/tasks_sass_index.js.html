@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: tasks/fs/copy.js</title>
+    <title>JSDoc: Source: tasks/sass/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: tasks/fs/copy.js</h1>
+    <h1 class="page-title">Source: tasks/sass/index.js</h1>
 
     
 
@@ -29,34 +29,21 @@
             <pre class="prettyprint source linenums"><code>'use strict';
 
 /**
- * @module tasks/fs/copy
+ * @module tasks/sass
  */
+module.exports = {
 
-/**
- * taskFactory
- * @param sources {Array}
- * glob
- * @param destination {Array}
- * glob
- * @param prefix {int}
- * @returns task {Function}
- */
-module.exports = function taskFactory (sources, destination, prefix) {
+    /**
+     * compile SASS to CSS
+     * @see module:tasks/sass/compile
+     */
+    compile: require('./compile'),
 
-    return function task () {
-
-        var gulp = require('gulp');
-        var copy = require('gulp-copy');
-        var gutil = require('gulp-util');
-
-        var copyOpts = {
-            prefix: prefix
-        };
-
-        return gulp.src(sources)
-            .pipe(copy(destination, copyOpts))
-            .pipe(gutil.noop());
-    };
+    /**
+     * generate SASS documentation
+     * @see module:tasks/sass/annotate
+     */
+    generateDocs: require('./generate-docs')
 };
 </code></pre>
         </article>
