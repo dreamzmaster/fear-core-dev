@@ -2,8 +2,7 @@
 
 var expect = require('chai').expect;
 
-var config = require('../../../utils/config')();
-var Config = config.Config;
+var Config = require('../../../utils/config').Config;
 var mocks = require('./config-mocks');
 
 describe('config object', function() {
@@ -35,19 +34,21 @@ describe('config object', function() {
     });
 
     it('should be possible to change the root directory via options', function () {
-        var data = { 'default' : { 'paths' : 'value' } };
+        var data = { 'default' : { 'paths' : { 'css' : 'value' } } };
         var root = 'config/other';
 
         var config = new Config(mocks.loaderFactory(data, root), mockCli, { root: root });
-        var path = config.get('paths');
+        var path = config.get('paths.css');
         expect(path).to.equal('value');
     });
 
     it('should be possible to change the matching pattern via options', function() {
         var data = {
             'default' : {
-                'js' : '<%=base%>/some/pointer',
-                'css': '${base}/some/pointer'
+                'paths': {
+                    'js' : '<%=base%>/some/pointer',
+                    'css': '${base}/some/pointer'
+                }
             }
         };
         var matchingAlgorithm = /<%=([\s\S]+?)%>/g;
@@ -56,12 +57,12 @@ describe('config object', function() {
 
         //Test with algorithm for old lodash
         var config = new Config(mockLoader2, mockCli, { delimeters: matchingAlgorithm });
-        var js = config.get('js', { base : 'to' });
+        var js = config.get('paths.js', { base : 'to' });
         expect(js).to.equal('to/some/pointer');
 
         //test with algorithm for es6
         var config2 = new Config(mockLoader2, mockCli, { delimeters: matchingAlgorithm2 });
-        var css = config2.get('css', { base : 'from' });
+        var css = config2.get('paths.css', { base : 'from' });
         expect(css).to.equal('from/some/pointer');
     });
 

@@ -5,9 +5,10 @@ var util = require('gulp-util');
 module.exports = {
 
     debugLog: function(section) {
+        var cli = this;
         return function logger(msg) {
-            if(this.env.NODE_DEBUG && this.env.NODE_DEBUG.indexOf(section) > -1) {
-                util.log(util.colors.gren(msg));
+            if(cli.env.NODE_DEBUG && cli.env.NODE_DEBUG.indexOf(section) > -1) {
+                util.log(util.colors.green(msg));
             }
         };
     },
