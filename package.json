@@ -4,6 +4,7 @@
   "description": "FEAR Core repo to automate certain core tasks",
   "main": "index.js",
   "scripts": {
+    "postinstall" : "node postinstall",
     "eslint": "eslint test/ tasks/",
     "test": "mocha 'test/**/*.spec.js'",
     "pretest": "npm run eslint",
