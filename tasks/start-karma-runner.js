@@ -9,8 +9,9 @@ var runner = require('karma').runner;
 /**
  * taskFactory
  * @param config {Object}
- * karma configuration object {@link http://karma-runner.github.io/0.8/config/configuration-file.html}
- * @returns {Function}
+ * karma configuration object
+ * {@link http://karma-runner.github.io/0.8/config/configuration-file.html}
+ * @returns task {Function}
  */
 module.exports = function taskFactory (config) {
 

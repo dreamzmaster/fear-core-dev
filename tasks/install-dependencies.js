@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * @module tasks/install-dependencies
+ */
+
+/**
+ * taskFactory
+ * @returns task {Function}
+ */
 module.exports = function taskFactory () {
 
     return function task () {

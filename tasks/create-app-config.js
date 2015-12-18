@@ -1,5 +1,16 @@
 'use strict';
 
+/**
+ * @module tasks/start-karma-runner
+ */
+
+/**
+ * taskFactory
+ * @param config {Object}
+ * @param template
+ * @param destination {Array/String} glob
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (config, template, destination) {
 
     return function task () {

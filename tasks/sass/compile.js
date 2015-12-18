@@ -1,5 +1,17 @@
 'use strict';
 
+/**
+ * @module tasks/sass/compile
+ */
+
+/**
+ * taskFactory
+ * @param files {Object}
+ * @param autoPrefixOptions
+ * @param destinations
+ * @param includePaths
+ * @returns task {Function}
+ */
 module.exports = function taskFactory(files, autoPrefixOptions, destinations, includePaths) {
 
     return function compile() {

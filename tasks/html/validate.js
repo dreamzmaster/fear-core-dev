@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @module tasks/html/validate
+ */
+
+/**
+ * taskFactory
+ * @param basePath
+ * @param teams
+ * @returns task {Function}
+ */
 module.exports = function(basePath, teams) {
 
     return function task(done) {

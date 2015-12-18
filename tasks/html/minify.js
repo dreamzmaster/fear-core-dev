@@ -1,6 +1,18 @@
 'use strict';
 
-module.exports = function taskFactory(toMinify, destinations) {
+/**
+ * @module tasks/html/minify
+ */
+
+/**
+ * taskFactory
+ * @param sources {Array}
+ * glob
+ * @param destinations {Array}
+ * glob
+ * @returns task {Function}
+ */
+module.exports = function taskFactory(sources, destinations) {
 
     return function task() {
 
@@ -21,7 +33,7 @@ module.exports = function taskFactory(toMinify, destinations) {
             loose: true
         };
 
-        return gulp.src(toMinify)
+        return gulp.src(sources)
             .pipe(minifyHTML(minifyHtmlOpts))
             .pipe(minifyInline({
                 jsSelector: 'script.inline-minify',

@@ -1,5 +1,19 @@
 'use strict';
 
+/**
+ * @module tasks/copy-inline-mocks
+ */
+
+/**
+ * taskFactory
+ * @param files {Array}
+ * glob
+ * @param destination {Array}
+ * glob
+ * @param key
+ * @param inlineFileNameEnding {String}
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (files, destination, key, inlineFileNameEnding) {
 
     return function task () {

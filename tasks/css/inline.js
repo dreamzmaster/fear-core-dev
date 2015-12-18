@@ -1,6 +1,18 @@
 'use strict';
 
-module.exports = function taskFactory (toInline, destinations) {
+/**
+ * @module tasks/css/inline
+ */
+
+/**
+ * taskFactory
+ * @param sources {Array}
+ * glob
+ * @param destinations {Array}
+ * glob
+ * @returns task {Function}
+ */
+module.exports = function taskFactory (sources, destinations) {
 
     return function task () {
 
@@ -12,7 +24,7 @@ module.exports = function taskFactory (toInline, destinations) {
             'swallowErrors': false
         };
 
-        return gulp.src(toInline)
+        return gulp.src(sources)
             .pipe(inlineSource(inlineSrcOpts))
             .pipe(gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);

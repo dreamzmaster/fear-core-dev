@@ -1,6 +1,19 @@
 'use strict';
 
-module.exports = function taskFactory (filesToCopy, destination, prefix) {
+/**
+ * @module tasks/fs/copy
+ */
+
+/**
+ * taskFactory
+ * @param sources {Array}
+ * glob
+ * @param destination {Array}
+ * glob
+ * @param prefix {int}
+ * @returns task {Function}
+ */
+module.exports = function taskFactory (sources, destination, prefix) {
 
     return function task () {
 
@@ -12,7 +25,7 @@ module.exports = function taskFactory (filesToCopy, destination, prefix) {
             prefix: prefix
         };
 
-        return gulp.src(filesToCopy)
+        return gulp.src(sources)
             .pipe(copy(destination, copyOpts))
             .pipe(gutil.noop());
     };
