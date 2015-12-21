@@ -7,6 +7,14 @@ var messageFilter = require('./message-filter');
 
 var argv = getArgs(process.argv.slice(2));
 
+/**
+ * @module tasks/eslint/result-filter
+ */
+
+/**
+ * taskFactory
+ * @returns task {Function}
+ */
 module.exports = function filterResults () {
 
     var stream = new TransformStream({ objectMode: true });

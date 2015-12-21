@@ -1,5 +1,16 @@
 'use strict';
 
+/**
+ * @module tasks/eslint/message-filter
+ */
+
+/**
+ * taskFactory
+ * @param result
+ * @param ruleId
+ * @param keyword
+ * @returns task {Function}
+ */
 module.exports = function filter (result, ruleId, keyword) {
     var filtered = {
         filePath: result.filePath,

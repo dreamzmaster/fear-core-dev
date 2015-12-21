@@ -5,6 +5,17 @@ var watch = require('gulp-watch');
 var batch = require('gulp-batch');
 var runSequence = require('run-sequence');
 
+/**
+ * @module tasks/watch
+ */
+
+/**
+ * taskFactory
+ * @param src {Object}
+ * @param tasks
+ * @param runFirstOnChanged
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (src, tasks, runFirstOnChanged) {
 
     watch(src, { verbose: true }, batch(function (events, done) {

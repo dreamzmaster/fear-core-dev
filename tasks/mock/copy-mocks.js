@@ -1,5 +1,17 @@
 'use strict';
 
+/**
+ * @module tasks/mocks/copy-mocks
+ */
+
+/**
+ * taskFactory
+ * @param files {Array}
+ * glob
+ * @param destination {Array}
+ * glob
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (files, destination) {
 
     return function task () {

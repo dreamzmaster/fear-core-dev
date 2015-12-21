@@ -5,6 +5,16 @@ var eslint = require('gulp-eslint');
 
 var filterResults = require('./result-filter');
 
+/**
+ * @module tasks/eslint/details
+ */
+
+/**
+ * taskFactory
+ * @param src {Array}
+ * @param bail {Boolean}
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (src, bail) {
 
     return function task () {
