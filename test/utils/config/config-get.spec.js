@@ -2,8 +2,7 @@
 
 var expect = require('chai').expect;
 
-var config = require('../../../utils/config')();
-var Config = config.Config;
+var Config = require('../../../utils/config').Config;
 var mocks = require('./config-mocks');
 
 var data = {
@@ -99,7 +98,7 @@ describe('config object', function(){
             expect(result).to.deep.equal(data.integrated.wdio);
         });
 
-        it('should override the keys in the development file', function() {
+        it('should override matching keys from the development file', function() {
             var karma = config.get('karma');
             expect(karma).to.deep.equal({
                 'root' : 'app',
@@ -146,6 +145,23 @@ describe('config object', function(){
 
             expect(tsop).to.equal('js/tsop');
             expect(browse).to.equal('js/browse');
+        });
+
+        it('should correctly fallback after changing the target', function() {
+            var data = {
+                'default': { 'mocks': { 'js': 'js/default' } },
+                'tsop': { 'mocks': { 'js': 'js/tsop' } },
+                'browse': { 'mocks': { 'js': 'js/browse' } }
+            };
+
+            var mockLoader2 = mocks.loaderFactory(data);
+            var config = new Config(mockLoader2, mockCli);
+
+            var browse = config.get('mocks', 'browse');
+            var def = config.get('mocks');
+
+            expect(browse).to.deep.equal(data.browse.mocks);
+            expect(def).to.deep.equal(data.default.mocks);
         });
 
     });

@@ -64,7 +64,7 @@ var each = require('lodash/collection/each');
  * The above function will return the full configuration object provided by the default/karma.js file overriden by (development/integrated)/karma.js.
  *
  * It's also possible to get a specific config value from the karma file.
- * If the kamra.js file contains the following code:
+ * If the karma.js file contains the following code:
  *
  * ```js
  * module.exports = {
@@ -72,7 +72,7 @@ var each = require('lodash/collection/each');
  * }
  * ```
  *
- * Calling the get function with the following values will return the coresponding value in the karma.js file:
+ * Calling the get function with the following keys will return the coresponding value in the karma.js file:
  * 
  * ```js
  * var server = config.get('karma.server');
@@ -135,9 +135,39 @@ var each = require('lodash/collection/each');
  * var tsop = config.get('config', { base : 'tmp' }, 'tsop) //returns: config object in mobile folder while templating the result
  * ```
  * 
+ * ## Options
+ * The config utility can be configured using a configurations object. The default values are as follows:
+ * 
+ * ```json
+ * {
+ *  "root": "config", //Root folder where the utility will look for configuration files
+ *  "delimeters": /{{([\s\S]+?)}}/g, //Regex used as matching algorith for templating values
+ *  "target": "development", //The default target folder
+ *  "debug": false //Determines if the utility logs verbose information 
+ * }
+ * ```
+ * 
+ * These defaults can be cahnged as follows:
+ * 
+ * ```js
+ * var config = require('fear-core').config({
+ *  root: 'mocks/channel', //changes the root folder
+ *  delimeters: /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g // Changes templating algorithm to '${value}'
+ * })
+ * ```
+ * 
  * ## Debugging
- * It is possible to let the let the config utility log debug statements by setting the NODE_DEBUG environment variable to debug. 
+ * It is possible to let the config utility log debug statements by setting the NODE_DEBUG environment variable to config. 
+ * 
+ * ```
+ * NODE_DEBUG=config gulp ...
+ * ```
+ * 
  * Or by setting debug to true in the options object.
+ * 
+ * ```js
+ * var config = require('fear-core').config({ debug: true });
+ * ```
  * 
  * @param  {object} fsLoader
  * @param  {object} cli
@@ -149,16 +179,12 @@ var each = require('lodash/collection/each');
  */
 /*eslint-enable */
 function Config(fs, cli, opt) {
-    var development = 'development';
     var options = {
         root: 'config',
         delimeters: /{{([\s\S]+?)}}/g,
+        target: 'development',
         debug: false
     };
-
-    // Make sure that options are overridable use local options variable as default
-    this._options = defaults(opt || {}, options);
-    this._fs = fs;
 
     if(this.debug) {
         cli.env.NODE_DEBUG = 'config';
@@ -166,25 +192,32 @@ function Config(fs, cli, opt) {
 
     // Debug logging function for the config object. Only logs when NODE_DEBUG contains config
     this._debug = cli.debugLog('config');
+    this._debug('Starting config object creation.');
+
+    // Make sure that options are overridable use local options variable as default
+    this._options = defaults(opt || {}, options);
+    this._fs = fs;
+
+
 
     // Set the current environment taking in to account the given arguments and current node environment
     // always fall back to 'development'
-    this._env = cli.argv.env || cli.env.NODE_ENV || development;
+    this._env = cli.argv.env || cli.env.NODE_ENV || options.target;
     this._target = this._env;
 
-    this._debug('Using the following root:' + this._options.root);
-    this._debug('Current target set to:' + this._target);
+    this._debug('Using the following root: ' + this._options.root);
+    this._debug('Current target set to: ' + this._target);
 
     // Load default configuration either via a default.js file in the root folder
     // Otherwise fallback to loading all the files in the default folder and generate an object from there
 
-    this._defaultMap = fs.load(path.join(this._options.root, 'default'));
+    this._defaultMap = fs.load(path.join(this._options.root, 'default'), process.cwd());
 
     if(this._defaultMap) {
-        this._debug('Default configuration loaded from default.js file.')
+        this._debug('Default configuration loaded from default.js file.');
     }else {
-        this._defaultMap = fs.loadDir(path.join(this._options.root, 'default'));
-        this._debug('Default configuration constructed from files in the default folder'); 
+        this._defaultMap = fs.loadDir(path.join(this._options.root, 'default'), process.cwd());
+        this._debug('Default configuration constructed from files in the default folder');
     }
 
     if(this._defaultMap == null || this._defaultMap === undefined) {
@@ -193,17 +226,9 @@ function Config(fs, cli, opt) {
     }
 
     this._devMap = fs.load(path.join(this._options.root, this.env(), 'development')) || {};
-    this._targetMap = {};
-
-    this._configMap = merge({}, this._defaultMap);
 }
 
 Config.prototype = {
-
-    /**
-     * Store a reference to the constructor to spin of custom config objects.
-     */
-    Config: Config,
 
     /**
      * @name config.get
@@ -255,10 +280,11 @@ Config.prototype = {
             if(rootKey === key) {
                 var filePath = path.join(config._options.root, target, rootKey);
                 config._debug('Loading following file: ' + filePath);
-                configHash = config._fs.load(filePath);
-                result = config._configMap[rootKey] = merge(
-                    (config._configMap[rootKey] || {}),
-                    configHash,
+                configHash = config._fs.load(filePath, process.cwd());
+                result = merge(
+                    {},
+                    config._defaultMap[rootKey],
+                    configHash || {},
                     config._devMap[rootKey]
                 );
             // If the current key is not the root key, reassign result to keep traversing the tree
@@ -306,6 +332,9 @@ Config.prototype = {
 
 };
 
-module.exports = function () {
-    return new Config(loader, cli);
-};
+getConfig.Config = Config;
+function getConfig(defaults) {
+    return new Config(loader, cli, defaults);
+}
+
+module.exports = getConfig;
