@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    wdio = require('./webdriverio'),
+    wdio = require('./webdriver-io'),
     extend = require('extend');
 
 /**
