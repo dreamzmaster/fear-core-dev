@@ -78,14 +78,14 @@ module.exports = {
      */
     sass : require('./tasks/sass'),
 
-    testRunE2E: require('./tasks/test/run-e2e-tests'),
-    karmaRunOnce: require('./tasks/test/karma-run-once'),
-    browserSync: require('./tasks/test/browser-sync'),
-    webdriverio : require('./tasks/test/webdriverio'),
-    webdrivercss : require('./tasks/test/webdrivercss'),
+    /**
+     * Testing tasks
+     * @see module:tasks/test
+     */
+    test : require('./tasks/test'),
+
     createAppConfig: require('./tasks/create-app-config'),
     generateSprites: require('./tasks/generate-sprites'),
-    siteSpeed: require('./tasks/test/sitespeedio'),
     installDependencies: require('./tasks/install-dependencies'),
     config: require('./utils/config/index')
 };

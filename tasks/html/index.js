@@ -6,7 +6,7 @@
 module.exports = {
 
     /**
-     * minify
+     * minify HTML
      * @see module:tasks/html/minify
      */
     minify: require('./minify'),

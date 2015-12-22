@@ -6,10 +6,8 @@
 
 /**
  * taskFactory
- * @param sources {Array}
- * glob
- * @param destinations {Array}
- * glob
+ * @param sources {Array} glob
+ * @param destinations {Array} glob
  * @returns task {Function}
  */
 module.exports = function taskFactory (sources, destinations) {

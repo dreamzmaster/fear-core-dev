@@ -2,6 +2,17 @@
 
 var karma, util;
 
+/**
+ * @module tasks/test/karma-run-once
+ */
+
+/**
+ * taskFactory
+ * @param config {Object}
+ * @param done {Function}
+ * @returns {Function}
+ * task
+ */
 module.exports = function factory (config, done) {
 
     function loadDependencies () {
@@ -15,7 +26,7 @@ module.exports = function factory (config, done) {
         done();
     }
 
-    return function runUnitTestsOnce () {
+    return function task() {
 
         loadDependencies();
         config.autoWatch = false;

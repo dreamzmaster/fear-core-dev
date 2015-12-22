@@ -4,6 +4,16 @@ var path = require('path'),
     wdio = require('./webdriverio'),
     extend = require('extend');
 
+/**
+ * @module tasks/test/webdriver-css
+ */
+
+/**
+ * taskFactory
+ * @param config {Object}
+ * @returns {Function}
+ * task
+ */
 module.exports = function (config) {
     var wdcssPath = path.join(__dirname, '../../', 'node_modules', 'webdrivercss'),
         helperPath = path.join(__dirname, '../', 'helpers', 'webdriverio'),

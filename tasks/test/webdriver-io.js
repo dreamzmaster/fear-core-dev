@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @module tasks/test/webdriver-io
+ */
+
+/**
+ * taskFactory
+ * @param config {Object}
+ * @returns {Function}
+ * task
+ */
 module.exports = function(config) {
     var fs = require('fs'),
         path = require('path'),

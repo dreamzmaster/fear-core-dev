@@ -13,7 +13,8 @@ module.exports = {
 
     /**
      * generate SASS documentation
-     * @see module:tasks/sass/annotate
+     * @TODO migrate to fear-core-ui
+     * @see module:tasks/sass/generate-docs
      */
     generateDocs: require('./generate-docs')
 };

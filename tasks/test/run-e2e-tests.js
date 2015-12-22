@@ -3,6 +3,20 @@
 var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
 
+/**
+ * @module tasks/test/run-e2e-tests
+ */
+
+/**
+ * taskFactory
+ * @param specs
+ * @param breakpoint
+ * @param channel
+ * @param port {String}
+ * @param callback {Function}
+ * @returns {Function}
+ * task
+ */
 module.exports = function taskFactory (specs, breakpoint, channel, port, callback) {
 
     return function runProtractorTests () {

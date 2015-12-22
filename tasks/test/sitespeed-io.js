@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @module tasks/test/sitespeed-io
+ */
+
+/**
+ * taskFactory
+ * @param config {Object}
+ * @returns {Function}
+ * task
+ */
 module.exports = function (config) {
     config = config || {};
 

@@ -6,10 +6,8 @@
 
 /**
  * taskFactory
- * @param sources {Array}
- * glob
- * @param destination {Array}
- * glob
+ * @param sources {Array} glob
+ * @param destination {Array} glob
  * @param prefix {int}
  * @returns task {Function}
  */

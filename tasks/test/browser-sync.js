@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @module tasks/test/browser-sync
+ */
+
+/**
+ * taskFactory
+ * @param options {Object}
+ * @returns {Function}
+ * task
+ */
 module.exports = function(options) {
 
     return function task() {

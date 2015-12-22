@@ -6,14 +6,12 @@
 
 /**
  * taskFactory
- * @param toTimestamp {Array}
- * source globs
- * @param destinations {Array}
- * destination globs
+ * @param sources {Array} glob
+ * @param destinations {Array} glob
  * @returns {Function}
  * gulp stream
  */
-module.exports = function taskFactory (toTimestamp, destinations) {
+module.exports = function taskFactory (sources, destinations) {
 
     return function task () {
 
@@ -22,7 +20,7 @@ module.exports = function taskFactory (toTimestamp, destinations) {
         var headerComment = '/*Generated on:' + new Date() + '*/';
         var destinationsHelper = require('../helpers/build-destinations');
 
-        return gulp.src(toTimestamp)
+        return gulp.src(sources)
             .pipe(header(headerComment))
             .pipe(gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);

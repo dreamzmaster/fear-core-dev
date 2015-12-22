@@ -6,10 +6,8 @@
 
 /**
  * taskFactory
- * @param toMinify {Array}
- * source globs
- * @param destinations {Array}
- * destination globs
+ * @param sources {Array} glob
+ * @param destinations {Array} glob
  * @returns {Function}
  * gulp stream
  */

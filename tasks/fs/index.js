@@ -6,13 +6,13 @@
 module.exports = {
 
     /**
-     * delete
+     * delete Files
      * @see module:tasks/fs/delete
      */
     remove: require('./delete'),
 
     /**
-     * copy
+     * copy Files
      * @see module:tasks/fs/copy
      */
     copy: require('./copy')
