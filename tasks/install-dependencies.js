@@ -14,7 +14,7 @@ module.exports = function taskFactory () {
 
         var execSync = require('child_process').execSync;
 
-        execSync('npm install jspm@0.16.10; jspm install', {
+        execSync('jspm install', {
             stdio: 'inherit'
         });
     };

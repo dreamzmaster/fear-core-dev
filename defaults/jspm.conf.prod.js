@@ -66,14 +66,16 @@ System.config({
         "babel-runtime": "npm:babel-runtime@5.8.24",
         "core-js": "npm:core-js@1.1.4",
         "fastclick": "github:ftlabs/fastclick@1.0.3",
+        "fearServiceAPI": "lib/FearServiceBrokerAPI",
         "jquery": "lib/jquery",
+        "jquery.signalr": "lib/jquery.signalr-1.1.2",
         "moment": "github:moment/moment@2.10.6",
-        "signalr.hubs": "lib/jquery.signalr-1.1.2",
+        "signalr.hubs": "http://localhost:9100/signalr/hubs?",
         "traceur": "github:jmcriffey/bower-traceur@0.0.91",
         "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.91",
         "underscore": "github:jashkenas/underscore@1.8.2",
         "usertiming": "github:nicjansma/usertiming.js@0.1.6",
-        "github:angular/bower-angular-mocks@1.4.7": {
+        "github:angular/bower-angular-mocks@1.2.28": {
             "angular": "github:angular/bower-angular@1.2.28"
         },
         "github:jspm/nodelibs-process@0.1.1": {
