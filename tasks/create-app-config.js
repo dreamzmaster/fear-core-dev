@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @module tasks/start-karma-runner
+ * @module tasks/create-app-config
  */
 
 /**

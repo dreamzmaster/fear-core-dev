@@ -84,8 +84,21 @@ module.exports = {
      */
     test : require('./tasks/test'),
 
+    /**
+     * Create application config
+     * @see module:tasks/create-app-config
+     */
     createAppConfig: require('./tasks/create-app-config'),
+
+    /**
+     * Generate sprites
+     * @see module:tasks/generate-sprites
+     */
     generateSprites: require('./tasks/generate-sprites'),
-    installDependencies: require('./tasks/install-dependencies'),
-    config: require('./utils/config/index')
+
+    /**
+     * Install dependencies
+     * @see module:tasks/install-dependencies
+     */
+    installDependencies: require('./tasks/install-dependencies')
 };
