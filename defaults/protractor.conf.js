@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-var config = require('../utils/config')();
+var config = require('../../../utils/config')();
 var browserUtils = require('../tasks/helpers/browser');
 var extend = require('extend');
 
