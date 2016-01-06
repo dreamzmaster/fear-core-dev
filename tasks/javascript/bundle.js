@@ -59,12 +59,8 @@ module.exports = function taskFactory(packageDestinationFolder, packagesConfig) 
 
         return Promise.all(packagesHelper.get(global.product, global.channel).map(createBundle))
             .then(function () {
-                gulp.src(process.cwd() + '/node_modules/fear-core-tasks/defaults/jspm.conf.prod.js')
-                    .pipe(rename('jspm.conf.js'))
-                    .pipe(uglify({
-                        mangle: true
-                    }))
-                    .pipe(gulp.dest(process.cwd() + '/.tmp/scripts'));
+                gulp.src(process.cwd() + '/config/integrated/jspm.conf.js')
+                    .pipe(gulp.dest(process.cwd() + '/.tmp/common/scripts'));
             })
             .catch(function (error) {
                 gutil.log(gutil.colors.red('build-jspm: Error creating packages'));
