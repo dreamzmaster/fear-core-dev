@@ -10,7 +10,9 @@
     "pretest": "npm run eslint",
     "watch:test": "onchange test/**/*.js tasks/**/*.js -- npm run test -s",
     "dev": "npm run watch:test -s",
-    "docs": "./node_modules/.bin/jsdoc ./tasks ./utils index.js --recurse --destination docs --readme README.md"
+    "docs": "./node_modules/.bin/jsdoc ./tasks ./utils index.js --recurse --destination docs --readme README.md",
+    "prepublish" : "npm test",
+    "postpublish": "git checkout gh-pages; git merge master; npm run docs; git add .; git commit -m 'update jsdocs'; git push upstream gh-pages; git checkout master"
   },
   "repository": {
     "type": "git",
