@@ -2,6 +2,10 @@
 
 'use strict';
 
+/**
+ * @module tasks/helpers/browser
+ */
+
 var gutil = require('gulp-util');
 
 function Browser () {}
@@ -76,7 +80,4 @@ Browser.prototype = {
     }
 };
 
-/**
- * @module tasks/helpers/browser
- */
 module.exports = new Browser();

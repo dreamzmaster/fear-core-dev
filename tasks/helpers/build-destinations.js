@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @module tasks/helpers/build-destinations
+ */
 var destinationsHelper = {
 
     /**
@@ -47,7 +50,4 @@ var destinationsHelper = {
     }
 };
 
-/**
- * @module tasks/helpers/build-destinations
- */
 module.exports = destinationsHelper;

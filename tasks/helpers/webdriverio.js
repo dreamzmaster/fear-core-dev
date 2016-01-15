@@ -8,7 +8,7 @@ module.exports = {
     /**
      * initialize
      * @param browser
-     * returns {void}
+     * @returns {void}
      */
     initialize: function (browser) {
         this.commands(browser);
@@ -18,7 +18,7 @@ module.exports = {
     /**
      * commands
      * @param browser
-     * returns {void}
+     * @returns {void}
      */
     commands: function(browser) {
         browser.addCommand('urlAndWaitForLoad', function(url) {
@@ -29,7 +29,7 @@ module.exports = {
 
     /**
      * chai
-     * returns {void}
+     * @returns {void}
      */
     chai: function() {
         var chai = require('chai');
@@ -47,7 +47,7 @@ module.exports = {
      * withinMisMatchTolerance
      * @param chai
      * @param utils
-     * returns {void}
+     * @returns {void}
      */
     withinMisMatchTolerance: function (chai, utils) {
 

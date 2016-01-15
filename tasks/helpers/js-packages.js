@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @class jsPackageHelper
+ * @module tasks/helpers/js-packages
  */
 var jsPackageHelper = {
 
