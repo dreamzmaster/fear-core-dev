@@ -1,102 +1,88 @@
 'use strict';
 
+var jsPackageHelper;
+
 /**
  * @module tasks/helpers/js-packages
  */
-var jsPackageHelper = {
+jsPackageHelper = module.exports = {
 
     /**
-     * selectedPackages
      * @type {Array}
      */
     selectedPackages: [],
 
     /**
-     * initialise
      * @param packagesConfig {Object}
-     * @returns {void}
      */
     initialise : function (packagesConfig) {
-        this.setPackages(packagesConfig);
+        jsPackageHelper.setPackages(packagesConfig);
     },
 
     /**
-     * setPackages
      * @param packages {Object}
-     * @returns {void}
      */
     setPackages: function (packages) {
-        this.packages = packages;
+        jsPackageHelper.packages = packages;
     },
 
     /**
-     * filterPackages
      * @param product {String}
      * @param channel {String}
-     * @returns {void}
      */
     filterPackages: function (product, channel) {
         for (var p in this.packages) {
-            if (this.packages.hasOwnProperty(p)) {
+            if (jsPackageHelper.packages.hasOwnProperty(p)) {
                 if (p !== product && product !== 'all') {
-                    this.filterProduct(p);
+                    jsPackageHelper.filterProduct(p);
                 }
 
-                this.selectChannelFromProduct(p, channel);
+                jsPackageHelper.selectChannelFromProduct(p, channel);
             }
         }
     },
 
     /**
-     * filterProduct
      * @param product {String}
-     * @returns {void}
      */
     filterProduct: function (product) {
-        delete this.packages[product];
+        delete jsPackageHelper.packages[product];
     },
 
     /**
-     * selectChannelFromProduct
      * @param product {String}
      * @param channel {String}
-     * @returns {void}
      */
     selectChannelFromProduct: function (product, channel) {
-        for (var c in this.packages[product]) {
-            if (this.packages[product].hasOwnProperty(c)) {
+        for (var c in jsPackageHelper.packages[product]) {
+            if (jsPackageHelper.packages[product].hasOwnProperty(c)) {
                 if (c === channel || channel === 'all') {
-                    this.concatenate(this.packages[product][c].packages);
+                    jsPackageHelper.concatenate(jsPackageHelper.packages[product][c].packages);
                 }
             }
         }
     },
 
     /**
-     * get
      * @param product {String}
      * @param channel {String}
      * @returns {Object}
      */
     get: function (product, channel) {
 
-        this.concatenate(this.packages.common.packages);
+        jsPackageHelper.concatenate(jsPackageHelper.packages.common.packages);
 
-        this.filterProduct('common');
+        jsPackageHelper.filterProduct('common');
 
-        this.filterPackages(product, channel);
+        jsPackageHelper.filterPackages(product, channel);
 
-        return this.selectedPackages;
+        return jsPackageHelper.selectedPackages;
     },
 
     /**
-     * concatenate
      * @param packages
-     * @returns {void}
      */
     concatenate: function (packages) {
-        this.selectedPackages = this.selectedPackages.concat(packages);
+        jsPackageHelper.selectedPackages = jsPackageHelper.selectedPackages.concat(packages);
     }
 };
-
-module.exports = jsPackageHelper;

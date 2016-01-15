@@ -27,10 +27,6 @@
     "url": "https://github.com/DigitalInnovation/fear-core-tasks/issues"
   },
   "homepage": "http://digitalinnovation.github.io/fear-core-tasks",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/DigitalInnovation/fear-core-tasks"
-  },
   "dependencies": {
     "app-root-path": "1.0.0",
     "autoprefixer": "6.1.1",
@@ -41,6 +37,7 @@
     "chalk": "1.1.1",
     "connect-mustache-middleware": "git+https://github.com/DigitalInnovation/connect-mustache-middleware",
     "del": "1.2.0",
+    "eslint": "1.2.1",
     "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "extend": "2.0.1",
     "fs-extra": "0.24.0",
@@ -99,7 +96,6 @@
     "yargs": "3.30.0"
   },
   "devDependencies": {
-    "eslint": "1.2.1",
     "jsdoc": "3.4.0",
     "onchange": "2.0.0"
   }

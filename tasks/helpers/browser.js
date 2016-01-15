@@ -1,31 +1,25 @@
-/*global protractor, browser, window, document, angular*/
+/*global protractor, browser, window, document, angular, module*/
 
 'use strict';
+
+var browserHelper;
 
 /**
  * @module tasks/helpers/browser
  */
-
-var gutil = require('gulp-util');
-
-function Browser () {}
-
-Browser.prototype = {
+browserHelper = module.exports = {
 
     /**
-     * browserOffsetWidth
      * @type {Number}
      */
     browserOffsetWidth : 0,
 
     /**
-     * setBrowserWidthOffset
-     * @returns {*}
+     * @returns {Object} promise
      */
     setBrowserWidthOffset : function () {
 
-        var self = this,
-            deferred = protractor.promise.defer();
+        var deferred = protractor.promise.defer();
 
         browser.driver.manage().window().setSize(480, 320)
             .then(function () {
@@ -40,7 +34,7 @@ Browser.prototype = {
                         return {width: e[a + 'Width'], height: e[a + 'Height']};
                     }
                 ).then(function (dims) {
-                        self.browserOffsetWidth  = 480 - dims.width;
+                        browserHelper.browserOffsetWidth  = 480 - dims.width;
 
                         deferred.fulfill();
                     });
@@ -50,20 +44,19 @@ Browser.prototype = {
     },
 
     /**
-     * setBrowserSize
-     * @param width {Number}
-     * @param height {Number}
+     * @param width {Number} pixels
+     * @param height {Number} pixels
      */
     setBrowserSize : function (width, height) {
 
+        var gutil = require('gulp-util');
+
         gutil.log(gutil.colors.green('Sizing browser to width', width + 'px'));
 
-        var self = this;
-
-        self.setBrowserWidthOffset().then(function () {
+        browserHelper.setBrowserWidthOffset().then(function () {
 
             browser.driver.manage().window().setSize(
-                width + self.browserOffsetWidth,
+                width + browserHelper.browserOffsetWidth,
                 height
             ).then(function () {
 
@@ -79,5 +72,3 @@ Browser.prototype = {
         });
     }
 };
-
-module.exports = new Browser();

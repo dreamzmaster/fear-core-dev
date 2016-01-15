@@ -6,9 +6,7 @@
 module.exports = {
 
     /**
-     * initialize
-     * @param browser
-     * @returns {void}
+     * @param browser {Object}
      */
     initialize: function (browser) {
         this.commands(browser);
@@ -16,9 +14,7 @@ module.exports = {
     },
 
     /**
-     * commands
-     * @param browser
-     * @returns {void}
+     * @param browser {Object}
      */
     commands: function(browser) {
         browser.addCommand('urlAndWaitForLoad', function(url) {
@@ -28,8 +24,7 @@ module.exports = {
     },
 
     /**
-     * chai
-     * @returns {void}
+     * chai assertion library setup
      */
     chai: function() {
         var chai = require('chai');
@@ -44,10 +39,8 @@ module.exports = {
     },
 
     /**
-     * withinMisMatchTolerance
-     * @param chai
-     * @param utils
-     * @returns {void}
+     * @param chai {Object}
+     * @param utils {Object}
      */
     withinMisMatchTolerance: function (chai, utils) {
 

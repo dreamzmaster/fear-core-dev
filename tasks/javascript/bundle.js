@@ -2,8 +2,6 @@
 
 var gulp;
 var gutil;
-var rename;
-var uglify;
 var packagesHelper;
 var jspm;
 
@@ -24,8 +22,6 @@ module.exports = function taskFactory(packageDestinationFolder, packagesConfig) 
         function loadDependencies() {
             gulp = require('gulp');
             gutil = require('gulp-util');
-            rename = require('gulp-rename');
-            uglify = require('gulp-uglify');
             jspm = require('jspm');
             packagesHelper = require('../helpers/js-packages');
         }

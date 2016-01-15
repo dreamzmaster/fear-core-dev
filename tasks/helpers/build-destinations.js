@@ -1,9 +1,11 @@
 'use strict';
 
+var destinationsHelper;
+
 /**
  * @module tasks/helpers/build-destinations
  */
-var destinationsHelper = {
+destinationsHelper = module.exports = {
 
     /**
      * getDestinations
@@ -35,7 +37,6 @@ var destinationsHelper = {
     },
 
     /**
-     * getDestinationIdentifier
      * @param destination
      * @param currentFilePath
      * @returns {*}
@@ -49,5 +50,3 @@ var destinationsHelper = {
         return filePath.split('/')[1];
     }
 };
-
-module.exports = destinationsHelper;
