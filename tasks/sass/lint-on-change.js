@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * @module tasks/sass/lint-on-change
+ */
+
+/**
+ * taskFactory
+ * @param options {Object}
+ * @returns task {Function}
+ */
 var gulp = require('gulp');
 var sasslint = require('gulp-scss-lint');
 

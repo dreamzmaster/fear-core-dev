@@ -1,36 +1,104 @@
 'use strict';
 
+/**
+ * @module fear-core-tasks
+ */
 module.exports = {
-    lintJavascript: require('./tasks/eslint/details'),
-    lintOnChange: require('./tasks/eslint/on-change'),
-    lintReport: require('./tasks/eslint/report'),
-    lintSassOnChange: require('./tasks/sass/lint-on-change'),
+    /**
+     * start karma server
+     * @see module:tasks/start-karma-server
+     */
     startKarmaServer: require('./tasks/start-karma-server'),
+
+    /**
+     * start karma runner
+     * @see module:tasks/start-karma-runner
+     */
     startKarmaRunner: require('./tasks/start-karma-runner'),
+
+    /**
+     * watch
+     * @see module:tasks/watch
+     */
     watch: require('./tasks/watch'),
+
+    /**
+     * watch and lint on change
+     * @see module:tasks/watch-and-lint-on-change
+     */
     watchAndLintOnChange: require('./tasks/watch-and-lint-on-change'),
-    testRunE2E: require('./tasks/test/run-e2e-tests'),
-    karmaRunOnce: require('./tasks/test/karma-run-once'),
-    annotateJavascript: require('./tasks/build/annotate-javascript'),
-    minifyJavascript: require('./tasks/build/minify-javascript'),
-    packageJavascript: require('./tasks/build/package-javascript'),
-    timestampJavascript: require('./tasks/build/timestamp-javascript'),
-    minifyCss: require('./tasks/build/minify-css'),
-    inlineCss: require('./tasks/build/inline-css'),
-    minifyHtml: require('./tasks/build/minify-html'),
-    removeHtml: require('./tasks/build/remove-html'),
-    buildSetup: require('./tasks/build/setup'),
-    browserSync: require('./tasks/test/browser-sync'),
-    webdriverio : require('./tasks/test/webdriverio'),
-    webdrivercss : require('./tasks/test/webdrivercss'),
-    copy: require('./tasks/build/copy'),
-    createAppConfig: require('./tasks/build/create-app-config'),
-    generateSprites: require('./tasks/build/generate-sprites'),
-    siteSpeed: require('./tasks/test/sitespeedio'),
-    compileSass: require('./tasks/sass/compile-sass'),
-    generateSassDocs: require('./tasks/sass/generate-docs'),
-    installDependencies: require('./tasks/build/install-dependencies'),
-    copyMocks: require('./tasks/mock/copy-mocks'),
-    copyInlineMocks: require('./tasks/mock/copy-inline-mocks'),
-    deleteFiles: require('./tasks/delete')
+
+    /**
+     * mock data tasks
+     * @see module:tasks/mocks
+     */
+    mocks : {
+        copy: require('./tasks/mock/copy-mocks'),
+        copyInline: require('./tasks/mock/copy-inline-mocks')
+    },
+
+    /**
+     * lint tasks
+     * @see module:tasks/lint
+     */
+    lint : {
+        javascript: require('./tasks/eslint/details'),
+        onChange: require('./tasks/eslint/on-change'),
+        report: require('./tasks/eslint/report'),
+        sassOnChange: require('./tasks/sass/lint-on-change')
+    },
+
+    /**
+     * file system tasks
+     * @see module:tasks/javascript
+     */
+    fs : require('./tasks/fs'),
+
+    /**
+     * javascript tasks
+     * @see module:tasks/javascript
+     */
+    javascript : require('./tasks/javascript'),
+
+    /**
+     * CSS tasks
+     * @see module:tasks/css
+     */
+    css : require('./tasks/css'),
+
+    /**
+     * HTML tasks
+     * @see module:tasks/html
+     */
+    html : require('./tasks/html'),
+
+    /**
+     * SASS tasks
+     * @see module:tasks/sass
+     */
+    sass : require('./tasks/sass'),
+
+    /**
+     * Testing tasks
+     * @see module:tasks/test
+     */
+    test : require('./tasks/test'),
+
+    /**
+     * Create application config
+     * @see module:tasks/create-app-config
+     */
+    createAppConfig: require('./tasks/create-app-config'),
+
+    /**
+     * Generate sprites
+     * @see module:tasks/generate-sprites
+     */
+    generateSprites: require('./tasks/generate-sprites'),
+
+    /**
+     * Install dependencies
+     * @see module:tasks/install-dependencies
+     */
+    installDependencies: require('./tasks/install-dependencies')
 };

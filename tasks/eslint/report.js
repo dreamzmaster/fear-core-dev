@@ -57,6 +57,15 @@ function summaryReport (results) {
     return (errors+warnings) > 0 ? chalk.yellow('total linting errors ')+errors+chalk.yellow(' warnings ')+warnings : '';
 }
 
+/**
+ * @module tasks/eslint/report
+ */
+
+/**
+ * taskFactory
+ * @param src
+ * @returns task {Function}
+ */
 module.exports = function taskFactory (src) {
 
     return function task () {

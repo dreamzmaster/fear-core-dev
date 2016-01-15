@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * @module tasks/eslint/on-change
+ */
+
+/**
+ * taskFactory
+ * @param files {Array}
+ * @returns task {Function}
+ */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var eslint = require('gulp-eslint');

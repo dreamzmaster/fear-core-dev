@@ -3,6 +3,20 @@
 var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
 
+/**
+ * @module tasks/test/run-e2e-tests
+ */
+
+/**
+ * taskFactory
+ * @param specs
+ * @param breakpoint
+ * @param channel
+ * @param port {String}
+ * @param callback {Function}
+ * @returns {Function}
+ * task
+ */
 module.exports = function taskFactory (specs, breakpoint, channel, port, callback) {
 
     return function runProtractorTests () {
@@ -18,7 +32,7 @@ module.exports = function taskFactory (specs, breakpoint, channel, port, callbac
 
         return gulp.src(['./dummy'])
             .pipe(protractor({
-                configFile: './node_modules/fear-core-tasks/defaults/protractor.conf.js',
+                configFile: './node_modules/fear-core/node_modules/fear-core-tasks/defaults/protractor.conf.js',
                 args : [
                     '--specs', specs,
                     '--params.breakpoint', breakpoint,
