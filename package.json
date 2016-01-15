@@ -26,7 +26,11 @@
   "bugs": {
     "url": "https://github.com/DigitalInnovation/fear-core-tasks/issues"
   },
-  "homepage": "https://github.com/DigitalInnovation/fear-core-tasks",
+  "homepage": "http://digitalinnovation.github.io/fear-core-tasks",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/DigitalInnovation/fear-core-tasks"
+  },
   "dependencies": {
     "app-root-path": "1.0.0",
     "autoprefixer": "6.1.1",
