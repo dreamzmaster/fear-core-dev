@@ -35,7 +35,6 @@ module.exports = function taskFactory (config, template, destination) {
         };
 
         // move file to destination
-        return src
-            .pipe(gulp.dest(destination));
+        return src.pipe(gulp.dest(destination));
     };
 };

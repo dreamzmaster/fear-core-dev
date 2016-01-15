@@ -8,8 +8,16 @@ function Browser () {}
 
 Browser.prototype = {
 
+    /**
+     * browserOffsetWidth
+     * @type {Number}
+     */
     browserOffsetWidth : 0,
 
+    /**
+     * setBrowserWidthOffset
+     * @returns {*}
+     */
     setBrowserWidthOffset : function () {
 
         var self = this,
@@ -37,6 +45,11 @@ Browser.prototype = {
         return deferred.promise;
     },
 
+    /**
+     * setBrowserSize
+     * @param width {Number}
+     * @param height {Number}
+     */
     setBrowserSize : function (width, height) {
 
         gutil.log(gutil.colors.green('Sizing browser to width', width + 'px'));
@@ -63,4 +76,7 @@ Browser.prototype = {
     }
 };
 
+/**
+ * @module tasks/helpers/browser
+ */
 module.exports = new Browser();

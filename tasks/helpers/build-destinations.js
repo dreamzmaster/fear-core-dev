@@ -1,6 +1,13 @@
 'use strict';
 
 var destinationsHelper = {
+
+    /**
+     * getDestinations
+     * @param destinations
+     * @param currentFilePath
+     * @returns {*}
+     */
     getDestinations : function (destinations, currentFilePath) {
 
         var destinationIdentifier;
@@ -23,6 +30,13 @@ var destinationsHelper = {
 
         throw new Error('Cannot determine destination for file.');
     },
+
+    /**
+     * getDestinationIdentifier
+     * @param destination
+     * @param currentFilePath
+     * @returns {*}
+     */
     getDestinationIdentifier : function (destination, currentFilePath) {
 
         var splitIdentifier = destination.split('/')[0];
@@ -33,4 +47,7 @@ var destinationsHelper = {
     }
 };
 
+/**
+ * @module tasks/helpers/build-destinations
+ */
 module.exports = destinationsHelper;

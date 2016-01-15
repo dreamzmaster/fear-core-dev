@@ -7,12 +7,14 @@ var jsPackageHelper = {
 
     /**
      * selectedPackages
+     * @type {Array}
      */
     selectedPackages: [],
 
     /**
      * initialise
-     * @param packagesConfig
+     * @param packagesConfig {Object}
+     * @returns {void}
      */
     initialise : function (packagesConfig) {
         this.setPackages(packagesConfig);
@@ -20,7 +22,8 @@ var jsPackageHelper = {
 
     /**
      * setPackages
-     * @param packages
+     * @param packages {Object}
+     * @returns {void}
      */
     setPackages: function (packages) {
         this.packages = packages;
@@ -28,8 +31,9 @@ var jsPackageHelper = {
 
     /**
      * filterPackages
-     * @param product
-     * @param channel
+     * @param product {String}
+     * @param channel {String}
+     * @returns {void}
      */
     filterPackages: function (product, channel) {
         for (var p in this.packages) {
@@ -45,7 +49,8 @@ var jsPackageHelper = {
 
     /**
      * filterProduct
-     * @param product
+     * @param product {String}
+     * @returns {void}
      */
     filterProduct: function (product) {
         delete this.packages[product];
@@ -53,8 +58,9 @@ var jsPackageHelper = {
 
     /**
      * selectChannelFromProduct
-     * @param product
-     * @param channel
+     * @param product {String}
+     * @param channel {String}
+     * @returns {void}
      */
     selectChannelFromProduct: function (product, channel) {
         for (var c in this.packages[product]) {
@@ -68,8 +74,9 @@ var jsPackageHelper = {
 
     /**
      * get
-     * @param product
-     * @param channel
+     * @param product {String}
+     * @param channel {String}
+     * @returns {Object}
      */
     get: function (product, channel) {
 
@@ -85,6 +92,7 @@ var jsPackageHelper = {
     /**
      * concatenate
      * @param packages
+     * @returns {void}
      */
     concatenate: function (packages) {
         this.selectedPackages = this.selectedPackages.concat(packages);

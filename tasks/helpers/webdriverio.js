@@ -1,11 +1,25 @@
 'use strict';
 
+/**
+ * @module tasks/helpers/webdriverio
+ */
 module.exports = {
+
+    /**
+     * initialize
+     * @param browser
+     * returns {void}
+     */
     initialize: function (browser) {
         this.commands(browser);
         this.chai();
     },
 
+    /**
+     * commands
+     * @param browser
+     * returns {void}
+     */
     commands: function(browser) {
         browser.addCommand('urlAndWaitForLoad', function(url) {
             return this.url(url)
@@ -13,6 +27,10 @@ module.exports = {
         });
     },
 
+    /**
+     * chai
+     * returns {void}
+     */
     chai: function() {
         var chai = require('chai');
         var chaiAsPromised = require('chai-as-promised');
@@ -25,6 +43,12 @@ module.exports = {
         global.expect = chai.expect;
     },
 
+    /**
+     * withinMisMatchTolerance
+     * @param chai
+     * @param utils
+     * returns {void}
+     */
     withinMisMatchTolerance: function (chai, utils) {
 
         var Assertion = chai.Assertion;
