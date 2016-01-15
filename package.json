@@ -1,6 +1,6 @@
 {
   "name": "fear-core-tasks",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "FEAR Core repo to automate certain core tasks",
   "main": "index.js",
   "scripts": {
