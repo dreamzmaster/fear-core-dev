@@ -7,7 +7,7 @@ The Core tasks in this repo are provided in a factory function format for develo
 To use any of the provided Core gulp tasks, please install the module first:
 
 ```
-$ npm install --save-dev git+ssh://git@github.com:DigitalInnovation/fear-core-tasks.git
+$ npm install --save-dev git+ssh://git@github.com:DigitalInnovation/fear-core-dev-tasks.git
 ```
 
 **PLEASE NOTE** the above command requires `npm` version `2.7.1` or above, see this [issue](https://github.com/npm/npm/issues/7121).

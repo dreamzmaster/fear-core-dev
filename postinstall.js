@@ -10,7 +10,7 @@ var chalk = require('chalk');
 
 var execSync = require('child_process').execSync;
 
-execSync('node ./node_modules/gulp-protractor/node_modules/protractor/bin/webdriver-manager update; sudo gem install scss_lint -v 0.43.2', {
+execSync('sudo gem install scss_lint -v 0.43.2', {
     stdio: 'inherit'
 });
 
