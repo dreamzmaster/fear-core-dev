@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @module fear-core-tasks
+ * @module fear-core-dev
  */
 module.exports = {
     /**
@@ -49,30 +49,6 @@ module.exports = {
     },
 
     /**
-     * file system tasks
-     * @see module:tasks/javascript
-     */
-    fs : require('./tasks/fs'),
-
-    /**
-     * javascript tasks
-     * @see module:tasks/javascript
-     */
-    javascript : require('./tasks/javascript'),
-
-    /**
-     * CSS tasks
-     * @see module:tasks/css
-     */
-    css : require('./tasks/css'),
-
-    /**
-     * HTML tasks
-     * @see module:tasks/html
-     */
-    html : require('./tasks/html'),
-
-    /**
      * SASS tasks
      * @see module:tasks/sass
      */
@@ -82,23 +58,5 @@ module.exports = {
      * Testing tasks
      * @see module:tasks/test
      */
-    test : require('./tasks/test'),
-
-    /**
-     * Create application config
-     * @see module:tasks/create-app-config
-     */
-    createAppConfig: require('./tasks/create-app-config'),
-
-    /**
-     * Generate sprites
-     * @see module:tasks/generate-sprites
-     */
-    generateSprites: require('./tasks/generate-sprites'),
-
-    /**
-     * Install dependencies
-     * @see module:tasks/install-dependencies
-     */
-    installDependencies: require('./tasks/install-dependencies')
+    test : require('./tasks/test')
 };

@@ -1,4 +1,4 @@
-# fear-core-dev-tasks change log
+# fear-core-dev change log
 
 ## 1.1.4
 

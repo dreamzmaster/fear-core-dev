@@ -7,7 +7,7 @@ The Core tasks in this repo are provided in a factory function format for develo
 To use any of the provided Core gulp tasks, please install the module first:
 
 ```
-$ npm install --save-dev git+ssh://git@github.com:DigitalInnovation/fear-core-dev-tasks.git
+$ npm install --save-dev git+ssh://git@github.com:DigitalInnovation/fear-core-dev.git
 ```
 
 **PLEASE NOTE** the above command requires `npm` version `2.7.1` or above, see this [issue](https://github.com/npm/npm/issues/7121).
@@ -31,18 +31,18 @@ The copied default files are:
 - `.eslintignore`
 - `.gitignore`
 
-Take a look the `node_modules/fear-core-tasks/defaults` folder for more details.
+Take a look the `node_modules/fear-core-dev/defaults` folder for more details.
 
 ### Usage in gulptask.js
 
-In `gulpfile.js` pull in `fear-core-tasks`
+In `gulpfile.js` pull in `fear-core-dev`
 
 ```js
-var fearCoreTasks = require('fear-core-tasks');
+var fearCoreTasks = require('fear-core-dev');
 ```
 
-* [Website](http://digitalinnovation.github.io/fear-core-tasks)
-* [Technical documentation](http://digitalinnovation.github.io/fear-core-tasks/docs/)
-* [Wiki](https://github.com/DigitalInnovation/fear-core-tasks/wiki)
-* [How to create a new core task](https://github.com/DigitalInnovation/fear-core-tasks/wiki/How-to-create-a-new-core-task)
-* [Available Core tasks](https://github.com/DigitalInnovation/fear-core-tasks/wiki/Available-Core-tasks)
+* [Website](http://digitalinnovation.github.io/fear-core-dev)
+* [Technical documentation](http://digitalinnovation.github.io/fear-core-dev/docs/)
+* [Wiki](https://github.com/DigitalInnovation/fear-core-dev/wiki)
+* [How to create a new core task](https://github.com/DigitalInnovation/fear-core-dev/wiki/How-to-create-a-new-core-task)
+* [Available Core tasks](https://github.com/DigitalInnovation/fear-core-dev/wiki/Available-Core-tasks)
