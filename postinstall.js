@@ -8,12 +8,6 @@ var moduleRoot = process.cwd();
 var fs = require('fs-extra');
 var chalk = require('chalk');
 
-var execSync = require('child_process').execSync;
-
-execSync('sudo gem install scss_lint -v 0.43.2', {
-    stdio: 'inherit'
-});
-
 var fearCoreTasks = chalk.cyan('FEAR Core tasks:');
 
 copyDefaultToAppRoot('editorconfig', '.editorconfig');
