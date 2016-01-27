@@ -50,6 +50,7 @@
     "karma-angular": "0.0.6",
     "karma-chai": "0.1.0",
     "karma-coverage": "0.2.7",
+    "karma-jspm": "2.0.1",
     "karma-junit-reporter": "0.3.4",
     "karma-mocha": "0.2.0",
     "karma-mocha-reporter": "1.1.1",
