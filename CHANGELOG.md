@@ -1,5 +1,9 @@
 # fear-core-dev change log
 
+## 1.1.5
+
+- upgrade phatomJS version to 2.1.3
+
 ## 1.1.4
 
 - added sass lint install to module postinstall script
