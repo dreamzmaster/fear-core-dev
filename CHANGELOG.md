@@ -2,7 +2,8 @@
 
 ## 1.1.5
 
--removed mock data tasks
+- upgrade phatomJS version to 2.1.3
+- removed data mock tasks
 
 ## 1.1.4
 
