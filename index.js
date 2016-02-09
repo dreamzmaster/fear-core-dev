@@ -29,15 +29,6 @@ module.exports = {
     watchAndLintOnChange: require('./tasks/watch-and-lint-on-change'),
 
     /**
-     * mock data tasks
-     * @see module:tasks/mocks
-     */
-    mocks : {
-        copy: require('./tasks/mock/copy-mocks'),
-        copyInline: require('./tasks/mock/copy-inline-mocks')
-    },
-
-    /**
      * lint tasks
      * @see module:tasks/lint
      */

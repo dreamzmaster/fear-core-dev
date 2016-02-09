@@ -1,5 +1,9 @@
 # fear-core-dev change log
 
+## 1.1.5
+
+-removed mock data tasks
+
 ## 1.1.4
 
 - added sass lint install to module postinstall script
