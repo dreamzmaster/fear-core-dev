@@ -64,7 +64,7 @@
     "yargs": "3.30.0"
   },
   "devDependencies": {
-    "gh-pages": "^0.10.0",
+    "gh-pages": "0.10.0",
     "jsdoc": "3.4.0",
     "onchange": "2.0.0"
   }
