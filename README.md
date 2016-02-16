@@ -41,8 +41,10 @@ In `gulpfile.js` pull in `fear-core-dev`
 var fearCoreTasks = require('fear-core-dev');
 ```
 
-* [Website](http://digitalinnovation.github.io/fear-core-dev)
-* [Technical documentation](http://digitalinnovation.github.io/fear-core-dev/docs/)
-* [Wiki](https://github.com/DigitalInnovation/fear-core-dev/wiki)
-* [How to create a new core task](https://github.com/DigitalInnovation/fear-core-dev/wiki/How-to-create-a-new-core-task)
-* [Available Core tasks](https://github.com/DigitalInnovation/fear-core-dev/wiki/Available-Core-tasks)
+### More Information
+- [Website](http://digitalinnovation.github.io/fear-core-dev)
+- [Technical documentation](http://digitalinnovation.github.io/fear-core-dev/docs/)
+- [Wiki](https://github.com/DigitalInnovation/fear-core-dev/wiki)
+- [How to create a new core task](https://github.com/DigitalInnovation/fear-core-dev/wiki/How-to-create-a-new-core-task)
+- [Available Core tasks](https://github.com/DigitalInnovation/fear-core-dev/wiki/Available-Core-tasks)
+

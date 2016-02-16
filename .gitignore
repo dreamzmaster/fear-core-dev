@@ -4,3 +4,5 @@ node_modules
 *.sublime-*
 *.log
 *.orig
+
+_gh_pages

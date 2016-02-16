@@ -4,15 +4,15 @@
   "description": "FEAR core API driven development tasks",
   "main": "index.js",
   "scripts": {
-    "postinstall" : "node postinstall",
+    "postinstall": "node postinstall",
     "eslint": "eslint test/ tasks/",
     "test": "mocha 'test/**/*.spec.js'",
     "pretest": "npm run eslint",
     "watch:test": "onchange test/**/*.js tasks/**/*.js -- npm run test -s",
     "dev": "npm run watch:test -s",
-    "docs": "./node_modules/.bin/jsdoc ./tasks index.js --recurse --destination docs --readme README.md",
-    "prepublish" : "npm test",
-    "postpublish": "git checkout gh-pages; git merge master --strategy-option theirs; npm run docs; git add .; git commit -m 'update jsdocs'; git push upstream gh-pages; git checkout master"
+    "docs": "./node_modules/.bin/jsdoc ./tasks index.js --recurse --destination _gh_pages/docs --readme README.md",
+    "prepublish": "npm test",
+    "postpublish": "node postpublish"
   },
   "repository": {
     "type": "git",
@@ -64,6 +64,7 @@
     "yargs": "3.30.0"
   },
   "devDependencies": {
+    "gh-pages": "^0.10.0",
     "jsdoc": "3.4.0",
     "onchange": "2.0.0"
   }
