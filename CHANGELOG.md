@@ -2,6 +2,7 @@
 ## **Changelog**
 
 #### **1.1.5**
+- decoupled module from other core modules
 - upgrade PhantomJS version to 2.1.3
 - removed data mock tasks
 
