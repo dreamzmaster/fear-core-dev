@@ -1,6 +1,9 @@
 
 ## **Changelog**
 
+#### **1.1.6**
+- bumped karma-phantomjs-launcher to 1.0.0 dues to upgrading phantomjs version
+
 #### **1.1.5**
 - decoupled module from other core modules
 - upgrade PhantomJS version to 2.1.3
