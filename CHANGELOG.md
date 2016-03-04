@@ -1,9 +1,11 @@
 
 ## **Changelog**
 
+#### **1.1.7**
+- added babel dependencies for karma
+
 #### **1.1.6**
 - bumped karma-phantomjs-launcher to 1.0.0 dues to upgrading phantomjs version
-- added babel dependencies for karma
 
 #### **1.1.5**
 - decoupled module from other core modules
