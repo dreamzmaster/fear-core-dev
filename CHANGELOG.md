@@ -1,5 +1,8 @@
 
 ## **Changelog**
+#### **1.1.8**
+- moved babel devDependencies to dependencies
+
 
 #### **1.1.7**
 - added babel dependencies for karma
